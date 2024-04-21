@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#1F2C37</color>
+    <color name="white">#FDFDFD</color>
+    <color name="white2">#FEFEFE</color>
+    <color name="Neutral">#9CA4AB</color>
+    <color name="NeutralTwo">#E3E9ED</color>
+    <color name="TrendyPink">#9579A0</color>
+    <color name="Bossnova">#5C4560</color>
+    <color name="Red">#FF0000</color>
+    <color name="lightwhite">#ECF1F6</color>
+    <color name="LightSteelBlue">#78828A</color>
+    <color name="NavyCosmos">#57435C</color>
+    <color name="Neutral3">#E2E0E4</color>
+</resources>

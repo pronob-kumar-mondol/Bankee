@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".onboarding.screens.Third_Screen_Fragment"
+    android:background="@drawable/gradiant_back_1">
+
+    <TextView
+        android:id="@+id/txt1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Your savings are safe by smart invest"
+        android:textStyle=""
+        android:textColor="@color/white"
+        android:layout_marginTop="50dp"
+        android:layout_marginHorizontal="30dp"
+        android:textSize="40sp"/>
+
+    <TextView
+        android:layout_below="@+id/txt1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Semper in cursus magna et eu varius nunc adipiscing. Elementum justo, laoreet id sem semper parturient. "
+        android:textSize="18sp"
+        android:layout_marginTop="6dp"
+        android:textColor="@color/Neutral"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="170dp"
+        />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/sp3"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"/>
+
+</RelativeLayout>

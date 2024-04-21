@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/onboard_nav"
+    app:startDestination="@id/splash_Activity">
+
+    <activity
+        android:id="@+id/splash_Activity"
+        android:name="com.example.bankee.activity.Splash_Activity"
+        android:label="activity_splash"
+        tools:layout="@layout/activity_splash" />
+</navigation>

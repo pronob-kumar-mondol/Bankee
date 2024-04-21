@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/black">
+
+<!--    <RelativeLayout-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="340dp"-->
+<!--        android:background="@drawable/card2"-->
+<!--        android:layout_marginHorizontal="40dp">-->
+
+<!--        <TextView-->
+<!--            android:id="@+id/txtView"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginHorizontal="10dp"-->
+<!--            android:fontFamily="sans-serif-condensed"-->
+<!--            android:autoSizeTextType="uniform"-->
+<!--            android:textSize="22sp"-->
+<!--            android:layout_marginTop="40dp"-->
+<!--            android:text="I agree to the <b>Terms of Services</b> and <b>Conditions of Use</b> including consent to electronic communications and I affirm that the information provided is my own."-->
+<!--            android:textAlignment="center"/>-->
+
+<!--        <androidx.appcompat.widget.AppCompatButton-->
+<!--            android:id="@+id/btn"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_below="@+id/txtView"-->
+<!--            android:layout_marginHorizontal="80dp"-->
+<!--            android:background="@drawable/button"-->
+<!--            android:text="Agree and Continue"-->
+<!--            android:textColor="@color/white"-->
+<!--            android:textAllCaps="false"-->
+<!--            android:fontFamily="sans-serif-condensed"-->
+<!--            android:layout_marginTop="30dp"/>-->
+<!--        <androidx.appcompat.widget.AppCompatTextView-->
+<!--            android:layout_below="@+id/btn"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_centerHorizontal="true"-->
+<!--            android:fontFamily="sans-serif-condensed"-->
+<!--            android:textColor="@color/Bossnova"-->
+<!--            android:layout_marginTop="10dp"-->
+<!--            android:text="Disagree"/>-->
+
+
+
+<!--    </RelativeLayout>-->
+
+
+</RelativeLayout>

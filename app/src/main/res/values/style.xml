@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Define a custom style for the Switch -->
+    <style name="CustomSwitchStyle" parent="Widget.AppCompat.CompoundButton.Switch">
+        <!-- Customize the track color when the switch is off -->
+        <item name="android:thumbTint">@color/TrendyPink</item>
+
+        <!-- Customize the thumb color when the switch is on -->
+        <item name="android:trackTint">@color/Red</item>
+    </style>
+
+    <style name="CustomTabLayout" parent="Widget.MaterialComponents.TabLayout">
+        <!-- Customize tab indicator color -->
+        <item name="tabIndicatorColor">@color/white</item>
+
+        <!-- Customize tab text appearance -->
+        <item name="tabTextAppearance">@style/CustomTabTextAppearance</item>
+
+        <!-- Add more customizations as needed -->
+    </style>
+
+    <!-- Define custom tab text appearance -->
+    <style name="CustomTabTextAppearance" parent="TextAppearance.Design.Tab">
+        <item name="android:textColor">@color/black</item>
+        <!-- Add more text appearance attributes as needed -->
+    </style>
+
+
+</resources>
