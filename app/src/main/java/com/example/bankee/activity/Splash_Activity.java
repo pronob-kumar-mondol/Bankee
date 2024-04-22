@@ -10,6 +10,7 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.example.bankee.Fragment.HomeFragment;
 import com.example.bankee.R;
 import com.example.bankee.onboarding.ViewPagerFragment;
 
@@ -29,7 +30,7 @@ public class Splash_Activity extends AppCompatActivity {
                 @Override
                 public void run() {
                     // Replace the current activity with the ViewPagerActivity
-                    Intent intent = new Intent(Splash_Activity.this, SendMoneyActivity.class);
+                    Intent intent = new Intent(Splash_Activity.this, MainActivity.class);
                     startActivity(intent);
                     finish();
                 }

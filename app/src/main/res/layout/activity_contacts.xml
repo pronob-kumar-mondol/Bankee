@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@color/white"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginTop="50dp"
+    tools:context=".activity.ContactsActivity">
+
+    <include
+        android:id="@+id/include"
+        layout="@layout/appbar"/>
+
+    <androidx.viewpager2.widget.ViewPager2
+        android:layout_below="@+id/include"
+        android:id="@+id/viewPager_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+</RelativeLayout>
