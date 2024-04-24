@@ -80,8 +80,5 @@ public class SignupActivity extends AppCompatActivity {
     }
 
 
-    public void togglePasswordVisibility(View view) {
-        EditText editTextPassword = findViewById(R.id.passEditTxt);
-        Utility.togglePasswordVisibility(editTextPassword);
-    }
+
 }

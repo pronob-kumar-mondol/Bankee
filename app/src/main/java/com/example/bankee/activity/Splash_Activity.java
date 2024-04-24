@@ -30,7 +30,7 @@ public class Splash_Activity extends AppCompatActivity {
                 @Override
                 public void run() {
                     // Replace the current activity with the ViewPagerActivity
-                    Intent intent = new Intent(Splash_Activity.this, MainActivity.class);
+                    Intent intent = new Intent(Splash_Activity.this, LoginActivity.class);
                     startActivity(intent);
                     finish();
                 }

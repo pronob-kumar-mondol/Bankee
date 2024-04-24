@@ -48,8 +48,6 @@ public class LoginActivity extends AppCompatActivity {
             ivMenu.setVisibility(View.GONE);
             signUp=findViewById(R.id.signUp);
             tvTitle=findViewById(R.id.tvTitle);
-            passEditTxt=findViewById(R.id.passEditTxt);
-            emailEditTxt=findViewById(R.id.emailEditTxt);
             tvTitle.setText("Log In");
             firebaseAuth=FirebaseAuth.getInstance();
 
@@ -99,8 +97,5 @@ public class LoginActivity extends AppCompatActivity {
     }
 
 
-    public void togglePasswordVisibility(View view) {
-        EditText editTextPassword=findViewById(R.id.passEditTxt);
-        Utility.togglePasswordVisibility(editTextPassword);
-    }
+
 }
