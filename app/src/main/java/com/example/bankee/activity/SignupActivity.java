@@ -1,84 +1,107 @@
 package com.example.bankee.activity;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.InputType;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.AppCompatButton;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import com.example.bankee.R;
 import com.example.bankee.Utility;
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
+import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 public class SignupActivity extends AppCompatActivity {
-    ImageView ivBack,ivMenu;
-    EditText fullNameEditTxt,emailEditTxt,passEditTxt;
-    TextView tvTitle;
-    androidx.appcompat.widget.AppCompatButton btn;
-    FirebaseAuth firebaseAuth;
+    TextInputEditText inputfullName;
+    TextInputEditText inputemail;
+    TextInputEditText inputpass;
+    AppCompatButton btn;
+    String emailPattern="^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$";
+    String passPattern="^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$";
+    ProgressBar progressBar;
+    FirebaseAuth mAuth;
+    FirebaseUser mUser;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_signup);
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
-            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
 
-            ivBack=findViewById(R.id.ivBack);
-            ivMenu=findViewById(R.id.ivMenu);
-            ivMenu.setVisibility(View.GONE);
-            tvTitle=findViewById(R.id.tvTitle);
-            tvTitle.setText("Sign Up");
-            btn=findViewById(R.id.btn);
-            firebaseAuth=FirebaseAuth.getInstance();
-
-            ivBack.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Intent intent=new Intent(SignupActivity.this, LoginActivity.class);
-                    startActivity(intent);
-                    finish();
-                }
-            });
-
-            btn.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    firebaseAuth.createUserWithEmailAndPassword(emailEditTxt.getText().toString().trim(),passEditTxt.getText().toString()).addOnSuccessListener(new OnSuccessListener<AuthResult>() {
-                        @Override
-                        public void onSuccess(AuthResult authResult) {
-                            if (authResult.getUser()!=null){
-                                Toast.makeText(SignupActivity.this, "Sign Up DONE", Toast.LENGTH_SHORT).show();
-                                Intent i= new Intent(SignupActivity.this, MainActivity.class);
-                                startActivity(i);
-                            }
-                            else {
-                                Toast.makeText(SignupActivity.this, "Sign Up Not Done", Toast.LENGTH_SHORT).show();
-                            }
-                        }
-                    });
-                }
-            });
+        inputfullName=findViewById(R.id.fullNameEditTxt);
+        inputemail=findViewById(R.id.emailEditTxt);
+        inputpass=findViewById(R.id.passEditTxt);
+        btn=findViewById(R.id.btn);
+        progressBar=findViewById(R.id.progressBar);
+        mAuth=FirebaseAuth.getInstance();
+        mUser=mAuth.getCurrentUser();
 
 
 
 
-            return insets;
+        btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                PerformAuth();
+            }
         });
+
+
     }
 
+    private void PerformAuth() {
+        String name= inputfullName.getText().toString();
+        String email= inputemail.getText().toString().trim();
+        String pass= inputpass.getText().toString();
+
+        if (!email.matches(emailPattern)){
+            inputemail.setError("Enter Correct Email");
+            inputemail.requestFocus();
+        } else if (!pass.matches(passPattern) || pass.isEmpty()) {
+            inputpass.setError("Password not valid");
+        }else {
+            progressBar.setVisibility(View.VISIBLE);
+
+
+            mAuth.createUserWithEmailAndPassword(email,pass).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                @Override
+                public void onComplete(@NonNull Task<AuthResult> task) {
+                    if (task.isSuccessful()){
+                        progressBar.setVisibility(View.GONE);
+                        Toast.makeText(SignupActivity.this, "Registration Sucsessful", Toast.LENGTH_SHORT).show();
+                        startActivity(new Intent(SignupActivity.this, LoginActivity.class));
+                    }
+                    else {
+                        progressBar.setVisibility(View.GONE);
+                        Toast.makeText(SignupActivity.this, "User Already Exists", Toast.LENGTH_SHORT).show();
+                    }
+                }
+            });
+
+
+
+
+        }
+
+
+    }
 
 
 }
