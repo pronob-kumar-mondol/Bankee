@@ -57,14 +57,15 @@
             android:layout_below="@+id/fullnameTxt"
             app:endIconMode="none"
             android:layout_height="wrap_content">
+
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/fullNameEditTxt"
                 android:layout_width="match_parent"
-                android:background="@drawable/txtbar"
                 android:layout_height="match_parent"
+                android:background="@drawable/txtbar"
                 android:hint="Enter Your Full Name"
                 android:textColorHint="@color/Neutral"
-                android:textSize="12sp"/>
+                android:textSize="12sp" />
 
 
         </com.google.android.material.textfield.TextInputLayout>
@@ -163,14 +164,14 @@
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn"
-            android:layout_marginTop="20dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/layout2"
+            android:layout_marginTop="18dp"
+            android:background="@drawable/button"
             android:text="Create An Account"
             android:textAllCaps="false"
-            android:textColor="@color/white"
-            android:background="@drawable/button"/>
+            android:textColor="@color/white" />
 
 
     </RelativeLayout>

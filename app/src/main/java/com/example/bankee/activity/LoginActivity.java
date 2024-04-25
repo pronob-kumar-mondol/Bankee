@@ -1,6 +1,7 @@
 package com.example.bankee.activity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ProgressBar;
@@ -23,6 +24,9 @@ import com.google.firebase.auth.FirebaseAuthInvalidUserException;
 import com.google.firebase.auth.FirebaseUser;
 
 public class LoginActivity extends AppCompatActivity {
+    private SharedPreferences sharedPreferences;
+    private static final String PREF_NAME = "MyAppPrefs";
+    private static final String KEY_IS_LOGGED_IN = "isLoggedIn";
     TextInputEditText inputEmail;
     TextInputEditText inputPass;
     AppCompatButton btn;
@@ -47,6 +51,13 @@ public class LoginActivity extends AppCompatActivity {
         progressBar=findViewById(R.id.progressBar);
         mAuth=FirebaseAuth.getInstance();
         mUser=mAuth.getCurrentUser();
+        sharedPreferences = getSharedPreferences(PREF_NAME, MODE_PRIVATE);
+
+        // Check if user is already logged in
+        if (isLoggedIn()) {
+            startMainActivity();
+        }
+
 
 
 
@@ -69,6 +80,16 @@ public class LoginActivity extends AppCompatActivity {
 
     }
 
+    private void startMainActivity() {
+        Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+        startActivity(intent);
+        finish();
+    }
+
+    private boolean isLoggedIn() {
+        return sharedPreferences.getBoolean(KEY_IS_LOGGED_IN, false);
+    }
+
     private void prformAuth() {
         String email= inputEmail.getText().toString().trim();
         String pass= inputPass.getText().toString();
@@ -87,8 +108,10 @@ public class LoginActivity extends AppCompatActivity {
                     if (task.isSuccessful()){
                         progressBar.setVisibility(View.GONE);
                         Toast.makeText(LoginActivity.this, "Login Sucsessful", Toast.LENGTH_SHORT).show();
-                        startActivity(new Intent(LoginActivity.this, MainActivity.class));
-                        finish();
+                        SharedPreferences.Editor editor = sharedPreferences.edit();
+                        editor.putBoolean(KEY_IS_LOGGED_IN, true);
+                        editor.apply();
+                        startMainActivity();
                     }
                     else {
                         progressBar.setVisibility(View.GONE);

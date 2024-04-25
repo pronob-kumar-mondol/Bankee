@@ -28,6 +28,11 @@ import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class SignupActivity extends AppCompatActivity {
     TextInputEditText inputfullName;
@@ -39,6 +44,7 @@ public class SignupActivity extends AppCompatActivity {
     ProgressBar progressBar;
     FirebaseAuth mAuth;
     FirebaseUser mUser;
+    DatabaseReference firebaseDatabase;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,6 +58,7 @@ public class SignupActivity extends AppCompatActivity {
         progressBar=findViewById(R.id.progressBar);
         mAuth=FirebaseAuth.getInstance();
         mUser=mAuth.getCurrentUser();
+        firebaseDatabase= FirebaseDatabase.getInstance().getReference("UserDEtails");
 
 
 
@@ -84,9 +91,21 @@ public class SignupActivity extends AppCompatActivity {
                 @Override
                 public void onComplete(@NonNull Task<AuthResult> task) {
                     if (task.isSuccessful()){
-                        progressBar.setVisibility(View.GONE);
-                        Toast.makeText(SignupActivity.this, "Registration Sucsessful", Toast.LENGTH_SHORT).show();
-                        startActivity(new Intent(SignupActivity.this, LoginActivity.class));
+                        firebaseDatabase.push().addListenerForSingleValueEvent(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                snapshot.child("UserName").getRef().setValue(name);
+                                snapshot.child("UserEmail").getRef().setValue(email);
+                                progressBar.setVisibility(View.GONE);
+                                Toast.makeText(SignupActivity.this, "Registration Sucsessful", Toast.LENGTH_SHORT).show();
+                                startActivity(new Intent(SignupActivity.this, LoginActivity.class));
+                            }
+
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError error) {
+
+                            }
+                        });
                     }
                     else {
                         progressBar.setVisibility(View.GONE);

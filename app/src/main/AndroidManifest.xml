@@ -17,6 +17,12 @@
         android:theme="@style/Theme.Bankee"
         tools:targetApi="31">
         <activity
+            android:name=".activity.EditProfile_Activity"
+            android:exported="false" />
+        <activity
+            android:name=".activity.MyProfile_Activity"
+            android:exported="false" />
+        <activity
             android:name=".activity.ContactsActivity"
             android:exported="false" />
         <activity
