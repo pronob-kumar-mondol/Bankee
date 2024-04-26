@@ -12,6 +12,7 @@ import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
+import androidx.preference.PreferenceManager;
 
 import com.example.bankee.R;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -52,7 +53,7 @@ public class LoginActivity extends AppCompatActivity {
         mAuth=FirebaseAuth.getInstance();
         mUser=mAuth.getCurrentUser();
         sharedPreferences = getSharedPreferences(PREF_NAME, MODE_PRIVATE);
-
+        sharedPreferences=PreferenceManager.getDefaultSharedPreferences(this);
         // Check if user is already logged in
         if (isLoggedIn()) {
             startMainActivity();

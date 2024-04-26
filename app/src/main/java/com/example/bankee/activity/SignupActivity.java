@@ -1,28 +1,21 @@
 package com.example.bankee.activity;
 
-import android.app.ProgressDialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.text.InputType;
 import android.view.View;
-import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.ProgressBar;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
+import androidx.preference.PreferenceManager;
 
+import com.example.bankee.Fragment.HomeFragment;
 import com.example.bankee.R;
-import com.example.bankee.Utility;
 import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.AuthResult;
@@ -45,10 +38,11 @@ public class SignupActivity extends AppCompatActivity {
     FirebaseAuth mAuth;
     FirebaseUser mUser;
     DatabaseReference firebaseDatabase;
+    SharedPreferences sharedPreferences;
+    SharedPreferences.Editor editor;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        EdgeToEdge.enable(this);
         setContentView(R.layout.activity_signup);
 
         inputfullName=findViewById(R.id.fullNameEditTxt);
@@ -58,8 +52,10 @@ public class SignupActivity extends AppCompatActivity {
         progressBar=findViewById(R.id.progressBar);
         mAuth=FirebaseAuth.getInstance();
         mUser=mAuth.getCurrentUser();
-        firebaseDatabase= FirebaseDatabase.getInstance().getReference("UserDEtails");
-
+        firebaseDatabase= FirebaseDatabase.getInstance().getReference("UserDetails");
+//        sharedPreferences=PreferenceManager.getDefaultSharedPreferences(this);
+        sharedPreferences= PreferenceManager.getDefaultSharedPreferences(this);
+        editor=sharedPreferences.edit();
 
 
 
@@ -91,7 +87,7 @@ public class SignupActivity extends AppCompatActivity {
                 @Override
                 public void onComplete(@NonNull Task<AuthResult> task) {
                     if (task.isSuccessful()){
-                        firebaseDatabase.push().addListenerForSingleValueEvent(new ValueEventListener() {
+                        firebaseDatabase.child(name).addListenerForSingleValueEvent(new ValueEventListener() {
                             @Override
                             public void onDataChange(@NonNull DataSnapshot snapshot) {
                                 snapshot.child("UserName").getRef().setValue(name);
@@ -99,6 +95,8 @@ public class SignupActivity extends AppCompatActivity {
                                 progressBar.setVisibility(View.GONE);
                                 Toast.makeText(SignupActivity.this, "Registration Sucsessful", Toast.LENGTH_SHORT).show();
                                 startActivity(new Intent(SignupActivity.this, LoginActivity.class));
+                                Intent intent=new Intent(SignupActivity.this, HomeFragment.class);
+                                intent.putExtra("u_name",name);
                             }
 
                             @Override
@@ -106,6 +104,8 @@ public class SignupActivity extends AppCompatActivity {
 
                             }
                         });
+                        editor.putString("u_name",name);
+                        editor.apply();
                     }
                     else {
                         progressBar.setVisibility(View.GONE);

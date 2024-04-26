@@ -13,6 +13,7 @@ googleServices = "4.4.1"
 firebaseAuth = "22.3.1"
 carUiLib = "2.6.0"
 firebaseDatabase = "20.3.1"
+preference = "1.2.1"
 
 [libraries]
 junit = { group = "junit", name = "junit", version.ref = "junit" }
@@ -28,6 +29,7 @@ google-services = { group = "com.google.gms", name = "google-services", version.
 firebase-auth = { group = "com.google.firebase", name = "firebase-auth", version.ref = "firebaseAuth" }
 car-ui-lib = { group = "com.android.car.ui", name = "car-ui-lib", version.ref = "carUiLib" }
 firebase-database = { group = "com.google.firebase", name = "firebase-database", version.ref = "firebaseDatabase" }
+preference = { module = "androidx.preference:preference", version.ref = "preference" }
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }
