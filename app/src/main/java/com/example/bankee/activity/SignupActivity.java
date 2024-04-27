@@ -35,11 +35,8 @@ public class SignupActivity extends AppCompatActivity {
     String emailPattern="^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$";
     String passPattern="^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$";
     ProgressBar progressBar;
-    FirebaseAuth mAuth;
-    FirebaseUser mUser;
+    FirebaseAuth fAuth;
     DatabaseReference firebaseDatabase;
-    SharedPreferences sharedPreferences;
-    SharedPreferences.Editor editor;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,12 +47,9 @@ public class SignupActivity extends AppCompatActivity {
         inputpass=findViewById(R.id.passEditTxt);
         btn=findViewById(R.id.btn);
         progressBar=findViewById(R.id.progressBar);
-        mAuth=FirebaseAuth.getInstance();
-        mUser=mAuth.getCurrentUser();
+        fAuth=FirebaseAuth.getInstance();
         firebaseDatabase= FirebaseDatabase.getInstance().getReference("UserDetails");
-//        sharedPreferences=PreferenceManager.getDefaultSharedPreferences(this);
-        sharedPreferences= PreferenceManager.getDefaultSharedPreferences(this);
-        editor=sharedPreferences.edit();
+
 
 
 
@@ -74,6 +68,7 @@ public class SignupActivity extends AppCompatActivity {
         String email= inputemail.getText().toString().trim();
         String pass= inputpass.getText().toString();
 
+
         if (!email.matches(emailPattern)){
             inputemail.setError("Enter Correct Email");
             inputemail.requestFocus();
@@ -83,11 +78,11 @@ public class SignupActivity extends AppCompatActivity {
             progressBar.setVisibility(View.VISIBLE);
 
 
-            mAuth.createUserWithEmailAndPassword(email,pass).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+            fAuth.createUserWithEmailAndPassword(email,pass).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                 @Override
                 public void onComplete(@NonNull Task<AuthResult> task) {
                     if (task.isSuccessful()){
-                        firebaseDatabase.child(name).addListenerForSingleValueEvent(new ValueEventListener() {
+                        firebaseDatabase.child(fAuth.getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
                             @Override
                             public void onDataChange(@NonNull DataSnapshot snapshot) {
                                 snapshot.child("UserName").getRef().setValue(name);
@@ -95,17 +90,14 @@ public class SignupActivity extends AppCompatActivity {
                                 progressBar.setVisibility(View.GONE);
                                 Toast.makeText(SignupActivity.this, "Registration Sucsessful", Toast.LENGTH_SHORT).show();
                                 startActivity(new Intent(SignupActivity.this, LoginActivity.class));
-                                Intent intent=new Intent(SignupActivity.this, HomeFragment.class);
-                                intent.putExtra("u_name",name);
-                            }
 
+                            }
                             @Override
                             public void onCancelled(@NonNull DatabaseError error) {
 
                             }
                         });
-                        editor.putString("u_name",name);
-                        editor.apply();
+
                     }
                     else {
                         progressBar.setVisibility(View.GONE);

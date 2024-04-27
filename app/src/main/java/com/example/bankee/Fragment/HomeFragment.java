@@ -1,5 +1,7 @@
 package com.example.bankee.Fragment;
 
+import static android.content.Intent.getIntent;
+
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -43,15 +45,8 @@ public class HomeFragment extends Fragment {
     TextView user_name;
 
     DatabaseReference reference;
+    FirebaseAuth fAuth;
 
-
-//    @Override
-//    public void onStart() {
-//        reference=FirebaseDatabase.getInstance().getReference("UserDetails");
-//        System.out.println("abc"+reference);
-//        super.onStart();
-//    }
-    //ToDo
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -60,22 +55,21 @@ public class HomeFragment extends Fragment {
         sendMoney=v.findViewById(R.id.sendMoney);
         contacts=v.findViewById(R.id.contacts);
         user_name=v.findViewById(R.id.user_name);
+        fAuth=FirebaseAuth.getInstance();
+        reference= FirebaseDatabase.getInstance().getReference("UserDetails");
         sharedPreferences= PreferenceManager.getDefaultSharedPreferences(requireContext());
         String userName= sharedPreferences.getString("u_name","");
-//        user_name.setText(userName);
 
-//        String userId = Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getUid();
 
-        user_name.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (!userName.isEmpty()){
-                    readData(userName);
-                }else {
-                    Toast.makeText(getContext(), "Username null", Toast.LENGTH_SHORT).show();
-                }
-            }
-        });
+
+
+
+
+
+        String userId =fAuth.getUid().toString();
+
+
+        readData(userId);
 
 
 
@@ -103,18 +97,20 @@ public class HomeFragment extends Fragment {
         return v;
     }
 
-    private void readData(String userName) {
+    private void readData(String userId) {
 
-        reference= FirebaseDatabase.getInstance().getReference("UserDetails").child(userName);
 
-        reference.addListenerForSingleValueEvent(new ValueEventListener() {
+
+
+
+        reference.child(userId).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                if (snapshot.exists()){
+
                     String name=snapshot.child("UserName").getValue(String.class);
                     user_name.setText(name);
                     Log.d("HomeFragment", "User name: " + name);
-                }
+
             }
 
             @Override

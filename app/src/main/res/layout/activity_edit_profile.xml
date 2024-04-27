@@ -63,12 +63,11 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView12">
 
-        <com.google.android.material.textfield.TextInputEditText
+        <EditText
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@drawable/txtbar"
             android:fontFamily="@font/baloo_bhai_2"
-            android:hint="Enter Your Full Name"
             android:textColorHint="@color/Neutral"
             android:textSize="12sp" />
 
