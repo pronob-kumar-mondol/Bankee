@@ -58,11 +58,6 @@ public class HomeFragment extends Fragment {
         fAuth=FirebaseAuth.getInstance();
         reference= FirebaseDatabase.getInstance().getReference("UserDetails");
         sharedPreferences= PreferenceManager.getDefaultSharedPreferences(requireContext());
-        String userName= sharedPreferences.getString("u_name","");
-
-
-
-
 
 
 
@@ -70,9 +65,6 @@ public class HomeFragment extends Fragment {
 
 
         readData(userId);
-
-
-
 
 
 

@@ -67,6 +67,9 @@ public class SignupActivity extends AppCompatActivity {
         String name= inputfullName.getText().toString();
         String email= inputemail.getText().toString().trim();
         String pass= inputpass.getText().toString();
+        String phoneNumber="00000";
+        String address="Add Your Address";
+        String imageLink="https://firebasestorage.googleapis.com/v0/b/bankee-ba7df.appspot.com/o/pronob.jpg?alt=media&token=bf1a7013-d048-4509-a8f2-01529b33807d";
 
 
         if (!email.matches(emailPattern)){
@@ -87,6 +90,9 @@ public class SignupActivity extends AppCompatActivity {
                             public void onDataChange(@NonNull DataSnapshot snapshot) {
                                 snapshot.child("UserName").getRef().setValue(name);
                                 snapshot.child("UserEmail").getRef().setValue(email);
+                                snapshot.child("UserPhone").getRef().setValue(phoneNumber);
+                                snapshot.child("UserAddress").getRef().setValue(address);
+                                snapshot.child("imageLink").getRef().setValue(imageLink);
                                 progressBar.setVisibility(View.GONE);
                                 Toast.makeText(SignupActivity.this, "Registration Sucsessful", Toast.LENGTH_SHORT).show();
                                 startActivity(new Intent(SignupActivity.this, LoginActivity.class));
