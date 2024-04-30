@@ -1,6 +1,9 @@
 package com.example.bankee.activity;
 
 import android.os.Bundle;
+import android.view.View;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
@@ -18,6 +21,9 @@ import com.example.bankee.R;
 
 public class ContactsActivity extends AppCompatActivity {
 
+    TextView tvTitle;
+    ImageView ivBack,ivMenu;
+
     ViewPager2 viewPager;
 
     @Override
@@ -28,6 +34,26 @@ public class ContactsActivity extends AppCompatActivity {
 
 
         viewPager=findViewById(R.id.viewPager_layout);
+        tvTitle = findViewById(R.id.tvTitle);
+        ivBack = findViewById(R.id.ivBack);
+        ivMenu = findViewById(R.id.ivMenu);
+
+
+        tvTitle.setText("Contacts");
+        ivMenu.setVisibility(View.VISIBLE);
+
+
+        ivBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+
+
+
+
+
         ViewPagerAdapter adapter = new ViewPagerAdapter(this){
             @Override
             public Fragment createFragment(int position) {

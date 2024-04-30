@@ -5,6 +5,8 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
@@ -37,6 +39,8 @@ import de.hdodenhof.circleimageview.CircleImageView;
 public class EditProfile_Activity extends AppCompatActivity {
 
     CircleImageView miniCamera,ImageView;
+    ImageView ivBack,ivMenu;
+    TextView tvTitle;
     Uri guri;
     AppCompatButton btn;
     EditText editName,editEmail,editNumber,editAddress;
@@ -55,11 +59,26 @@ public class EditProfile_Activity extends AppCompatActivity {
         editNumber=findViewById(R.id.editPhonenumber);
         editAddress=findViewById(R.id.editAddress);
         btn=findViewById(R.id.btn);
+        ivBack = findViewById(R.id.ivBack);
+        ivMenu = findViewById(R.id.ivMenu);
+        tvTitle = findViewById(R.id.tvTitle);
+
+
         fAuth=FirebaseAuth.getInstance();
         storageReference=FirebaseStorage.getInstance().getReference();
 
         String userId =fAuth.getUid().toString();
         databaseReference= FirebaseDatabase.getInstance().getReference("UserDetails").child(userId);
+
+
+        ivMenu.setVisibility(View.GONE);
+        tvTitle.setText("Edit Profile");
+        ivBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
 
 
 
@@ -110,7 +129,7 @@ public class EditProfile_Activity extends AppCompatActivity {
                     updates.put("UserAddress",newAddress);
 
 
-                    databaseReference.child(userId).updateChildren(updates).addOnCompleteListener(new OnCompleteListener<Void>() {
+                    databaseReference.updateChildren(updates).addOnCompleteListener(new OnCompleteListener<Void>() {
                         @Override
                         public void onComplete(@NonNull Task<Void> task) {
                             Toast.makeText(EditProfile_Activity.this, "Success", Toast.LENGTH_SHORT).show();

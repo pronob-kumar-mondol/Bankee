@@ -58,12 +58,11 @@
             app:endIconMode="none"
             android:layout_height="wrap_content">
 
-            <com.google.android.material.textfield.TextInputEditText
+            <EditText
                 android:id="@+id/fullNameEditTxt"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="@drawable/txtbar"
-                android:hint="Enter Your Full Name"
                 android:textColorHint="@color/Neutral"
                 android:textSize="12sp" />
 
@@ -91,12 +90,11 @@
             app:endIconMode="none"
             android:layout_below="@+id/emailTxt"
             android:layout_height="wrap_content">
-            <com.google.android.material.textfield.TextInputEditText
+            <EditText
                 android:id="@+id/emailEditTxt"
                 android:layout_width="match_parent"
                 android:background="@drawable/txtbar"
                 android:layout_height="match_parent"
-                android:hint="Enter Your Email"
                 android:textColorHint="@color/Neutral"
                 android:textSize="12sp"/>
 
@@ -123,12 +121,11 @@
                 android:layout_width="match_parent"
                 app:endIconMode="password_toggle"
                 android:layout_height="match_parent">
-                <com.google.android.material.textfield.TextInputEditText
+                <EditText
                     android:id="@+id/passEditTxt"
                     android:layout_width="match_parent"
                     android:background="@drawable/txtbar"
                     android:layout_height="match_parent"
-                    android:hint="Enter Your Password"
                     android:textColorHint="@color/Neutral"
                     android:textSize="12sp"/>
 
@@ -145,18 +142,19 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <CheckBox
-                android:layout_weight="1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Remember Me"/>
-
             <TextView
+                android:layout_marginLeft="65dp"
+                android:fontFamily="@font/baloo_bhai_2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Forgot Password ?"
-                android:textColor="@color/NavyCosmos"
-                />
+                android:text="Already have an Account?"/>
+            <TextView
+                android:id="@+id/signIn"
+                android:fontFamily="@font/baloo_bhai"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#2B7979"
+                android:text="  Sign In"/>
 
 
 

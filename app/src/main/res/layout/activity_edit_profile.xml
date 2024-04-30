@@ -105,7 +105,6 @@
             android:layout_height="match_parent"
             android:background="@drawable/txtbar"
             android:fontFamily="@font/baloo_bhai_2"
-            android:hint="pronob2055@gmail.com"
             android:textColorHint="@color/Neutral"
             android:textSize="12sp" />
 
@@ -141,7 +140,6 @@
             android:layout_height="match_parent"
             android:background="@drawable/txtbar"
             android:fontFamily="@font/baloo_bhai_2"
-            android:hint="++88 01988824968"
             android:textColorHint="@color/Neutral"
             android:textSize="12sp" />
 
@@ -177,7 +175,6 @@
             android:layout_height="match_parent"
             android:background="@drawable/txtbar"
             android:fontFamily="@font/baloo_bhai_2"
-            android:hint="76, Purana Paltan Lane, Dhaka-1000"
             android:textColorHint="@color/Neutral"
             android:textSize="12sp" />
 
@@ -200,9 +197,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textInputLayout3" />
-
-
-
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -4,6 +4,8 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -26,13 +28,11 @@ import com.google.firebase.auth.FirebaseAuthInvalidUserException;
 import com.google.firebase.auth.FirebaseUser;
 
 public class LoginActivity extends AppCompatActivity {
-    private SharedPreferences sharedPreferences;
-    private static final String PREF_NAME = "MyAppPrefs";
-    private static final String KEY_IS_LOGGED_IN = "isLoggedIn";
-    TextInputEditText inputEmail;
-    TextInputEditText inputPass;
+    EditText inputEmail;
+    EditText inputPass;
     AppCompatButton btn;
-    TextView signUp;
+    TextView signUp,tvTitle;
+    ImageView ivBack,ivMenu;
     String emailPattern="^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$";
     String passPattern="^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$";
     ProgressBar progressBar;
@@ -50,11 +50,17 @@ public class LoginActivity extends AppCompatActivity {
         inputPass=findViewById(R.id.passEditTxt);
         btn=findViewById(R.id.btn);
         signUp=findViewById(R.id.signUp);
+        tvTitle=findViewById(R.id.tvTitle);
+        ivBack=findViewById(R.id.ivBack);
+        ivMenu=findViewById(R.id.ivMenu);
         progressBar=findViewById(R.id.progressBar);
         fAuth=FirebaseAuth.getInstance();
         mUser=fAuth.getCurrentUser();
-        sharedPreferences = getSharedPreferences(PREF_NAME, MODE_PRIVATE);
-        sharedPreferences=PreferenceManager.getDefaultSharedPreferences(this);
+
+
+        ivBack.setVisibility(View.GONE);
+        ivMenu.setVisibility(View.GONE);
+        tvTitle.setText("Sign In");
 
 
 
@@ -98,9 +104,6 @@ public class LoginActivity extends AppCompatActivity {
                     if (task.isSuccessful()){
                         progressBar.setVisibility(View.GONE);
                         Toast.makeText(LoginActivity.this, "Login Sucsessful", Toast.LENGTH_SHORT).show();
-                        SharedPreferences.Editor editor = sharedPreferences.edit();
-                        editor.putBoolean(KEY_IS_LOGGED_IN, true);
-                        editor.apply();
 
                         Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);

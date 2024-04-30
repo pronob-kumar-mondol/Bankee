@@ -14,12 +14,12 @@
             android:src="@drawable/arrow_back" />
 
         <TextView
+            android:fontFamily="@font/baloo_bhai"
             android:id="@+id/tvTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="App Bar"
             android:textColor="@color/black"
-            android:textStyle="bold"
             android:textSize="18dp"
             android:layout_gravity="center"
             />

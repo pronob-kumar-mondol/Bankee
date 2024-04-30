@@ -4,7 +4,10 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
@@ -28,9 +31,11 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 public class SignupActivity extends AppCompatActivity {
-    TextInputEditText inputfullName;
-    TextInputEditText inputemail;
-    TextInputEditText inputpass;
+    ImageView ivBack,ivMenu;
+    TextView tvTitle,signIn;
+    EditText inputfullName;
+    EditText inputemail;
+    EditText inputpass;
     AppCompatButton btn;
     String emailPattern="^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$";
     String passPattern="^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$";
@@ -47,9 +52,19 @@ public class SignupActivity extends AppCompatActivity {
         inputpass=findViewById(R.id.passEditTxt);
         btn=findViewById(R.id.btn);
         progressBar=findViewById(R.id.progressBar);
+        tvTitle=findViewById(R.id.tvTitle);
+        ivBack=findViewById(R.id.ivBack);
+        ivMenu=findViewById(R.id.ivMenu);
+        signIn=findViewById(R.id.signIn);
+
+
+
         fAuth=FirebaseAuth.getInstance();
         firebaseDatabase= FirebaseDatabase.getInstance().getReference("UserDetails");
 
+        tvTitle.setText("Sign Up");
+        ivBack.setVisibility(View.GONE);
+        ivMenu.setVisibility(View.GONE);
 
 
 
@@ -57,6 +72,13 @@ public class SignupActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 PerformAuth();
+            }
+        });
+
+        signIn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(SignupActivity.this,LoginActivity.class));
             }
         });
 
@@ -69,6 +91,7 @@ public class SignupActivity extends AppCompatActivity {
         String pass= inputpass.getText().toString();
         String phoneNumber="00000";
         String address="Add Your Address";
+        String balance="10000";
         String imageLink="https://firebasestorage.googleapis.com/v0/b/bankee-ba7df.appspot.com/o/pronob.jpg?alt=media&token=bf1a7013-d048-4509-a8f2-01529b33807d";
 
 
@@ -93,6 +116,7 @@ public class SignupActivity extends AppCompatActivity {
                                 snapshot.child("UserPhone").getRef().setValue(phoneNumber);
                                 snapshot.child("UserAddress").getRef().setValue(address);
                                 snapshot.child("imageLink").getRef().setValue(imageLink);
+                                snapshot.child("userBalance").getRef().setValue(balance);
                                 progressBar.setVisibility(View.GONE);
                                 Toast.makeText(SignupActivity.this, "Registration Sucsessful", Toast.LENGTH_SHORT).show();
                                 startActivity(new Intent(SignupActivity.this, LoginActivity.class));

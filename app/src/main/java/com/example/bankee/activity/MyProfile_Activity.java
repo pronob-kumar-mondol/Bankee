@@ -20,6 +20,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.squareup.picasso.Picasso;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -55,6 +56,13 @@ public class MyProfile_Activity extends AppCompatActivity {
         String userId=fAuth.getUid().toString();
 
         ivMenu.setImageResource(newImageResourceId);
+        tvTitle.setText("My Profile");
+        ivBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
 
         reference.child(userId).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -69,6 +77,18 @@ public class MyProfile_Activity extends AppCompatActivity {
                 phonenumber.setText(phoneNumber);
                 address.setText(Address);
 
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+        reference.child(userId).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                Picasso.get().load(snapshot.child("imageLink").getValue(String.class)).into(imageView);
             }
 
             @Override

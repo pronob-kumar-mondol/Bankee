@@ -14,12 +14,14 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.bankee.R;
 import com.example.bankee.activity.ContactsActivity;
+import com.example.bankee.activity.MyProfile_Activity;
 import com.example.bankee.activity.SendMoneyActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -29,6 +31,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.squareup.picasso.Picasso;
 
 import java.util.Objects;
 
@@ -43,6 +46,7 @@ public class HomeFragment extends Fragment {
     RelativeLayout sendMoney;
     RelativeLayout contacts;
     TextView user_name;
+    ImageView profile_pic;
 
     DatabaseReference reference;
     FirebaseAuth fAuth;
@@ -53,6 +57,7 @@ public class HomeFragment extends Fragment {
 
         View v = inflater.inflate(R.layout.fragment_home, container, false);
         sendMoney=v.findViewById(R.id.sendMoney);
+        profile_pic=v.findViewById(R.id.profile_pic);
         contacts=v.findViewById(R.id.contacts);
         user_name=v.findViewById(R.id.user_name);
         fAuth=FirebaseAuth.getInstance();
@@ -86,6 +91,24 @@ public class HomeFragment extends Fragment {
         });
 
 
+       profile_pic.setOnClickListener(new View.OnClickListener() {
+           @Override
+           public void onClick(View v) {
+
+               Intent intent=new Intent(getActivity(), MyProfile_Activity.class);
+               startActivity(intent);
+           }
+       });
+       user_name.setOnClickListener(new View.OnClickListener() {
+           @Override
+           public void onClick(View v) {
+
+               Intent intent=new Intent(getActivity(), MyProfile_Activity.class);
+               startActivity(intent);
+           }
+       });
+
+
         return v;
     }
 
@@ -100,6 +123,7 @@ public class HomeFragment extends Fragment {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
 
                     String name=snapshot.child("UserName").getValue(String.class);
+                    Picasso.get().load(snapshot.child("imageLink").getValue(String.class)).into(profile_pic);
                     user_name.setText(name);
                     Log.d("HomeFragment", "User name: " + name);
 
