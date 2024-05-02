@@ -25,72 +25,73 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/include4" />
 
-    <!--    <EditText-->
-    <!--        android:fontFamily="@font/baloo_bhai_2"-->
-    <!--        android:id="@+id/editText"-->
-    <!--        android:layout_width="match_parent"-->
-    <!--        android:layout_height="48dp"-->
-    <!--        android:layout_marginHorizontal="30dp"-->
-    <!--        android:layout_marginTop="20dp"-->
-    <!--        android:hint="$100,000"-->
-    <!--        android:textSize="30sp"-->
-    <!--        android:paddingEnd="10dp"-->
-    <!--        android:textAlignment="textEnd"-->
-    <!--        android:background="@drawable/card2"-->
-    <!--        app:layout_constraintEnd_toEndOf="parent"-->
-    <!--        app:layout_constraintHorizontal_bias="0.492"-->
-    <!--        app:layout_constraintStart_toStartOf="parent"-->
-    <!--        app:layout_constraintTop_toBottomOf="@+id/textView3" />-->
+        <EditText
+            android:fontFamily="@font/baloo_bhai_2"
+            android:id="@+id/editText"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_marginHorizontal="30dp"
+            android:layout_marginTop="20dp"
+            android:hint="$100,000"
+            android:textSize="30sp"
+            android:paddingEnd="10dp"
+            android:textAlignment="textEnd"
+            android:background="@drawable/card2"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.492"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView3" />
 
-    <!--    <ImageView-->
-    <!--        android:id="@+id/imageView2"-->
-    <!--        android:layout_width="87dp"-->
-    <!--        android:layout_height="41dp"-->
-    <!--        android:src="@drawable/coin"-->
-    <!--        app:layout_constraintBottom_toBottomOf="@+id/editText"-->
-    <!--        app:layout_constraintEnd_toEndOf="parent"-->
-    <!--        app:layout_constraintHorizontal_bias="0.043"-->
-    <!--        app:layout_constraintStart_toStartOf="@+id/editText"-->
-    <!--        app:layout_constraintTop_toTopOf="@+id/editText" />-->
+        <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="87dp"
+            android:layout_height="41dp"
+            android:src="@drawable/coin"
+            app:layout_constraintBottom_toBottomOf="@+id/editText"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.043"
+            app:layout_constraintStart_toStartOf="@+id/editText"
+            app:layout_constraintTop_toTopOf="@+id/editText" />
 
-    <!--    <TextView-->
-    <!--        android:id="@+id/textView4"-->
-    <!--        android:layout_width="wrap_content"-->
-    <!--        android:layout_height="wrap_content"-->
-    <!--        android:layout_marginStart="32dp"-->
-    <!--        android:layout_marginTop="28dp"-->
-    <!--        android:fontFamily="@font/baloo_bhai"-->
-    <!--        android:text="E-mail"-->
-    <!--        android:textSize="16sp"-->
-    <!--        android:textStyle="bold"-->
-    <!--        app:layout_constraintStart_toStartOf="parent"-->
-    <!--        app:layout_constraintTop_toBottomOf="@+id/editText" />-->
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="28dp"
+        android:fontFamily="@font/baloo_bhai"
+        android:text="E-mail"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editText" />
 
-    <!--    <androidx.appcompat.widget.AppCompatButton-->
-    <!--        android:id="@+id/btn"-->
-    <!--        android:fontFamily="@font/baloo_bhai"-->
-    <!--        android:layout_width="290dp"-->
-    <!--        android:layout_height="48dp"-->
-    <!--        android:background="@drawable/button"-->
-    <!--        android:text="Send Money"-->
-    <!--        android:textAllCaps="false"-->
-    <!--        android:textColor="@color/white"-->
-    <!--        app:layout_constraintBottom_toBottomOf="parent"-->
-    <!--        app:layout_constraintEnd_toEndOf="parent"-->
-    <!--        app:layout_constraintStart_toStartOf="parent"-->
-    <!--        app:layout_constraintTop_toBottomOf="@+id/editText2"-->
-    <!--        app:layout_constraintVertical_bias="0.506" />-->
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn"
+        android:layout_width="290dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="120dp"
+        android:background="@drawable/button"
+        android:fontFamily="@font/baloo_bhai"
+        android:text="Send Money"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editText2" />
 
-    <!--    <EditText-->
-    <!--        android:id="@+id/editText2"-->
-    <!--        android:layout_width="match_parent"-->
-    <!--        android:layout_height="48dp"-->
-    <!--        android:layout_marginHorizontal="30dp"-->
-    <!--        android:layout_marginTop="24dp"-->
-    <!--        android:background="@drawable/card2"-->
-    <!--        app:layout_constraintEnd_toEndOf="parent"-->
-    <!--        app:layout_constraintStart_toStartOf="parent"-->
-    <!--        app:layout_constraintTop_toBottomOf="@+id/textView4"-->
-    <!--        tools:ignore="SpeakableTextPresentCheck" />-->
+    <TextView
+            android:id="@+id/editText2"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_marginHorizontal="30dp"
+            android:layout_marginTop="24dp"
+            android:background="@drawable/card2"
+            android:text="sagor@gmail.com"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView4"
+            tools:ignore="SpeakableTextPresentCheck" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

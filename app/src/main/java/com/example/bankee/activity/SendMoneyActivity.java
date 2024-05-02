@@ -7,6 +7,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.AppCompatButton;
 import androidx.viewpager2.widget.ViewPager2;
 
 import com.example.bankee.Controller.ViewPagerAdapter;
@@ -23,6 +24,7 @@ public class SendMoneyActivity extends AppCompatActivity {
     TextView app_title;
     TabLayout tabLayout;
     ViewPager2 viewPager;
+    AppCompatButton btn;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,6 +35,7 @@ public class SendMoneyActivity extends AppCompatActivity {
         ivMenu=findViewById(R.id.ivMenu);
         viewPager=findViewById(R.id.viewPager_layout);
         ivBack=findViewById(R.id.ivBack);
+        btn = findViewById(R.id.btn2);
         app_title.setText("Send Money");
         ivMenu.setVisibility(View.GONE);
 
@@ -44,6 +47,14 @@ public class SendMoneyActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 finish();
+            }
+        });
+        btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent intent = new Intent(SendMoneyActivity.this, SendMoney_WithEmail.class);
+                startActivity(intent);
             }
         });
 
