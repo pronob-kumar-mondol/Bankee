@@ -2,13 +2,18 @@ package com.example.bankee.activity;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.AppCompatButton;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.bankee.R;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -16,33 +21,58 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.Objects;
+
 public class SendMoney_WithEmail extends AppCompatActivity {
-    TextView email;
+
+    EditText ammount,email;
+    AppCompatButton btn;
     DatabaseReference reference;
+    FirebaseAuth fAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_send_money_with_email);
         reference= FirebaseDatabase.getInstance().getReference("UserDetails");
+        fAuth=FirebaseAuth.getInstance();
 
         email=findViewById(R.id.editText2);
-        String reciverEmail=email.getText().toString();
+        ammount=findViewById(R.id.editText);
+        btn=findViewById(R.id.btn);
 
+        btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String userID=fAuth.getCurrentUser().getUid();
+                int sendAmmount=Integer.parseInt(ammount.getText().toString());
+                String reciverEmail=email.getText().toString();
+                performReciverTransaction(sendAmmount,reciverEmail);
+                performSenderTransaction(userID,sendAmmount);
 
-        Query query=reference.orderByChild("UserEmail").equalTo(reciverEmail);
-        query.addListenerForSingleValueEvent(new ValueEventListener() {
+            }
+        });
+    }
+
+    private void performSenderTransaction(String userID, int sendAmmount) {
+        reference.child(userID).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                for (DataSnapshot ds: snapshot.getChildren()){
-                    String reciverUid=ds.getKey();
-                    if(reciverUid!=null){
 
-
-                        Log.d("UID", "Sagor's UID: " + reciverUid);
+                Object balanceObj = snapshot.child("userBalance").getValue();
+                if (balanceObj != null) {
+                    int balance = Integer.parseInt(Objects.requireNonNull(balanceObj).toString());
+                    int newBalance = balance - sendAmmount;
+                    if (balance>sendAmmount) {
+                        reference.child(userID).child("userBalance").setValue(newBalance);
+                        Toast.makeText(SendMoney_WithEmail.this, "Transaction Successful", Toast.LENGTH_SHORT).show();
+                        Log.d("UID", "Sender's UID: " + userID);
                     }else{
-                        Log.d("UID", "No user found with the useremail");
+                        Toast.makeText(SendMoney_WithEmail.this, "Not Enough Balance", Toast.LENGTH_SHORT).show();
+                        Log.d("UID", "Not Enough Balance for user: " + userID);
                     }
+                }else {
+                    Log.d("UID", "UserBalance is null for user: " + userID);
                 }
             }
 
@@ -51,6 +81,39 @@ public class SendMoney_WithEmail extends AppCompatActivity {
 
             }
         });
+    }
 
+    private void performReciverTransaction(int sendAmmount, String reciverEmail) {
+        Query query=reference.orderByChild("UserEmail").equalTo(reciverEmail);
+        query.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for (DataSnapshot ds: snapshot.getChildren()){
+                    String reciverUid=ds.getKey();
+                    Object balanceObj = ds.child("userBalance").getValue();
+                    if (balanceObj != null) {
+                        int reciverBalance = Integer.parseInt(Objects.requireNonNull(balanceObj).toString());
+                        int newBalance=reciverBalance+sendAmmount;
+
+                        if(reciverUid!=null){
+                            reference.child(reciverUid).child("userBalance").setValue(newBalance);
+
+                            Log.d("UID", "Sagor's UID: " + reciverUid);
+                        }else{
+                            Log.d("UID", "No user found with the useremail"+ reciverUid);
+                        }
+                    }else {
+                        Log.d("UID", "UserBalance is null for user: " + reciverUid);
+                    }
+
+
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Toast.makeText(SendMoney_WithEmail.this, "For some reason Transaction Failed", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 }

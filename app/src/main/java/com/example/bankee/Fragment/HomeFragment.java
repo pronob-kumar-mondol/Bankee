@@ -40,12 +40,9 @@ import java.util.Objects;
 
 public class HomeFragment extends Fragment {
 
-
-
-    SharedPreferences sharedPreferences;
     RelativeLayout sendMoney;
     RelativeLayout contacts;
-    TextView user_name;
+    TextView user_name,main_balance;
     ImageView profile_pic;
 
     DatabaseReference reference;
@@ -60,14 +57,11 @@ public class HomeFragment extends Fragment {
         profile_pic=v.findViewById(R.id.profile_pic);
         contacts=v.findViewById(R.id.contacts);
         user_name=v.findViewById(R.id.user_name);
+        main_balance=v.findViewById(R.id.balance);
         fAuth=FirebaseAuth.getInstance();
         reference= FirebaseDatabase.getInstance().getReference("UserDetails");
-        sharedPreferences= PreferenceManager.getDefaultSharedPreferences(requireContext());
-
-
 
         String userId =fAuth.getUid().toString();
-
 
         readData(userId);
 
@@ -115,16 +109,16 @@ public class HomeFragment extends Fragment {
     private void readData(String userId) {
 
 
-
-
-
         reference.child(userId).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
 
                     String name=snapshot.child("UserName").getValue(String.class);
+                    String balance=snapshot.child("userBalance").getValue().toString()+" INR";
                     Picasso.get().load(snapshot.child("imageLink").getValue(String.class)).into(profile_pic);
                     user_name.setText(name);
+                    main_balance.setText(balance);
+
                     Log.d("HomeFragment", "User name: " + name);
 
             }

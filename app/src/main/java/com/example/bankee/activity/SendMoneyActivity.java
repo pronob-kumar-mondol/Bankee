@@ -16,7 +16,7 @@ import com.example.bankee.R;
 import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
 
-/** @noinspection deprecation*/
+
 public class SendMoneyActivity extends AppCompatActivity {
 
 
