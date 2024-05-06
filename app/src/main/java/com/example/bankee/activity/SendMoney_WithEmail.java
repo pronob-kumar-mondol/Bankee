@@ -1,9 +1,12 @@
 package com.example.bankee.activity;
 
+import static com.google.android.material.internal.ContextUtils.getActivity;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -41,7 +44,54 @@ public class SendMoney_WithEmail extends AppCompatActivity {
         ammount=findViewById(R.id.editText);
         btn=findViewById(R.id.btn);
 
+
+
+
+        Dialog dialog = new Dialog(SendMoney_WithEmail.this);
+
         btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+
+                showTrasferDialog();
+
+
+
+            }
+        });
+    }
+
+    private void showTrasferDialog() {
+        Dialog dialog = new Dialog(SendMoney_WithEmail.this);
+        dialog.setContentView(R.layout.transfer_popup);
+
+        String reciveremail=email.getText().toString();
+        String ammounts=ammount.getText().toString();
+        String userEmail=fAuth.getCurrentUser().getEmail().toString();
+
+        TextView from=dialog.findViewById(R.id.from);
+        TextView to=dialog.findViewById(R.id.to);
+        TextView ammount=dialog.findViewById(R.id.ammount);
+        TextView money=dialog.findViewById(R.id.money);
+        AppCompatButton cancelBtn=dialog.findViewById(R.id.cancelBtn);
+        AppCompatButton confirmBtn=dialog.findViewById(R.id.confirmBtn);
+
+        from.setText(userEmail);
+        to.setText(reciveremail);
+        ammount.setText(ammounts);
+        money.setText(ammounts);
+
+
+        dialog.show();
+        cancelBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
+
+        confirmBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String userID=fAuth.getCurrentUser().getUid();
@@ -49,10 +99,16 @@ public class SendMoney_WithEmail extends AppCompatActivity {
                 String reciverEmail=email.getText().toString();
                 performReciverTransaction(sendAmmount,reciverEmail);
                 performSenderTransaction(userID,sendAmmount);
+                dialog.dismiss();
 
             }
         });
+
+
+
+
     }
+
 
     private void performSenderTransaction(String userID, int sendAmmount) {
         reference.child(userID).addValueEventListener(new ValueEventListener() {
@@ -61,7 +117,7 @@ public class SendMoney_WithEmail extends AppCompatActivity {
 
                 Object balanceObj = snapshot.child("userBalance").getValue();
                 if (balanceObj != null) {
-                    int balance = Integer.parseInt(Objects.requireNonNull(balanceObj).toString());
+                    int balance = Integer.parseInt(balanceObj.toString());
                     int newBalance = balance - sendAmmount;
                     if (balance>sendAmmount) {
                         reference.child(userID).child("userBalance").setValue(newBalance);
