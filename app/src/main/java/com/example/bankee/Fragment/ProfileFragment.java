@@ -16,6 +16,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.example.bankee.R;
+import com.example.bankee.activity.ForgetPass_Activity;
 import com.example.bankee.activity.LoginActivity;
 import com.example.bankee.activity.MyProfile_Activity;
 import com.example.bankee.activity.SendMoneyActivity;
@@ -32,7 +33,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
 
 public class ProfileFragment extends Fragment {
     CircleImageView imageView;
-    TextView userName,contactNumber;
+    TextView userName,contactNumber,forgot_pass;
     ImageView ivBack,ivMenu;
     TextView tvTitle;
     RelativeLayout changePass;
@@ -49,6 +50,7 @@ public class ProfileFragment extends Fragment {
                              Bundle savedInstanceState) {
         View v= inflater.inflate(R.layout.fragment_profile, container, false);
 
+        forgot_pass=v.findViewById(R.id.forgot_pass);
         your_profile=v.findViewById(R.id.one);
         ivBack=v.findViewById(R.id.ivBack);
         ivMenu=v.findViewById(R.id.ivMenu);
@@ -108,6 +110,14 @@ public class ProfileFragment extends Fragment {
             @Override
             public void onClick(View v) {
 
+            }
+        });
+
+        forgot_pass.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                startActivity(new Intent(getActivity(), ForgetPass_Activity.class));
             }
         });
 

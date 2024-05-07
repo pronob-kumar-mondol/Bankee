@@ -31,7 +31,7 @@ public class LoginActivity extends AppCompatActivity {
     EditText inputEmail;
     EditText inputPass;
     AppCompatButton btn;
-    TextView signUp,tvTitle;
+    TextView signUp,tvTitle,forgetPass;
     ImageView ivBack,ivMenu;
     String emailPattern="^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$";
     String passPattern="^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$";
@@ -45,7 +45,7 @@ public class LoginActivity extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_login);
 
-
+        forgetPass = findViewById(R.id.forgetPass);
         inputEmail=findViewById(R.id.emailEditTxt);
         inputPass=findViewById(R.id.passEditTxt);
         btn=findViewById(R.id.btn);
@@ -80,6 +80,13 @@ public class LoginActivity extends AppCompatActivity {
                }
 
 
+           });
+
+           forgetPass.setOnClickListener(new View.OnClickListener() {
+               @Override
+               public void onClick(View v) {
+                   startActivity(new Intent(LoginActivity.this,ForgetPass_Activity.class));
+               }
            });
 
     }

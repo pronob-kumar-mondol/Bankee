@@ -6,12 +6,22 @@
     android:layout_width="match_parent"
     android:background="@color/white"
     android:layout_height="match_parent"
-    tools:context=".activity.ChangePass_Activity">
+    tools:context=".activity.ForgetPass_Activity">
 
 
     <include
         android:id="@+id/include5"
         layout="@layout/appbar" />
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 
     <TextView
@@ -50,6 +60,7 @@
         tools:layout_editor_absoluteX="30dp">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/emailET"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:fontFamily="@font/baloo_bhai_2" />

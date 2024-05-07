@@ -21,7 +21,7 @@
             android:name=".activity.NwePass_Activity"
             android:exported="false" />
         <activity
-            android:name=".activity.ChangePass_Activity"
+            android:name=".activity.ForgetPass_Activity"
             android:exported="false" />
         <activity
             android:name=".activity.SendMoney_WithEmail"
