@@ -1,9 +1,11 @@
 package com.example.bankee.Fragment;
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.widget.AppCompatButton;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
@@ -14,6 +16,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.example.bankee.R;
+import com.example.bankee.activity.LoginActivity;
 import com.example.bankee.activity.MyProfile_Activity;
 import com.example.bankee.activity.SendMoneyActivity;
 import com.google.firebase.auth.FirebaseAuth;
@@ -32,11 +35,13 @@ public class ProfileFragment extends Fragment {
     TextView userName,contactNumber;
     ImageView ivBack,ivMenu;
     TextView tvTitle;
+    RelativeLayout changePass;
 
     DatabaseReference reference;
     FirebaseAuth fAuth;
 
     RelativeLayout your_profile;
+    TextView logout;
 
 
     @Override
@@ -51,6 +56,9 @@ public class ProfileFragment extends Fragment {
         imageView=v.findViewById(R.id.profile_pic);
         userName=v.findViewById(R.id.user_name);
         contactNumber=v.findViewById(R.id.contactNumber);
+        logout=v.findViewById(R.id.logout);
+        changePass=v.findViewById(R.id.three);
+
         reference= FirebaseDatabase.getInstance().getReference("UserDetails");
         fAuth=FirebaseAuth.getInstance();
 
@@ -70,9 +78,6 @@ public class ProfileFragment extends Fragment {
                 userName.setText(snapshot.child("UserName").getValue(String.class));
                 contactNumber.setText(snapshot.child("UserPhone").getValue(String.class));
 
-
-
-
             }
 
             @Override
@@ -90,9 +95,50 @@ public class ProfileFragment extends Fragment {
             }
         });
 
+        logout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                showLogoutDialog();
+
+            }
+        });
+
+        changePass.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+
 
 
 
         return v;
+    }
+
+    private void showLogoutDialog() {
+        Dialog dialog=new Dialog(this.getActivity());
+        dialog.setContentView(R.layout.logout_dialog);
+        dialog.show();
+        AppCompatButton cancelBtn=dialog.findViewById(R.id.btn);
+        TextView logout=dialog.findViewById(R.id.logout);
+
+        cancelBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
+        logout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FirebaseAuth.getInstance().signOut();
+                startActivity(new Intent(getActivity(), LoginActivity.class));
+                dialog.dismiss();
+            }
+        });
+
+
     }
 }
