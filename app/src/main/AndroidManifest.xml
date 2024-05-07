@@ -18,6 +18,9 @@
         android:theme="@style/Theme.Bankee"
         tools:targetApi="31">
         <activity
+            android:name=".activity.ChangePass_Activity"
+            android:exported="false" />
+        <activity
             android:name=".activity.SendMoney_WithEmail"
             android:exported="false" />
         <activity
