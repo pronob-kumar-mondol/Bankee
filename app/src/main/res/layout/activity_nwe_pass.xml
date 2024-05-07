@@ -45,12 +45,13 @@
         android:layout_marginHorizontal="30dp"
         android:layout_marginTop="30dp"
         android:background="@drawable/txtbar"
-        android:hint="Enter New Password"
+        android:hint="Enter Current Password"
         app:endIconMode="password_toggle"
         app:layout_constraintTop_toBottomOf="@+id/textView24"
         tools:layout_editor_absoluteX="30dp">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/currentPass"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:fontFamily="@font/baloo_bhai_2" />
@@ -64,13 +65,34 @@
         android:layout_marginHorizontal="30dp"
         android:layout_marginTop="30dp"
         android:background="@drawable/txtbar"
-        android:hint="Confirm Your Password"
+        android:hint="Enter New Password"
         app:endIconMode="password_toggle"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textInputLayout4">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/newPass"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fontFamily="@font/baloo_bhai_2" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textInputLayout6"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="30dp"
+        android:layout_marginTop="30dp"
+        android:background="@drawable/txtbar"
+        android:hint="Confirm Your Password"
+        app:endIconMode="password_toggle"
+        app:layout_constraintEnd_toEndOf="@+id/textInputLayout5"
+        app:layout_constraintStart_toStartOf="@+id/textInputLayout5"
+        app:layout_constraintTop_toBottomOf="@+id/textInputLayout5">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/confPass"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:fontFamily="@font/baloo_bhai_2" />
@@ -82,15 +104,15 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="50dp"
+        android:layout_marginTop="32dp"
         android:background="@drawable/button"
         android:text="Next"
         android:textAllCaps="false"
-        android:layout_marginTop="30dp"
         android:textColor="@color/white"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textInputLayout5" />
-
+        app:layout_constraintEnd_toEndOf="@+id/textInputLayout6"
+        app:layout_constraintHorizontal_bias="0.487"
+        app:layout_constraintStart_toStartOf="@+id/textInputLayout6"
+        app:layout_constraintTop_toBottomOf="@+id/textInputLayout6" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

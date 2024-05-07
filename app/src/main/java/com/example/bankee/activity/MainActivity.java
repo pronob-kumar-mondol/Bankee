@@ -35,6 +35,7 @@ public class MainActivity extends AppCompatActivity {
 
         bottom_nav=findViewById(R.id.bottom_nav);
         frame_layout=findViewById(R.id.frame_layout);
+        getSupportFragmentManager().beginTransaction().replace(R.id.frame_layout, new HomeFragment()).commit();
 
         bottom_nav.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
             @Override

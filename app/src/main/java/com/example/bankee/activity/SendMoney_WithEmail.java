@@ -12,6 +12,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -29,6 +30,8 @@ import java.util.Objects;
 public class SendMoney_WithEmail extends AppCompatActivity {
 
     EditText ammount,email;
+    ImageView ivBack,ivMenu;
+    TextView tvTitle;
     AppCompatButton btn;
     DatabaseReference reference;
     FirebaseAuth fAuth;
@@ -43,6 +46,18 @@ public class SendMoney_WithEmail extends AppCompatActivity {
         email=findViewById(R.id.editText2);
         ammount=findViewById(R.id.editText);
         btn=findViewById(R.id.btn);
+        tvTitle=findViewById(R.id.tvTitle);
+        ivBack=findViewById(R.id.ivBack);
+        ivMenu=findViewById(R.id.ivMenu);
+
+        tvTitle.setText("Send Money With Email");
+        ivMenu.setVisibility(View.INVISIBLE);
+        ivBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
 
 
 
@@ -97,20 +112,16 @@ public class SendMoney_WithEmail extends AppCompatActivity {
                 String userID=fAuth.getCurrentUser().getUid();
                 int sendAmmount=Integer.parseInt(ammount.getText().toString());
                 String reciverEmail=email.getText().toString();
-                performReciverTransaction(sendAmmount,reciverEmail);
-                performSenderTransaction(userID,sendAmmount);
+                performSenderTransaction(userID,sendAmmount,reciverEmail);
+                finish();
                 dialog.dismiss();
 
             }
         });
-
-
-
-
     }
 
 
-    private void performSenderTransaction(String userID, int sendAmmount) {
+    private void performSenderTransaction(String userID, int sendAmmount,String reciverEmail) {
         reference.child(userID).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -121,8 +132,10 @@ public class SendMoney_WithEmail extends AppCompatActivity {
                     int newBalance = balance - sendAmmount;
                     if (balance>sendAmmount) {
                         reference.child(userID).child("userBalance").setValue(newBalance);
+                        performReciverTransaction(sendAmmount,reciverEmail);
                         Toast.makeText(SendMoney_WithEmail.this, "Transaction Successful", Toast.LENGTH_SHORT).show();
                         Log.d("UID", "Sender's UID: " + userID);
+                        finish();
                     }else{
                         Toast.makeText(SendMoney_WithEmail.this, "Not Enough Balance", Toast.LENGTH_SHORT).show();
                         Log.d("UID", "Not Enough Balance for user: " + userID);

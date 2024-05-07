@@ -17,6 +17,7 @@ import androidx.appcompat.widget.AppCompatButton;
 import androidx.preference.PreferenceManager;
 
 import com.example.bankee.Fragment.HomeFragment;
+import com.example.bankee.Model.UserDetails;
 import com.example.bankee.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -42,6 +43,7 @@ public class SignupActivity extends AppCompatActivity {
     ProgressBar progressBar;
     FirebaseAuth fAuth;
     DatabaseReference firebaseDatabase;
+    UserDetails userDetails;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -92,7 +94,7 @@ public class SignupActivity extends AppCompatActivity {
         String phoneNumber="00000";
         String address="Add Your Address";
         String balance="10000";
-        String imageLink="https://firebasestorage.googleapis.com/v0/b/bankee-ba7df.appspot.com/o/pronob.jpg?alt=media&token=bf1a7013-d048-4509-a8f2-01529b33807d";
+        String imageLink="";
 
 
         if (!email.matches(emailPattern)){
@@ -111,12 +113,10 @@ public class SignupActivity extends AppCompatActivity {
                         firebaseDatabase.child(fAuth.getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
                             @Override
                             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                                snapshot.child("UserName").getRef().setValue(name);
-                                snapshot.child("UserEmail").getRef().setValue(email);
-                                snapshot.child("UserPhone").getRef().setValue(phoneNumber);
-                                snapshot.child("UserAddress").getRef().setValue(address);
-                                snapshot.child("imageLink").getRef().setValue(imageLink);
-                                snapshot.child("userBalance").getRef().setValue(balance);
+                                userDetails=new UserDetails(name,email,phoneNumber,address,imageLink,balance);
+                                snapshot.getRef().setValue(userDetails);
+                                UserDetails userDetails1=snapshot.getValue(UserDetails.class);
+                                inputfullName.setText(userDetails1.getName());
                                 progressBar.setVisibility(View.GONE);
                                 Toast.makeText(SignupActivity.this, "Registration Sucsessful", Toast.LENGTH_SHORT).show();
                                 startActivity(new Intent(SignupActivity.this, LoginActivity.class));

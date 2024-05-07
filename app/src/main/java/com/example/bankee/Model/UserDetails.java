@@ -5,13 +5,20 @@ public class UserDetails {
     private String name;
     private String email;
     private String phoneNumber;
-    private String adress;
+    private String address;
+    private String imgLink;
+    private String balance;
 
-    public UserDetails(String name, String email, String phoneNumber, String adress) {
+    public UserDetails() {
+
+    }
+    public UserDetails(String name, String email, String phoneNumber, String address, String imgLink, String balance) {
         this.name = name;
         this.email = email;
         this.phoneNumber = phoneNumber;
-        this.adress = adress;
+        this.address = address;
+        this.imgLink = imgLink;
+        this.balance = balance;
     }
 
     public String getName() {
@@ -38,11 +45,27 @@ public class UserDetails {
         this.phoneNumber = phoneNumber;
     }
 
-    public String getAdress() {
-        return adress;
+    public String getAddress() {
+        return address;
     }
 
-    public void setAdress(String adress) {
-        this.adress = adress;
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public String getImgLink() {
+        return imgLink;
+    }
+
+    public void setImgLink(String imgLink) {
+        this.imgLink = imgLink;
+    }
+
+    public String getBalance() {
+        return balance;
+    }
+
+    public void setBalance(String balance) {
+        this.balance = balance;
     }
 }

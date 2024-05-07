@@ -5,6 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     tools:context=".Fragment.HomeFragment">
 
     <LinearLayout
@@ -189,6 +190,7 @@
 
                     </RelativeLayout>
                     <RelativeLayout
+                        android:id="@+id/recharge"
                         android:clickable="true"
                         android:layout_width="match_parent"
                         android:layout_weight="1"
@@ -215,7 +217,7 @@
                             android:layout_height="wrap_content"
                             android:layout_below="@+id/pay_bill_logo"
                             android:layout_centerInParent="true"
-                            android:text="Pay The Bill"
+                            android:text="Recharge"
                             android:textColor="@color/black"
                             android:textSize="20sp"
                             android:textStyle="bold" />
@@ -225,7 +227,7 @@
                             android:layout_height="wrap_content"
                             android:layout_below="@+id/pay_billTxt1"
                             android:layout_centerInParent="true"
-                            android:text="Tap to pay bill"
+                            android:text="Tap to recharge"
                             android:textColor="@color/Neutral"
                             android:textSize="13sp" />
 
@@ -245,6 +247,7 @@
                     >
 
                     <RelativeLayout
+                        android:id="@+id/cashOut"
                         android:clickable="true"
                         android:layout_width="match_parent"
                         android:layout_height="150dp"
@@ -271,7 +274,7 @@
                             android:layout_height="wrap_content"
                             android:layout_below="@+id/request_logo"
                             android:layout_centerInParent="true"
-                            android:text="Add Money"
+                            android:text="Cash Out"
                             android:textColor="@color/black"
                             android:textSize="20sp"
                             android:textStyle="bold" />
@@ -281,7 +284,7 @@
                             android:layout_height="wrap_content"
                             android:layout_below="@+id/request_Txt1"
                             android:layout_centerInParent="true"
-                            android:text="Tap to add money"
+                            android:text="Tap to cash out"
                             android:textColor="@color/Neutral"
                             android:textSize="13sp" />
 

@@ -19,7 +19,9 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.bankee.Model.UserDetails;
 import com.example.bankee.R;
+import com.example.bankee.activity.CashOut_Activity;
 import com.example.bankee.activity.ContactsActivity;
 import com.example.bankee.activity.MyProfile_Activity;
 import com.example.bankee.activity.SendMoneyActivity;
@@ -40,11 +42,12 @@ import java.util.Objects;
 
 public class HomeFragment extends Fragment {
 
-    RelativeLayout sendMoney;
+    RelativeLayout sendMoney,cashOut;
     RelativeLayout contacts;
     TextView user_name,main_balance;
     ImageView profile_pic;
 
+    UserDetails userDetails;
     DatabaseReference reference;
     FirebaseAuth fAuth;
 
@@ -58,11 +61,11 @@ public class HomeFragment extends Fragment {
         contacts=v.findViewById(R.id.contacts);
         user_name=v.findViewById(R.id.user_name);
         main_balance=v.findViewById(R.id.balance);
+        cashOut=v.findViewById(R.id.cashOut);
         fAuth=FirebaseAuth.getInstance();
         reference= FirebaseDatabase.getInstance().getReference("UserDetails");
 
         String userId =fAuth.getUid().toString();
-
         readData(userId);
 
 
@@ -103,6 +106,15 @@ public class HomeFragment extends Fragment {
        });
 
 
+
+       cashOut.setOnClickListener(new View.OnClickListener() {
+           @Override
+           public void onClick(View v) {
+               startActivity(new Intent(getActivity(), CashOut_Activity.class));
+           }
+       });
+
+
         return v;
     }
 
@@ -112,15 +124,19 @@ public class HomeFragment extends Fragment {
         reference.child(userId).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    userDetails=snapshot.getValue(UserDetails.class);
+                    user_name.setText(userDetails.getName());
+                    main_balance.setText(userDetails.getBalance());
+                    profile_pic.setImageResource(userDetails.getImgLink().hashCode());
 
-                    String name=snapshot.child("UserName").getValue(String.class);
-                    String balance=snapshot.child("userBalance").getValue().toString()+" INR";
-                    Picasso.get().load(snapshot.child("imageLink").getValue(String.class)).into(profile_pic);
-                    user_name.setText(name);
-                    main_balance.setText(balance);
+                    if(userDetails.getImgLink().isEmpty()){
+                        Picasso.get().load(R.drawable.user).into(profile_pic);
+                    }
+                    else {
+                        Picasso.get().load(userDetails.getImgLink()).placeholder(R.drawable.user).into(profile_pic);
+                    }
 
-                    Log.d("HomeFragment", "User name: " + name);
-
+                    Log.d("HomeFragment", "User name: " + userDetails.getName());
             }
 
             @Override

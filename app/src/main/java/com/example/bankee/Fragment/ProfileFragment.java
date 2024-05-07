@@ -19,6 +19,7 @@ import com.example.bankee.R;
 import com.example.bankee.activity.ForgetPass_Activity;
 import com.example.bankee.activity.LoginActivity;
 import com.example.bankee.activity.MyProfile_Activity;
+import com.example.bankee.activity.NwePass_Activity;
 import com.example.bankee.activity.SendMoneyActivity;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -33,7 +34,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
 
 public class ProfileFragment extends Fragment {
     CircleImageView imageView;
-    TextView userName,contactNumber,forgot_pass;
+    TextView userName,contactNumber,forgot_pass,change_pass;
     ImageView ivBack,ivMenu;
     TextView tvTitle;
     RelativeLayout changePass;
@@ -58,6 +59,7 @@ public class ProfileFragment extends Fragment {
         imageView=v.findViewById(R.id.profile_pic);
         userName=v.findViewById(R.id.user_name);
         contactNumber=v.findViewById(R.id.contactNumber);
+        change_pass=v.findViewById(R.id.change_pass);
         logout=v.findViewById(R.id.logout);
         changePass=v.findViewById(R.id.three);
 
@@ -69,6 +71,14 @@ public class ProfileFragment extends Fragment {
         ivBack.setVisibility(View.GONE);
         ivMenu.setVisibility(View.GONE);
         tvTitle.setText(R.string.profile);
+
+
+        change_pass.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getActivity(), NwePass_Activity.class));
+            }
+        });
 
 
 
