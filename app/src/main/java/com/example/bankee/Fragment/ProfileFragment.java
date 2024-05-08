@@ -15,6 +15,7 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.example.bankee.Model.UserDetails;
 import com.example.bankee.R;
 import com.example.bankee.activity.ForgetPass_Activity;
 import com.example.bankee.activity.LoginActivity;
@@ -38,6 +39,7 @@ public class ProfileFragment extends Fragment {
     ImageView ivBack,ivMenu;
     TextView tvTitle;
     RelativeLayout changePass;
+    UserDetails userDetails;
 
     DatabaseReference reference;
     FirebaseAuth fAuth;
@@ -86,9 +88,16 @@ public class ProfileFragment extends Fragment {
         reference.child(userId).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                Picasso.get().load(snapshot.child("imageLink").getValue(String.class)).into(imageView);
-                userName.setText(snapshot.child("UserName").getValue(String.class));
-                contactNumber.setText(snapshot.child("UserPhone").getValue(String.class));
+                userDetails=snapshot.getValue(UserDetails.class);
+                userName.setText(userDetails.getName());
+                contactNumber.setText(userDetails.getPhoneNumber());
+
+                if (userDetails.getImgLink().isEmpty()) {
+                    Picasso.get().load(R.drawable.user).into(imageView);
+                }else{
+                    Picasso.get().load(userDetails.getImgLink()).placeholder(R.drawable.user).into(imageView);
+                }
+
 
             }
 

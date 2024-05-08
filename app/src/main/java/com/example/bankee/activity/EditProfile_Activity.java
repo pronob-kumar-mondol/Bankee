@@ -20,16 +20,21 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.example.bankee.Model.UserDetails;
 import com.example.bankee.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
+import com.squareup.picasso.Picasso;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -47,6 +52,7 @@ public class EditProfile_Activity extends AppCompatActivity {
     StorageReference storageReference;
     FirebaseAuth fAuth;
     DatabaseReference databaseReference;
+    UserDetails userDetails;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -81,9 +87,6 @@ public class EditProfile_Activity extends AppCompatActivity {
         });
 
 
-
-
-
         miniCamera.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -102,14 +105,14 @@ public class EditProfile_Activity extends AppCompatActivity {
                     String newAddress=editAddress.getText().toString();
 
                     storageReference=storageReference.child(System.currentTimeMillis()+".jpg");
-                    storageReference.putFile(guri).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
+                     storageReference.putFile(guri).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
                         @Override
                         public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
                             storageReference.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                                 @Override
                                 public void onSuccess(Uri uri) {
 
-                                    databaseReference.child("imageLink").setValue(uri.toString()).addOnSuccessListener(new OnSuccessListener<Void>() {
+                                    databaseReference.child("imgLink").setValue(uri.toString()).addOnSuccessListener(new OnSuccessListener<Void>() {
                                         @Override
                                         public void onSuccess(Void unused) {
                                             Toast.makeText(EditProfile_Activity.this, "Successflly set link", Toast.LENGTH_SHORT).show();
@@ -123,10 +126,10 @@ public class EditProfile_Activity extends AppCompatActivity {
 
 
                     Map<String, Object> updates = new HashMap<>();
-                    updates.put("UserName",newName);
-                    updates.put("UserEmail",newEmail);
-                    updates.put("UserPhone",newNumber);
-                    updates.put("UserAddress",newAddress);
+                    updates.put("name",newName);
+                    updates.put("email",newEmail);
+                    updates.put("phoneNumber",newNumber);
+                    updates.put("address",newAddress);
 
 
                     databaseReference.updateChildren(updates).addOnCompleteListener(new OnCompleteListener<Void>() {

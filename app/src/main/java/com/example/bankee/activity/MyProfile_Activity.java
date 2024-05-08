@@ -13,6 +13,7 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.example.bankee.Model.UserDetails;
 import com.example.bankee.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -33,6 +34,7 @@ public class MyProfile_Activity extends AppCompatActivity {
     TextView tvTitle;
     DatabaseReference reference;
     FirebaseAuth fAuth;
+    UserDetails userDetails;
     int newImageResourceId = R.drawable.edit;
 
     @Override
@@ -67,16 +69,17 @@ public class MyProfile_Activity extends AppCompatActivity {
         reference.child(userId).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                String name=snapshot.child("UserName").getValue(String.class);
-                String email=snapshot.child("UserEmail").getValue(String.class);
-                String phoneNumber=snapshot.child("UserPhone").getValue(String.class);
-                String Address= snapshot.child("UserAddress").getValue(String.class);
+                userDetails=snapshot.getValue(UserDetails.class);
+                fullNmae.setText(userDetails.getName());
+                eMail.setText(userDetails.getEmail());
+                phonenumber.setText(userDetails.getPhoneNumber());
+                address.setText(userDetails.getAddress());
 
-                fullNmae.setText(name);
-                eMail.setText(email);
-                phonenumber.setText(phoneNumber);
-                address.setText(Address);
-
+                if(userDetails.getImgLink().isEmpty()){
+                    Picasso.get().load(R.drawable.user).into(imageView);
+                }else {
+                    Picasso.get().load(userDetails.getImgLink()).placeholder(R.drawable.user).into(imageView);
+                }
             }
 
             @Override
@@ -84,25 +87,6 @@ public class MyProfile_Activity extends AppCompatActivity {
 
             }
         });
-
-        reference.child(userId).addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                Picasso.get().load(snapshot.child("imageLink").getValue(String.class)).into(imageView);
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
-
-
-
-
-
-
-
 
 
         ivMenu.setOnClickListener(new View.OnClickListener() {

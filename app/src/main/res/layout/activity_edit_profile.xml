@@ -20,7 +20,7 @@
         android:layout_width="92dp"
         android:layout_height="92dp"
         android:layout_marginTop="24dp"
-        android:src="@drawable/pronob"
+        android:src="@drawable/user"
         app:civ_border_color="@color/Bossnova"
         app:civ_border_width="2dp"
         app:layout_constraintEnd_toEndOf="parent"

@@ -7,12 +7,12 @@ public class UserDetails {
     private String phoneNumber;
     private String address;
     private String imgLink;
-    private String balance;
+    private int balance;
 
     public UserDetails() {
 
     }
-    public UserDetails(String name, String email, String phoneNumber, String address, String imgLink, String balance) {
+    public UserDetails(String name, String email, String phoneNumber, String address, String imgLink, int balance) {
         this.name = name;
         this.email = email;
         this.phoneNumber = phoneNumber;
@@ -61,11 +61,11 @@ public class UserDetails {
         this.imgLink = imgLink;
     }
 
-    public String getBalance() {
+    public int getBalance() {
         return balance;
     }
 
-    public void setBalance(String balance) {
+    public void setBalance(int balance) {
         this.balance = balance;
     }
 }

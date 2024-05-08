@@ -15,6 +15,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -42,7 +43,7 @@ import java.util.Objects;
 
 public class HomeFragment extends Fragment {
 
-    RelativeLayout sendMoney,cashOut;
+    RelativeLayout sendMoney,cashOut,mainLayout;
     RelativeLayout contacts;
     TextView user_name,main_balance;
     ImageView profile_pic;
@@ -50,12 +51,17 @@ public class HomeFragment extends Fragment {
     UserDetails userDetails;
     DatabaseReference reference;
     FirebaseAuth fAuth;
+    ProgressBar progressBar;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
         View v = inflater.inflate(R.layout.fragment_home, container, false);
+        mainLayout=v.findViewById(R.id.layout);
+        mainLayout.setVisibility(View.INVISIBLE);
+        progressBar=v.findViewById(R.id.progress);
+        progressBar.setVisibility(View.VISIBLE);
         sendMoney=v.findViewById(R.id.sendMoney);
         profile_pic=v.findViewById(R.id.profile_pic);
         contacts=v.findViewById(R.id.contacts);
@@ -126,7 +132,7 @@ public class HomeFragment extends Fragment {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                     userDetails=snapshot.getValue(UserDetails.class);
                     user_name.setText(userDetails.getName());
-                    main_balance.setText(userDetails.getBalance());
+                    main_balance.setText(String.valueOf(userDetails.getBalance()));
                     profile_pic.setImageResource(userDetails.getImgLink().hashCode());
 
                     if(userDetails.getImgLink().isEmpty()){
@@ -136,6 +142,9 @@ public class HomeFragment extends Fragment {
                         Picasso.get().load(userDetails.getImgLink()).placeholder(R.drawable.user).into(profile_pic);
                     }
 
+
+                    progressBar.setVisibility(View.INVISIBLE);
+                    mainLayout.setVisibility(View.VISIBLE);
                     Log.d("HomeFragment", "User name: " + userDetails.getName());
             }
 

@@ -93,8 +93,8 @@ public class SignupActivity extends AppCompatActivity {
         String pass= inputpass.getText().toString();
         String phoneNumber="00000";
         String address="Add Your Address";
-        String balance="10000";
-        String imageLink="";
+        int balance=10000;
+        String imageLink="https://firebasestorage.googleapis.com/v0/b/bankee-ba7df.appspot.com/o/user.png?alt=media&token=27fee6ca-02d1-46f3-8da1-6500add903b9";
 
 
         if (!email.matches(emailPattern)){

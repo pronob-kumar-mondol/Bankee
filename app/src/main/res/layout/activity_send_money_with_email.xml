@@ -27,14 +27,14 @@
 
     <EditText
             android:fontFamily="@font/baloo_bhai_2"
-            android:id="@+id/editText"
+            android:id="@+id/ammount"
             android:layout_width="match_parent"
             android:layout_height="48dp"
             android:layout_marginHorizontal="30dp"
             android:layout_marginTop="20dp"
             android:hint="$100,000"
             android:inputType="number"
-            android:textSize="30sp"
+            android:textSize="25sp"
             android:paddingEnd="10dp"
             android:textAlignment="textEnd"
             android:background="@drawable/card2"
@@ -48,11 +48,11 @@
             android:layout_width="87dp"
             android:layout_height="41dp"
             android:src="@drawable/coin"
-            app:layout_constraintBottom_toBottomOf="@+id/editText"
+            app:layout_constraintBottom_toBottomOf="@+id/ammount"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.043"
-            app:layout_constraintStart_toStartOf="@+id/editText"
-            app:layout_constraintTop_toTopOf="@+id/editText" />
+            app:layout_constraintStart_toStartOf="@+id/ammount"
+            app:layout_constraintTop_toTopOf="@+id/ammount" />
 
     <TextView
         android:id="@+id/textView4"
@@ -65,13 +65,13 @@
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText" />
+        app:layout_constraintTop_toBottomOf="@+id/ammount" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btn"
         android:layout_width="290dp"
         android:layout_height="48dp"
-        android:layout_marginTop="120dp"
+        android:layout_marginTop="68dp"
         android:background="@drawable/button"
         android:fontFamily="@font/baloo_bhai"
         android:text="Send Money"
@@ -80,21 +80,22 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText2" />
+        app:layout_constraintTop_toBottomOf="@+id/email" />
 
     <EditText
-            android:id="@+id/editText2"
-            android:layout_width="match_parent"
-            android:layout_height="48dp"
-            android:paddingLeft="20dp"
-            android:inputType="textEmailAddress"
-            android:layout_marginHorizontal="30dp"
-            android:layout_marginTop="24dp"
-            android:background="@drawable/card2"
-            android:text="sagor@gmail.com"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView4"
-            tools:ignore="SpeakableTextPresentCheck" />
+        android:id="@+id/email"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_marginHorizontal="30dp"
+        android:layout_marginTop="32dp"
+        android:background="@drawable/card2"
+        android:fontFamily="@font/baloo_bhai_2"
+        android:hint="Enter Reciver Email"
+        android:inputType="textEmailAddress"
+        android:paddingLeft="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView4"
+        tools:ignore="SpeakableTextPresentCheck" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
