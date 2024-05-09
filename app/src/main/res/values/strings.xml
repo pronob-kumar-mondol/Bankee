@@ -7,4 +7,12 @@
     <string name="wellcome_back">Wellcome Back</string>
     <string name="pronob_kumar_mondol">Pronob Kumar Mondol</string>
     <string name="todo">TODO</string>
+    <string name="phone_number">Phone Number</string>
+    <string name="enter_phone_number">Enter Phone Number</string>
+    <string name="amount">Amount</string>
+    <string name="recharge">Recharge</string>
+    <string name="enter_ammount">Enter Ammount</string>
+    <string name="cash_out">Cash Out</string>
+    <string name="enter_agent_email">Enter Agent Email</string>
+    <string name="transaction_type">Transaction Type</string>
 </resources>

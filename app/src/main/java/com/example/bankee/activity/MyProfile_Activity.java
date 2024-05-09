@@ -4,11 +4,13 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
@@ -35,6 +37,8 @@ public class MyProfile_Activity extends AppCompatActivity {
     DatabaseReference reference;
     FirebaseAuth fAuth;
     UserDetails userDetails;
+    ConstraintLayout mainLayout;
+    ProgressBar progressBar;
     int newImageResourceId = R.drawable.edit;
 
     @Override
@@ -50,6 +54,10 @@ public class MyProfile_Activity extends AppCompatActivity {
         eMail=findViewById(R.id.textView8);
         phonenumber=findViewById(R.id.textView10);
         address=findViewById(R.id.address);
+        mainLayout = findViewById(R.id.mainLayout);
+        mainLayout.setVisibility(View.INVISIBLE);
+        progressBar = findViewById(R.id.progressBar);
+        progressBar.setVisibility(View.VISIBLE);
 
 
         fAuth=FirebaseAuth.getInstance();
@@ -80,6 +88,10 @@ public class MyProfile_Activity extends AppCompatActivity {
                 }else {
                     Picasso.get().load(userDetails.getImgLink()).placeholder(R.drawable.user).into(imageView);
                 }
+
+                progressBar.setVisibility(View.INVISIBLE);
+                mainLayout.setVisibility(View.VISIBLE);
+
             }
 
             @Override

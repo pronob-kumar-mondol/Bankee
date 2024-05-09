@@ -25,6 +25,7 @@ import com.example.bankee.R;
 import com.example.bankee.activity.CashOut_Activity;
 import com.example.bankee.activity.ContactsActivity;
 import com.example.bankee.activity.MyProfile_Activity;
+import com.example.bankee.activity.Recharge_Activity;
 import com.example.bankee.activity.SendMoneyActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -43,7 +44,7 @@ import java.util.Objects;
 
 public class HomeFragment extends Fragment {
 
-    RelativeLayout sendMoney,cashOut,mainLayout;
+    RelativeLayout sendMoney,cashOut,mainLayout,recharge;
     RelativeLayout contacts;
     TextView user_name,main_balance;
     ImageView profile_pic;
@@ -68,6 +69,7 @@ public class HomeFragment extends Fragment {
         user_name=v.findViewById(R.id.user_name);
         main_balance=v.findViewById(R.id.balance);
         cashOut=v.findViewById(R.id.cashOut);
+        recharge=v.findViewById(R.id.recharge);
         fAuth=FirebaseAuth.getInstance();
         reference= FirebaseDatabase.getInstance().getReference("UserDetails");
 
@@ -97,7 +99,6 @@ public class HomeFragment extends Fragment {
        profile_pic.setOnClickListener(new View.OnClickListener() {
            @Override
            public void onClick(View v) {
-
                Intent intent=new Intent(getActivity(), MyProfile_Activity.class);
                startActivity(intent);
            }
@@ -111,8 +112,6 @@ public class HomeFragment extends Fragment {
            }
        });
 
-
-
        cashOut.setOnClickListener(new View.OnClickListener() {
            @Override
            public void onClick(View v) {
@@ -120,6 +119,12 @@ public class HomeFragment extends Fragment {
            }
        });
 
+       recharge.setOnClickListener(new View.OnClickListener() {
+           @Override
+           public void onClick(View view) {
+               startActivity(new Intent(getActivity(), Recharge_Activity.class));
+           }
+       });
 
         return v;
     }

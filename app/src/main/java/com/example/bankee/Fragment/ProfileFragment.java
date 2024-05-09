@@ -12,6 +12,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -38,7 +39,8 @@ public class ProfileFragment extends Fragment {
     TextView userName,contactNumber,forgot_pass,change_pass;
     ImageView ivBack,ivMenu;
     TextView tvTitle;
-    RelativeLayout changePass;
+    RelativeLayout changePass,mainLayout;
+    ProgressBar progressBar;
     UserDetails userDetails;
 
     DatabaseReference reference;
@@ -64,6 +66,10 @@ public class ProfileFragment extends Fragment {
         change_pass=v.findViewById(R.id.change_pass);
         logout=v.findViewById(R.id.logout);
         changePass=v.findViewById(R.id.three);
+        progressBar=v.findViewById(R.id.progressBar);
+        progressBar.setVisibility(View.VISIBLE);
+        mainLayout=v.findViewById(R.id.mainLayout);
+        mainLayout.setVisibility(View.INVISIBLE);
 
         reference= FirebaseDatabase.getInstance().getReference("UserDetails");
         fAuth=FirebaseAuth.getInstance();
@@ -97,6 +103,8 @@ public class ProfileFragment extends Fragment {
                 }else{
                     Picasso.get().load(userDetails.getImgLink()).placeholder(R.drawable.user).into(imageView);
                 }
+                progressBar.setVisibility(View.INVISIBLE);
+                mainLayout.setVisibility(View.VISIBLE);
 
 
             }

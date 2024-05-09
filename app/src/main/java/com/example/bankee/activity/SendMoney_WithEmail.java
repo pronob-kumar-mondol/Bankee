@@ -58,6 +58,10 @@ public class SendMoney_WithEmail extends AppCompatActivity {
         ivBack=findViewById(R.id.ivBack);
         ivMenu=findViewById(R.id.ivMenu);
 
+        String reciveremail=email.getText().toString();
+        String ammounts=ammount.getText().toString();
+        String userEmail=fAuth.getCurrentUser().getEmail().toString();
+
         //Appbar Setup
         tvTitle.setText("Send Money With Email");
         ivMenu.setVisibility(View.INVISIBLE);
@@ -119,6 +123,8 @@ public class SendMoney_WithEmail extends AppCompatActivity {
 
                 if (isValidEmail(reciverEmail)) {
                     performTransactionWithReceiverEmail(reciverEmail, sendAmmount);
+                    updateTransactionDetails(userEmail,reciveremail,sendAmmount);
+
                     dialog.dismiss();
                 }else{
                     Toast.makeText(SendMoney_WithEmail.this, "Invalid Input Format", Toast.LENGTH_SHORT).show();
@@ -126,6 +132,24 @@ public class SendMoney_WithEmail extends AppCompatActivity {
 
             }
         });
+    }
+
+    private void updateTransactionDetails(String userEmail, String reciveremail, int sendAmmount) {
+        DatabaseReference transactionReference=FirebaseDatabase.getInstance().getReference("Transactions");
+        transactionReference.push().addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                TransactionDetails transactionDetails=new TransactionDetails(userEmail,reciveremail,sendAmmount,System.currentTimeMillis(),snapshot.getKey(), TranSactionType.SEND_MONEY);
+                snapshot.getRef().setValue(transactionDetails);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+        startActivity(new Intent(SendMoney_WithEmail.this, MainActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP|Intent.FLAG_ACTIVITY_NEW_TASK));
+
     }
 
     private void performTransactionWithReceiverEmail(String reciverEmail, int sendAmmount) {
@@ -190,21 +214,6 @@ public class SendMoney_WithEmail extends AppCompatActivity {
 
                     }
                 });
-
-DatabaseReference transactionReference=FirebaseDatabase.getInstance().getReference("Transactions");
-transactionReference.push().addListenerForSingleValueEvent(new ValueEventListener() {
-    @Override
-    public void onDataChange(@NonNull DataSnapshot snapshot) {
-        TransactionDetails transactionDetails=new TransactionDetails(senderUID,reciverUID,sendAmmount,System.currentTimeMillis(),snapshot.getKey(), TranSactionType.SEND_MONEY);
-        snapshot.getRef().setValue(transactionDetails);
-    }
-
-    @Override
-    public void onCancelled(@NonNull DatabaseError error) {
-
-    }
-});
-        startActivity(new Intent(SendMoney_WithEmail.this, MainActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP|Intent.FLAG_ACTIVITY_NEW_TASK));
     }
 
     private String getCurrentUserId() {

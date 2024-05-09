@@ -5,382 +5,396 @@
     android:layout_height="match_parent"
     android:background="@color/white"
     tools:context=".Fragment.ProfileFragment">
+    
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:visibility="invisible"
+        android:elevation="10dp"
+        android:layout_centerInParent="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
 
-    <include layout="@layout/appbar"
-        android:id="@+id/appbar" />
-
-
-    <ScrollView
-        android:layout_below="@+id/appbar"
+    <RelativeLayout
+        android:id="@+id/mainLayout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent">
 
-        <RelativeLayout
+        <include layout="@layout/appbar"
+            android:id="@+id/appbar" />
+
+
+        <ScrollView
+            android:layout_below="@+id/appbar"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-
-            <RelativeLayout
-                android:id="@+id/profile_info"
-                android:layout_marginTop="10dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-                <de.hdodenhof.circleimageview.CircleImageView
-                    android:id="@+id/profile_pic"
-                    android:layout_alignParentStart="true"
-                    android:layout_alignParentEnd="true"
-                    android:src="@drawable/profile_pic"
-                    android:layout_width="92dp"
-                    android:layout_height="92dp"/>
-                <TextView
-                    android:id="@+id/user_name"
-                    android:layout_centerInParent="true"
-                    android:layout_below="@+id/profile_pic"
-                    android:text="Tiana Sris"
-                    android:textSize="20dp"
-                    android:textStyle="bold"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"/>
-                <TextView
-                    android:id="@+id/contactNumber"
-                    android:layout_below="@+id/user_name"
-                    android:layout_centerInParent="true"
-                    android:text="Broklyn"
-                    android:textColor="@color/Neutral"
-                    android:layout_marginTop="2dp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"/>
-
-            </RelativeLayout>
-
+            android:layout_height="wrap_content">
 
             <RelativeLayout
-                android:id="@+id/personal_info_lay"
-                android:layout_below="@+id/profile_info"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="match_parent">
 
-                <TextView
-                    android:id="@+id/personal_info"
-                    android:text="Personal Info"
-                    android:textColor="@color/Neutral"
-                    android:layout_marginStart="18dp"
-                    android:textStyle="bold"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"/>
 
                 <RelativeLayout
-                    android:id="@+id/one"
-                    android:layout_below="@+id/personal_info"
+                    android:id="@+id/profile_info"
+                    android:layout_marginTop="10dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
-
-                    <ImageView
-                        android:src="@drawable/profileicon"
-                        android:id="@+id/profile_icon"
-                        android:layout_marginTop="16dp"
-                        android:layout_marginStart="15dp"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"/>
-                    <TextView
-                        android:id="@+id/your_profile"
-                        android:layout_toEndOf="@+id/profile_icon"
-                        android:text="Your Profile"
-                        android:textSize="15sp"
-                        android:layout_marginTop="18dp"
-                        android:layout_marginStart="10dp"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        tools:ignore="InvalidId" />
-
-                    <ImageView
-                        android:layout_marginVertical="15dp"
-                        android:layout_below="@+id/your_profile"
-                        android:src="@drawable/line"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
-
-                </RelativeLayout>
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/one">
-
-                    <ImageView
-                        android:src="@drawable/history"
-                        android:id="@+id/history_icon"
-                        android:layout_marginStart="15dp"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"/>
-
-                    <TextView
-                        android:id="@+id/your_history"
-                        android:layout_toEndOf="@+id/history_icon"
-                        android:text="History Transaction"
-                        android:textSize="15sp"
-                        android:layout_marginTop="3dp"
-                        android:layout_marginStart="10dp"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"/>
-
-                    <ImageView
-                        android:layout_marginVertical="15dp"
-                        android:layout_below="@+id/your_history"
-                        android:src="@drawable/line"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
-
-
-
-
-                </RelativeLayout>
-
-
-
-
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:id="@+id/security_lay"
-                android:layout_below="@+id/personal_info_lay"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <TextView
-                    android:id="@+id/security"
-                    android:text="Security"
-                    android:textColor="@color/Neutral"
-                    android:layout_marginStart="18dp"
-                    android:textStyle="bold"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"/>
-
-                <RelativeLayout
-                    android:id="@+id/two"
-                    android:layout_below="@+id/security"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
-                    <ImageView
-                        android:src="@drawable/scan"
-                        android:id="@+id/face_id"
-                        android:layout_marginTop="16dp"
-                        android:layout_marginStart="15dp"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"/>
-                    <TextView
-                        android:id="@+id/your_scan"
-                        android:layout_toEndOf="@+id/face_id"
-                        android:text="Face ID"
-                        android:textSize="15sp"
-                        android:layout_marginTop="18dp"
-                        android:layout_marginStart="10dp"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        tools:ignore="InvalidId" />
-
-                    <ImageView
-                        android:layout_marginVertical="15dp"
-                        android:layout_below="@+id/face_id"
-                        android:src="@drawable/line"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
-
-                    <Switch
-                        style="@style/CustomSwitchStyle"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:id="@+id/profile_pic"
+                        android:layout_alignParentStart="true"
                         android:layout_alignParentEnd="true"
-                        android:layout_marginTop="14dp"
-                        android:layout_marginRight="10dp"
-                        tools:ignore="TouchTargetSizeCheck" />
-
-                </RelativeLayout>
-                <RelativeLayout
-                    android:id="@+id/three"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/two">
-
-                    <ImageView
-                        android:src="@drawable/lock"
-                        android:id="@+id/lock_icon"
-                        android:layout_marginStart="15dp"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"/>
-
+                        android:src="@drawable/profile_pic"
+                        android:layout_width="92dp"
+                        android:layout_height="92dp"/>
                     <TextView
-                        android:id="@+id/change_pass"
-                        android:layout_toEndOf="@+id/lock_icon"
-                        android:text="Change Password"
-                        android:textSize="15sp"
-                        android:layout_marginTop="3dp"
-                        android:layout_marginStart="10dp"
+                        android:id="@+id/user_name"
+                        android:layout_centerInParent="true"
+                        android:layout_below="@+id/profile_pic"
+                        android:text="Tiana Sris"
+                        android:textSize="20dp"
+                        android:textStyle="bold"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"/>
-
-                    <ImageView
-                        android:layout_marginVertical="15dp"
-                        android:layout_below="@+id/change_pass"
-                        android:src="@drawable/line"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
-
-
-
-
-                </RelativeLayout>
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/three">
-
-                    <ImageView
-                        android:src="@drawable/unlock"
-                        android:id="@+id/unlock_icon"
-                        android:layout_marginStart="15dp"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"/>
-
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"/>
                     <TextView
-                        android:id="@+id/forgot_pass"
-                        android:layout_toEndOf="@+id/unlock_icon"
-                        android:text="Forgot Password"
-                        android:textSize="15sp"
-                        android:layout_marginTop="3dp"
-                        android:layout_marginStart="10dp"
+                        android:id="@+id/contactNumber"
+                        android:layout_below="@+id/user_name"
+                        android:layout_centerInParent="true"
+                        android:text="Broklyn"
+                        android:textColor="@color/Neutral"
+                        android:layout_marginTop="2dp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"/>
-
-                    <ImageView
-                        android:layout_marginVertical="15dp"
-                        android:layout_below="@+id/forgot_pass"
-                        android:src="@drawable/line"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
-
-
-
 
                 </RelativeLayout>
 
 
-
-
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:id="@+id/help"
-                android:layout_below="@+id/security_lay"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <TextView
-                    android:id="@+id/general"
-                    android:text="General"
-                    android:textColor="@color/Neutral"
-                    android:layout_marginStart="18dp"
-                    android:textStyle="bold"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"/>
-
                 <RelativeLayout
-                    android:id="@+id/four"
-                    android:layout_below="@+id/general"
+                    android:id="@+id/personal_info_lay"
+                    android:layout_below="@+id/profile_info"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
-                    <ImageView
-                        android:src="@drawable/notification2"
-                        android:id="@+id/notification_icon"
-                        android:layout_marginTop="16dp"
-                        android:layout_marginStart="15dp"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"/>
                     <TextView
-                        android:id="@+id/notify"
-                        android:layout_toEndOf="@+id/notification_icon"
-                        android:text="Notification"
-                        android:textSize="15sp"
-                        android:layout_marginTop="18dp"
-                        android:layout_marginStart="10dp"
+                        android:id="@+id/personal_info"
+                        android:text="Personal Info"
+                        android:textColor="@color/Neutral"
+                        android:layout_marginStart="18dp"
+                        android:textStyle="bold"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" />
-
-                    <ImageView
-                        android:layout_marginVertical="15dp"
-                        android:layout_below="@+id/notification_icon"
-                        android:src="@drawable/line"
-                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
+
+                    <RelativeLayout
+                        android:id="@+id/one"
+                        android:layout_below="@+id/personal_info"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <ImageView
+                            android:src="@drawable/profileicon"
+                            android:id="@+id/profile_icon"
+                            android:layout_marginTop="16dp"
+                            android:layout_marginStart="15dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
+                        <TextView
+                            android:id="@+id/your_profile"
+                            android:layout_toEndOf="@+id/profile_icon"
+                            android:text="Your Profile"
+                            android:textSize="15sp"
+                            android:layout_marginTop="18dp"
+                            android:layout_marginStart="10dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            tools:ignore="InvalidId" />
+
+                        <ImageView
+                            android:layout_marginVertical="15dp"
+                            android:layout_below="@+id/your_profile"
+                            android:src="@drawable/line"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/>
+
+                    </RelativeLayout>
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/one">
+
+                        <ImageView
+                            android:src="@drawable/history"
+                            android:id="@+id/history_icon"
+                            android:layout_marginStart="15dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
+
+                        <TextView
+                            android:id="@+id/your_history"
+                            android:layout_toEndOf="@+id/history_icon"
+                            android:text="History Transaction"
+                            android:textSize="15sp"
+                            android:layout_marginTop="3dp"
+                            android:layout_marginStart="10dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
+
+                        <ImageView
+                            android:layout_marginVertical="15dp"
+                            android:layout_below="@+id/your_history"
+                            android:src="@drawable/line"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/>
+
+
+
+
+                    </RelativeLayout>
+
 
 
 
                 </RelativeLayout>
+
                 <RelativeLayout
-                    android:id="@+id/five"
+                    android:id="@+id/security_lay"
+                    android:layout_below="@+id/personal_info_lay"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/four">
-
-                    <ImageView
-                        android:src="@drawable/info_circle"
-                        android:id="@+id/help_support_icon"
-                        android:layout_marginStart="15dp"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"/>
+                    android:layout_height="wrap_content">
 
                     <TextView
-                        android:id="@+id/help_support"
-                        android:layout_toEndOf="@+id/help_support_icon"
-                        android:text="Help and Support"
-                        android:textSize="15sp"
-                        android:layout_marginTop="3dp"
-                        android:layout_marginStart="10dp"
+                        android:id="@+id/security"
+                        android:text="Security"
+                        android:textColor="@color/Neutral"
+                        android:layout_marginStart="18dp"
+                        android:textStyle="bold"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"/>
 
-                    <ImageView
-                        android:layout_marginVertical="15dp"
-                        android:layout_below="@+id/help_support"
-                        android:src="@drawable/line"
+                    <RelativeLayout
+                        android:id="@+id/two"
+                        android:layout_below="@+id/security"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
+                        android:layout_height="wrap_content">
+
+                        <ImageView
+                            android:src="@drawable/scan"
+                            android:id="@+id/face_id"
+                            android:layout_marginTop="16dp"
+                            android:layout_marginStart="15dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
+                        <TextView
+                            android:id="@+id/your_scan"
+                            android:layout_toEndOf="@+id/face_id"
+                            android:text="Face ID"
+                            android:textSize="15sp"
+                            android:layout_marginTop="18dp"
+                            android:layout_marginStart="10dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            tools:ignore="InvalidId" />
+
+                        <ImageView
+                            android:layout_marginVertical="15dp"
+                            android:layout_below="@+id/face_id"
+                            android:src="@drawable/line"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/>
+
+                        <Switch
+                            style="@style/CustomSwitchStyle"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentEnd="true"
+                            android:layout_marginTop="14dp"
+                            android:layout_marginRight="10dp"
+                            tools:ignore="TouchTargetSizeCheck" />
+
+                    </RelativeLayout>
+                    <RelativeLayout
+                        android:id="@+id/three"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/two">
+
+                        <ImageView
+                            android:src="@drawable/lock"
+                            android:id="@+id/lock_icon"
+                            android:layout_marginStart="15dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
+
+                        <TextView
+                            android:id="@+id/change_pass"
+                            android:layout_toEndOf="@+id/lock_icon"
+                            android:text="Change Password"
+                            android:textSize="15sp"
+                            android:layout_marginTop="3dp"
+                            android:layout_marginStart="10dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
+
+                        <ImageView
+                            android:layout_marginVertical="15dp"
+                            android:layout_below="@+id/change_pass"
+                            android:src="@drawable/line"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/>
+
+
+
+
+                    </RelativeLayout>
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/three">
+
+                        <ImageView
+                            android:src="@drawable/unlock"
+                            android:id="@+id/unlock_icon"
+                            android:layout_marginStart="15dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
+
+                        <TextView
+                            android:id="@+id/forgot_pass"
+                            android:layout_toEndOf="@+id/unlock_icon"
+                            android:text="Forgot Password"
+                            android:textSize="15sp"
+                            android:layout_marginTop="3dp"
+                            android:layout_marginStart="10dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
+
+                        <ImageView
+                            android:layout_marginVertical="15dp"
+                            android:layout_below="@+id/forgot_pass"
+                            android:src="@drawable/line"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/>
+
+
+
+
+                    </RelativeLayout>
 
 
 
 
                 </RelativeLayout>
 
+                <RelativeLayout
+                    android:id="@+id/help"
+                    android:layout_below="@+id/security_lay"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/general"
+                        android:text="General"
+                        android:textColor="@color/Neutral"
+                        android:layout_marginStart="18dp"
+                        android:textStyle="bold"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+
+                    <RelativeLayout
+                        android:id="@+id/four"
+                        android:layout_below="@+id/general"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <ImageView
+                            android:src="@drawable/notification2"
+                            android:id="@+id/notification_icon"
+                            android:layout_marginTop="16dp"
+                            android:layout_marginStart="15dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
+                        <TextView
+                            android:id="@+id/notify"
+                            android:layout_toEndOf="@+id/notification_icon"
+                            android:text="Notification"
+                            android:textSize="15sp"
+                            android:layout_marginTop="18dp"
+                            android:layout_marginStart="10dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+
+                        <ImageView
+                            android:layout_marginVertical="15dp"
+                            android:layout_below="@+id/notification_icon"
+                            android:src="@drawable/line"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/>
+
+
+
+                    </RelativeLayout>
+                    <RelativeLayout
+                        android:id="@+id/five"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/four">
+
+                        <ImageView
+                            android:src="@drawable/info_circle"
+                            android:id="@+id/help_support_icon"
+                            android:layout_marginStart="15dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
+
+                        <TextView
+                            android:id="@+id/help_support"
+                            android:layout_toEndOf="@+id/help_support_icon"
+                            android:text="Help and Support"
+                            android:textSize="15sp"
+                            android:layout_marginTop="3dp"
+                            android:layout_marginStart="10dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
+
+                        <ImageView
+                            android:layout_marginVertical="15dp"
+                            android:layout_below="@+id/help_support"
+                            android:src="@drawable/line"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/>
 
 
 
 
-            </RelativeLayout>
+                    </RelativeLayout>
 
-            <RelativeLayout
-                android:layout_centerInParent="true"
-                android:layout_below="@+id/help"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
 
-                <TextView
-                    android:id="@+id/logout"
+
+
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_centerInParent="true"
+                    android:layout_below="@+id/help"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Log Out"
-                    android:textSize="14sp"
-                    android:textColor="@color/Red"/>
+                    android:layout_height="wrap_content">
 
+                    <TextView
+                        android:id="@+id/logout"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Log Out"
+                        android:textSize="14sp"
+                        android:textColor="@color/Red"/>
+
+
+                </RelativeLayout>
 
             </RelativeLayout>
 
-        </RelativeLayout>
 
 
-
-    </ScrollView>
+        </ScrollView>
+    </RelativeLayout>
 
 
 </RelativeLayout>
