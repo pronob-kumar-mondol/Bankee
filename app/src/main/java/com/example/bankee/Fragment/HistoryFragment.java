@@ -33,9 +33,9 @@ public class HistoryFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View v= inflater.inflate(R.layout.fragment_history, container, false);
-
+        recyclerView=v.findViewById(R.id.recyclerView);
         ArrayList<TransactionDetails> datalist=new ArrayList<>();
-        TransactionHistoryAdapter historyAdapter=new TransactionHistoryAdapter(getContext(),datalist);
+        TransactionHistoryAdapter historyAdapter=new TransactionHistoryAdapter(getActivity(),datalist);
         recyclerView.setAdapter(historyAdapter);
 
         reference= FirebaseDatabase.getInstance().getReference("Transactions");
@@ -46,8 +46,9 @@ public class HistoryFragment extends Fragment {
                 for (DataSnapshot ds : snapshot.getChildren()) {
                     transactionModel=ds.getValue(TransactionDetails.class);
                     datalist.add(transactionModel);
-                    historyAdapter.notifyDataSetChanged();
+
                 }
+                historyAdapter.notifyDataSetChanged();
             }
 
             @Override

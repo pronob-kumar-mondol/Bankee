@@ -27,7 +27,7 @@ public class TransactionHistoryAdapter extends RecyclerView.Adapter<TransactionH
     @NonNull
     @Override
     public TransactionHistoryAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View v= LayoutInflater.from(context).inflate(R.layout.fragment_history,parent,false);
+        View v= LayoutInflater.from(context).inflate(R.layout.history_card,parent,false);
 
         return new ViewHolder(v);
     }
@@ -36,7 +36,7 @@ public class TransactionHistoryAdapter extends RecyclerView.Adapter<TransactionH
     public void onBindViewHolder(@NonNull TransactionHistoryAdapter.ViewHolder holder, int position) {
         holder.trasactionType.setText(datalist.get(position).getType().toString());
         holder.transactionID.setText(datalist.get(position).getTransactionId());
-        holder.amount.setText(datalist.get(position).getSendAmmount());
+        holder.amount.setText(String.valueOf(datalist.get(position).getSendAmmount()));
     }
 
     @Override
@@ -48,9 +48,9 @@ public class TransactionHistoryAdapter extends RecyclerView.Adapter<TransactionH
         TextView transactionID,trasactionType,amount;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            String transactionID=itemView.findViewById(R.id.transactionID).toString();
-            String trasactionType=itemView.findViewById(R.id.trasactionType).toString();
-            String amount=itemView.findViewById(R.id.amount).toString();
+            transactionID=itemView.findViewById(R.id.transactionID);
+            trasactionType=itemView.findViewById(R.id.trasactionType);
+            amount=itemView.findViewById(R.id.amount);
 
         }
     }

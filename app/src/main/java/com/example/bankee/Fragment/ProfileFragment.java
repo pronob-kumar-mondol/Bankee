@@ -157,6 +157,7 @@ public class ProfileFragment extends Fragment {
     private void showLogoutDialog() {
         Dialog dialog=new Dialog(this.getActivity());
         dialog.setContentView(R.layout.logout_dialog);
+        dialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
         dialog.show();
         AppCompatButton cancelBtn=dialog.findViewById(R.id.btn);
         TextView logout=dialog.findViewById(R.id.logout);

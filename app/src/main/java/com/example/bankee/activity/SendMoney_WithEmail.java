@@ -105,7 +105,7 @@ public class SendMoney_WithEmail extends AppCompatActivity {
         ammount.setText(ammounts);
         money.setText(ammounts);
 
-
+        dialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
         dialog.show();
         cancelBtn.setOnClickListener(new View.OnClickListener() {
             @Override
