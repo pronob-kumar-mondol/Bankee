@@ -33,12 +33,14 @@
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:elevation="10dp"
             android:layout_gravity="center"
             android:layout_marginBottom="5dp"
-            android:src="@drawable/edit"
-            app:fabSize="normal"
+            android:backgroundTint="@color/LavenderBlu"
             android:clickable="true"
-            />
+            android:src="@drawable/qr"
+            app:fabSize="normal"
+            tools:ignore="SpeakableTextPresentCheck" />
 
 
 
