@@ -95,13 +95,13 @@ public class ProfileFragment extends Fragment {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 userDetails=snapshot.getValue(UserDetails.class);
-                userName.setText(userDetails.getName());
-                contactNumber.setText(userDetails.getPhoneNumber());
+                userName.setText(userDetails.getUserName());
+                contactNumber.setText(userDetails.getUserNumber());
 
-                if (userDetails.getImgLink().isEmpty()) {
+                if (userDetails.getImageLink().isEmpty()) {
                     Picasso.get().load(R.drawable.user).into(imageView);
                 }else{
-                    Picasso.get().load(userDetails.getImgLink()).placeholder(R.drawable.user).into(imageView);
+                    Picasso.get().load(userDetails.getImageLink()).placeholder(R.drawable.user).into(imageView);
                 }
                 progressBar.setVisibility(View.INVISIBLE);
                 mainLayout.setVisibility(View.VISIBLE);

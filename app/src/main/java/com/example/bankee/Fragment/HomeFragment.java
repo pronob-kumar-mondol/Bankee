@@ -136,21 +136,21 @@ public class HomeFragment extends Fragment {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                     userDetails=snapshot.getValue(UserDetails.class);
-                    user_name.setText(userDetails.getName());
-                    main_balance.setText(String.valueOf(userDetails.getBalance()));
-                    profile_pic.setImageResource(userDetails.getImgLink().hashCode());
+                    user_name.setText(userDetails.getUserName());
+                    main_balance.setText(String.valueOf(userDetails.getUserBalance()));
+                    profile_pic.setImageResource(userDetails.getImageLink().hashCode());
 
-                    if(userDetails.getImgLink().isEmpty()){
+                    if(userDetails.getImageLink().isEmpty()){
                         Picasso.get().load(R.drawable.user).into(profile_pic);
                     }
                     else {
-                        Picasso.get().load(userDetails.getImgLink()).placeholder(R.drawable.user).into(profile_pic);
+                        Picasso.get().load(userDetails.getImageLink()).placeholder(R.drawable.user).into(profile_pic);
                     }
 
 
                     progressBar.setVisibility(View.INVISIBLE);
                     mainLayout.setVisibility(View.VISIBLE);
-                    Log.d("HomeFragment", "User name: " + userDetails.getName());
+                    Log.d("HomeFragment", "User name: " + userDetails.getUserName());
             }
 
             @Override

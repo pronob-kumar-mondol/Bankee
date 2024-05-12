@@ -2,70 +2,81 @@ package com.example.bankee.Model;
 
 public class UserDetails {
 
-    private String name;
-    private String email;
-    private String phoneNumber;
-    private String address;
-    private String imgLink;
-    private int balance;
+    private String userEmail;
+    private String userUID;
+    private String userName;
+    private String userAddress;
+    private String userNumber;
+    private int userBalance;
+    private String imageLink;
 
     public UserDetails() {
 
     }
-    public UserDetails(String name, String email, String phoneNumber, String address, String imgLink, int balance) {
-        this.name = name;
-        this.email = email;
-        this.phoneNumber = phoneNumber;
-        this.address = address;
-        this.imgLink = imgLink;
-        this.balance = balance;
+
+    public UserDetails(String userEmail, String userUID, String userName, String userAddress, String userNumber, int userBalance, String imageLink) {
+        this.userEmail = userEmail;
+        this.userUID = userUID;
+        this.userName = userName;
+        this.userAddress = userAddress;
+        this.userNumber = userNumber;
+        this.userBalance = userBalance;
+        this.imageLink = imageLink;
     }
 
-    public String getName() {
-        return name;
+    public String getUserEmail() {
+        return userEmail;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setUserEmail(String userEmail) {
+        this.userEmail = userEmail;
     }
 
-    public String getEmail() {
-        return email;
+    public String getUserUID() {
+        return userUID;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setUserUID(String userUID) {
+        this.userUID = userUID;
     }
 
-    public String getPhoneNumber() {
-        return phoneNumber;
+    public String getUserName() {
+        return userName;
     }
 
-    public void setPhoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 
-    public String getAddress() {
-        return address;
+    public String getUserAddress() {
+        return userAddress;
     }
 
-    public void setAddress(String address) {
-        this.address = address;
+    public void setUserAddress(String userAddress) {
+        this.userAddress = userAddress;
     }
 
-    public String getImgLink() {
-        return imgLink;
+    public String getUserNumber() {
+        return userNumber;
     }
 
-    public void setImgLink(String imgLink) {
-        this.imgLink = imgLink;
+    public void setUserNumber(String userNumber) {
+        this.userNumber = userNumber;
     }
 
-    public int getBalance() {
-        return balance;
+    public int getUserBalance() {
+        return userBalance;
     }
 
-    public void setBalance(int balance) {
-        this.balance = balance;
+    public void setUserBalance(int userBalance) {
+        this.userBalance = userBalance;
+    }
+
+    public String getImageLink() {
+        return imageLink;
+    }
+
+    public void setImageLink(String imageLink) {
+        this.imageLink = imageLink;
     }
 }

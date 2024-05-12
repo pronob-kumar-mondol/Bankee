@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="card_type_edit_text" type="id" />
+    <item name="card_number_edit_text" type="id" />
+    <item name="expiry_date_edit_text" type="id" />
+    <item name="cvv_code_edit_text" type="id" />
+    <item name="country_currency_edit_text" type="id" />
+    <item name="add_card_button" type="id" />
+</resources>

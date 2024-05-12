@@ -78,15 +78,15 @@ public class MyProfile_Activity extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 userDetails=snapshot.getValue(UserDetails.class);
-                fullNmae.setText(userDetails.getName());
-                eMail.setText(userDetails.getEmail());
-                phonenumber.setText(userDetails.getPhoneNumber());
-                address.setText(userDetails.getAddress());
+                fullNmae.setText(userDetails.getUserName());
+                eMail.setText(userDetails.getUserEmail());
+                phonenumber.setText(userDetails.getUserNumber());
+                address.setText(userDetails.getUserAddress());
 
-                if(userDetails.getImgLink().isEmpty()){
+                if(userDetails.getImageLink().isEmpty()){
                     Picasso.get().load(R.drawable.user).into(imageView);
                 }else {
-                    Picasso.get().load(userDetails.getImgLink()).placeholder(R.drawable.user).into(imageView);
+                    Picasso.get().load(userDetails.getImageLink()).placeholder(R.drawable.user).into(imageView);
                 }
 
                 progressBar.setVisibility(View.INVISIBLE);
