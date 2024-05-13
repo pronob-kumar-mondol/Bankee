@@ -18,8 +18,10 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.example.bankee.Model.CardDetails;
 import com.example.bankee.Model.TranSactionType;
 import com.example.bankee.Model.TransactionDetails;
+import com.example.bankee.Model.UserDetails;
 import com.example.bankee.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -38,7 +40,6 @@ public class Recharge_Activity extends AppCompatActivity {
     String phoneNumber;
 
 
-    @SuppressLint("SetTextI18n")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -76,11 +77,6 @@ public class Recharge_Activity extends AppCompatActivity {
                     showRechargeDialog();
                 }
 
-
-
-
-
-
             }
         });
 
@@ -113,8 +109,8 @@ public class Recharge_Activity extends AppCompatActivity {
             userReference.addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
-
-                    phoneNumber = snapshot.child("phoneNumber").getValue(String.class);
+                    UserDetails userDetails = snapshot.getValue(UserDetails.class);
+                    phoneNumber = userDetails.getUserNumber();
                     from.setText(phoneNumber);
                     to.setText(reciverNumber);
                     ammountS.setText(String.valueOf(rechargeAmmount));
@@ -142,7 +138,10 @@ public class Recharge_Activity extends AppCompatActivity {
                     userReference.addListenerForSingleValueEvent(new ValueEventListener() {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot snapshot) {
-                            updateUserBalance(snapshot.child("balance").getValue(Integer.class), rechargeAmmount);
+                            UserDetails userDetails = snapshot.getValue(UserDetails.class);
+                            CardDetails cardDetails = snapshot.child("CardDetails").getValue(CardDetails.class);
+
+                            updateUserBalance(cardDetails.getBalance(), rechargeAmmount);
                             preformRecharge(reciverNumber,phoneNumber,rechargeAmmount);
                             Toast.makeText(Recharge_Activity.this, "RECHARGING Successful", Toast.LENGTH_SHORT).show();
                             dialog.dismiss();
@@ -164,10 +163,12 @@ public class Recharge_Activity extends AppCompatActivity {
 
     }
 
-    private void updateUserBalance(Integer userBalance, int rechargeAmmount) {
+    private void updateUserBalance(int userBalance, int rechargeAmmount) {
 
         userBalance = userBalance - rechargeAmmount;
-        userReference.child("balance").setValue(userBalance);
+        userReference.child("CardDetails").child("balance").setValue(userBalance);
+
+
     }
 
     private void preformRecharge(String reciverNumber, String phoneNumber, int rechargeAmmount) {

@@ -58,9 +58,6 @@ public class SendMoney_WithEmail extends AppCompatActivity {
         ivBack=findViewById(R.id.ivBack);
         ivMenu=findViewById(R.id.ivMenu);
 
-        String reciveremail=email.getText().toString();
-        String ammounts=ammount.getText().toString();
-        String userEmail=fAuth.getCurrentUser().getEmail().toString();
 
         //Appbar Setup
         tvTitle.setText("Send Money With Email");
@@ -154,7 +151,7 @@ public class SendMoney_WithEmail extends AppCompatActivity {
 
     private void performTransactionWithReceiverEmail(String reciverEmail, int sendAmmount) {
         DatabaseReference reference=FirebaseDatabase.getInstance().getReference("UserDetails");
-        Query query=reference.orderByChild("email").equalTo(reciverEmail);
+        Query query=reference.orderByChild("userEmail").equalTo(reciverEmail);
 
         query.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -181,14 +178,12 @@ public class SendMoney_WithEmail extends AppCompatActivity {
 
     private void performTransaction(String senderUID, String reciverUID, int sendAmmount) {
 
-        reference.child(senderUID).addListenerForSingleValueEvent(new ValueEventListener() {
+        reference.child(senderUID).child("CardDetails").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 int currentBalance= Integer.parseInt(snapshot.child("balance").getValue().toString());
                 currentBalance=currentBalance-sendAmmount;
                 snapshot.child("balance").getRef().setValue(currentBalance);
-                System.out.println(currentBalance);
-                //currentBalance=currentBalance-sendAmmount;
 
                 Toast.makeText(SendMoney_WithEmail.this, "User balance Updated", Toast.LENGTH_SHORT).show();
             }
@@ -199,13 +194,12 @@ public class SendMoney_WithEmail extends AppCompatActivity {
             }
         });
 
-        reference.child(reciverUID).addListenerForSingleValueEvent(new ValueEventListener() {
+        reference.child(reciverUID).child("CardDetails").addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
                         int currentBalance= Integer.parseInt(snapshot.child("balance").getValue().toString());
                         currentBalance=currentBalance+sendAmmount;
                         snapshot.child("balance").getRef().setValue(currentBalance);
-                        System.out.println(currentBalance);
                         Toast.makeText(SendMoney_WithEmail.this, "Reciver balance Updated", Toast.LENGTH_SHORT).show();
                     }
 

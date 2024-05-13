@@ -116,6 +116,8 @@
 
                     </RelativeLayout>
                     <RelativeLayout
+                        android:visibility="gone"
+                        android:id="@+id/HistoryTransaction"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_below="@+id/one">
@@ -170,6 +172,7 @@
                         android:layout_height="wrap_content"/>
 
                     <RelativeLayout
+                        android:visibility="gone"
                         android:id="@+id/two"
                         android:layout_below="@+id/security"
                         android:layout_width="match_parent"
@@ -211,6 +214,7 @@
 
                     </RelativeLayout>
                     <RelativeLayout
+                        android:layout_marginTop="10dp"
                         android:id="@+id/three"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"

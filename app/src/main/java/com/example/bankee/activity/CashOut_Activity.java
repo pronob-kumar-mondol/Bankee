@@ -136,8 +136,8 @@ public class CashOut_Activity extends AppCompatActivity {
 
     private void updateUserBalance(String reciverAmmount) {
 
-        DatabaseReference userReference= FirebaseDatabase.getInstance().getReference("UserDetails");
-        userReference.child(fAuth.getCurrentUser().getUid()).child("balance").addListenerForSingleValueEvent(new ValueEventListener() {
+        DatabaseReference userReference= FirebaseDatabase.getInstance().getReference("UserDetails").child(fAuth.getCurrentUser().getUid()).child("CardDetails");
+        userReference.child("balance").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
 

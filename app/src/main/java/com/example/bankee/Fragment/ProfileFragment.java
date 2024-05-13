@@ -39,7 +39,7 @@ public class ProfileFragment extends Fragment {
     TextView userName,contactNumber,forgot_pass,change_pass;
     ImageView ivBack,ivMenu;
     TextView tvTitle;
-    RelativeLayout changePass,mainLayout;
+    RelativeLayout changePass,mainLayout,HistoryTransaction;
     ProgressBar progressBar;
     UserDetails userDetails;
 
@@ -64,6 +64,7 @@ public class ProfileFragment extends Fragment {
         userName=v.findViewById(R.id.user_name);
         contactNumber=v.findViewById(R.id.contactNumber);
         change_pass=v.findViewById(R.id.change_pass);
+        HistoryTransaction=v.findViewById(R.id.HistoryTransaction);
         logout=v.findViewById(R.id.logout);
         changePass=v.findViewById(R.id.three);
         progressBar=v.findViewById(R.id.progressBar);
@@ -88,32 +89,49 @@ public class ProfileFragment extends Fragment {
             }
         });
 
+        HistoryTransaction.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ;
+            }
+        });
+
 
 
 
         reference.child(userId).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                userDetails=snapshot.getValue(UserDetails.class);
-                userName.setText(userDetails.getUserName());
-                contactNumber.setText(userDetails.getUserNumber());
 
-                if (userDetails.getImageLink().isEmpty()) {
-                    Picasso.get().load(R.drawable.user).into(imageView);
-                }else{
+
+
+                try {
+                    userDetails=snapshot.getValue(UserDetails.class);
+                    userName.setText(userDetails.getUserName());
+                    contactNumber.setText(userDetails.getUserNumber());
                     Picasso.get().load(userDetails.getImageLink()).placeholder(R.drawable.user).into(imageView);
+                    progressBar.setVisibility(View.GONE);
+                    mainLayout.setVisibility(View.VISIBLE);
                 }
-                progressBar.setVisibility(View.INVISIBLE);
-                mainLayout.setVisibility(View.VISIBLE);
+                catch (Exception e) {
+                    userName.setText("User Name");
+                    contactNumber.setText("Contact Number");
+                    mainLayout.setVisibility(View.VISIBLE);
+                    progressBar.setVisibility(View.GONE);
+                    Picasso.get().load(R.drawable.user).into(imageView);
+                }
+
 
 
             }
+
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
 
             }
         });
+
 
 
         your_profile.setOnClickListener(new View.OnClickListener() {

@@ -37,7 +37,7 @@ public class MyCardFragment extends Fragment implements AddCardBottomSheetDialog
     private ImageView cardImageView,cardType;
     private FloatingActionButton addCardFab,deleteCardFab;
     ImageView ivBack,ivMenu;
-    TextView tvTitle;
+    TextView tvTitle,tvCardno;
     ProgressBar progressBar;
      ConstraintLayout my_card,mainLayout;
      FirebaseAuth fAuth=FirebaseAuth.getInstance();
@@ -57,6 +57,7 @@ public class MyCardFragment extends Fragment implements AddCardBottomSheetDialog
         progressBar = v.findViewById(R.id.progressBarCard);
         progressBar.setVisibility(View.VISIBLE);
         mainLayout = v.findViewById(R.id.mainLayout);
+        tvCardno = v.findViewById(R.id.textView27);
         mainLayout.setVisibility(View.INVISIBLE);
         noCardTextView.setVisibility(View.VISIBLE);
         my_card.setVisibility(View.GONE);
@@ -136,11 +137,11 @@ public class MyCardFragment extends Fragment implements AddCardBottomSheetDialog
                         expiry.setText("00/00");
                         holder_name.setText(userDetails.getUserName());
                         cardType.setVisibility(View.INVISIBLE);
+                        tvCardno.setVisibility(View.GONE);
                     }
-                    mainLayout.setVisibility(View.VISIBLE);
-
-                    progressBar.setVisibility(View.GONE);
                     onCardAdded();
+                    mainLayout.setVisibility(View.VISIBLE);
+                    progressBar.setVisibility(View.GONE);
 
                 }else {
                     addCardFab.setVisibility(View.VISIBLE);

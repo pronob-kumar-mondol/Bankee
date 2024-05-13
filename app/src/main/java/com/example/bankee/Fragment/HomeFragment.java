@@ -47,7 +47,7 @@ public class HomeFragment extends Fragment {
 
     RelativeLayout sendMoney,cashOut,mainLayout,recharge;
     RelativeLayout contacts;
-    TextView user_name,holder_balance,holder_name,card_no,expire_date;
+    TextView user_name,holder_balance,holder_name,card_no,expire_date,tvCardno;
     ImageView profile_pic,cardType;
 
     UserDetails userDetails;
@@ -74,6 +74,7 @@ public class HomeFragment extends Fragment {
         expire_date=v.findViewById(R.id.expire_date);
         cashOut=v.findViewById(R.id.cashOut);
         recharge=v.findViewById(R.id.recharge);
+        tvCardno=v.findViewById(R.id.textView27);
         cardType=v.findViewById(R.id.cardType);
         fAuth=FirebaseAuth.getInstance();
         reference= FirebaseDatabase.getInstance().getReference("UserDetails");
@@ -163,9 +164,10 @@ public class HomeFragment extends Fragment {
 
                 }catch (Exception e){
                     holder_balance.setText("0.0");
-                    card_no.setText("0000 0000 0000 0000");
-                    expire_date.setText("00/00");
-                    holder_name.setText(userDetails.getUserName());
+                    card_no.setVisibility(View.INVISIBLE);
+                    tvCardno.setVisibility(View.GONE);
+                    expire_date.setVisibility(View.INVISIBLE);
+                    holder_name.setVisibility(View.GONE);
                     Picasso.get().load(R.drawable.user).into(profile_pic);
                     cardType.setVisibility(View.INVISIBLE);
                 }
