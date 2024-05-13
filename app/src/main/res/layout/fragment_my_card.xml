@@ -10,48 +10,94 @@
     <include layout="@layout/appbar"
         android:id="@+id/appbar"/>
 
-
-    <!-- ImageView for displaying card -->
-    <TextView
-        android:id="@+id/no_card_text_view"
+    <ProgressBar
+        android:id="@+id/progressBarCard"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:text="No Card Available"
-        android:fontFamily="@font/baloo_bhai_2"
-        android:textSize="18sp"
+        android:elevation="10dp"
+        android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        android:visibility="visible"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.473" />
+        app:layout_constraintTop_toTopOf="parent" />
 
-    <ImageView
-        android:id="@+id/card_image_view"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:visibility="gone"
-        app:layout_constraintBottom_toBottomOf="@+id/no_card_text_view"
-        app:layout_constraintEnd_toEndOf="@+id/no_card_text_view"
-        app:layout_constraintStart_toStartOf="@+id/no_card_text_view"
-        app:layout_constraintTop_toTopOf="@+id/no_card_text_view" /><!-- Initially set to gone -->
+   <androidx.constraintlayout.widget.ConstraintLayout
+       android:id="@+id/mainLayout"
+       android:layout_width="match_parent"
+       android:layout_height="match_parent">
 
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/add_card_fab"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginEnd="48dp"
-        android:layout_marginBottom="124dp"
-        android:backgroundTint="@color/TrendyPink"
-        android:src="@drawable/add"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+       <!-- ImageView for displaying card -->
+       <TextView
+           android:id="@+id/no_card_text_view"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:layout_centerInParent="true"
+           android:text="No Card Available"
+           android:fontFamily="@font/baloo_bhai_2"
+           android:textSize="18sp"
+           app:layout_constraintBottom_toBottomOf="parent"
+           app:layout_constraintEnd_toEndOf="parent"
+           app:layout_constraintHorizontal_bias="0.498"
+           app:layout_constraintStart_toStartOf="parent"
+           android:visibility="visible"
+           app:layout_constraintTop_toTopOf="parent"
+           app:layout_constraintVertical_bias="0.473" />
+
+
+       <androidx.constraintlayout.widget.ConstraintLayout
+           android:id="@+id/my_card"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:visibility="visible"
+           app:layout_constraintBottom_toBottomOf="parent"
+           app:layout_constraintEnd_toEndOf="parent"
+           app:layout_constraintStart_toStartOf="parent"
+           app:layout_constraintTop_toTopOf="parent"
+           app:layout_constraintVertical_bias="0.17">
+
+           <include layout="@layout/card_1" />
+       </androidx.constraintlayout.widget.ConstraintLayout>
+
+       <com.google.android.material.floatingactionbutton.FloatingActionButton
+           android:id="@+id/add_card_fab"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:layout_alignParentEnd="true"
+           android:layout_alignParentBottom="true"
+           android:layout_marginEnd="48dp"
+           android:layout_marginBottom="124dp"
+           android:backgroundTint="@color/TrendyPink"
+           android:src="@drawable/add"
+           app:layout_constraintBottom_toBottomOf="parent"
+           app:layout_constraintEnd_toEndOf="parent" />
+
+       <com.google.android.material.floatingactionbutton.FloatingActionButton
+           android:id="@+id/delete_card_fab"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:layout_alignParentEnd="true"
+           android:layout_alignParentBottom="true"
+           android:layout_marginEnd="48dp"
+           android:layout_marginBottom="124dp"
+
+           android:backgroundTint="@color/lightRed"
+           android:src="@drawable/delete"
+           app:layout_constraintBottom_toBottomOf="parent"
+           app:layout_constraintEnd_toEndOf="parent" />
+
+
+
+
+
+
+
+
+
+
+
+
+   </androidx.constraintlayout.widget.ConstraintLayout>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

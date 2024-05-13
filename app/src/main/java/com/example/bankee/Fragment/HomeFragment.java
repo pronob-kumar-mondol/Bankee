@@ -20,6 +20,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.bankee.Model.CardDetails;
 import com.example.bankee.Model.UserDetails;
 import com.example.bankee.R;
 import com.example.bankee.activity.CashOut_Activity;
@@ -46,8 +47,8 @@ public class HomeFragment extends Fragment {
 
     RelativeLayout sendMoney,cashOut,mainLayout,recharge;
     RelativeLayout contacts;
-    TextView user_name,main_balance;
-    ImageView profile_pic;
+    TextView user_name,holder_balance,holder_name,card_no,expire_date;
+    ImageView profile_pic,cardType;
 
     UserDetails userDetails;
     DatabaseReference reference;
@@ -67,9 +68,13 @@ public class HomeFragment extends Fragment {
         profile_pic=v.findViewById(R.id.profile_pic);
         contacts=v.findViewById(R.id.contacts);
         user_name=v.findViewById(R.id.user_name);
-        main_balance=v.findViewById(R.id.balance);
+        holder_balance=v.findViewById(R.id.balance);
+        holder_name=v.findViewById(R.id.holder_name);
+        card_no=v.findViewById(R.id.card_no);
+        expire_date=v.findViewById(R.id.expire_date);
         cashOut=v.findViewById(R.id.cashOut);
         recharge=v.findViewById(R.id.recharge);
+        cardType=v.findViewById(R.id.cardType);
         fAuth=FirebaseAuth.getInstance();
         reference= FirebaseDatabase.getInstance().getReference("UserDetails");
 
@@ -135,17 +140,35 @@ public class HomeFragment extends Fragment {
         reference.child(userId).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                    userDetails=snapshot.getValue(UserDetails.class);
-                    user_name.setText(userDetails.getUserName());
-                    main_balance.setText(String.valueOf(userDetails.getUserBalance()));
-                    profile_pic.setImageResource(userDetails.getImageLink().hashCode());
 
-                    if(userDetails.getImageLink().isEmpty()){
-                        Picasso.get().load(R.drawable.user).into(profile_pic);
+
+
+                try {
+                    userDetails=snapshot.getValue(UserDetails.class);
+                    CardDetails cardDetails=snapshot.child("CardDetails").getValue(CardDetails.class);
+                    user_name.setText(userDetails.getUserName());
+                    holder_balance.setText(String.valueOf(cardDetails.getBalance()));
+                    holder_name.setText(userDetails.getUserName());
+                    card_no.setText(cardDetails.getCardNumber());
+                    expire_date.setText(cardDetails.getExpDate());
+                    profile_pic.setImageResource(userDetails.getImageLink().hashCode());
+                    Picasso.get().load(userDetails.getImageLink()).placeholder(R.drawable.user).into(profile_pic);
+
+                    if (cardDetails.getCardType().equals("Visa")) {
+                        cardType.setImageResource(R.drawable.visa);
+                    }else {
+                        cardType.setImageResource(R.drawable.mastercard_logo);
                     }
-                    else {
-                        Picasso.get().load(userDetails.getImageLink()).placeholder(R.drawable.user).into(profile_pic);
-                    }
+
+
+                }catch (Exception e){
+                    holder_balance.setText("0.0");
+                    card_no.setText("0000 0000 0000 0000");
+                    expire_date.setText("00/00");
+                    holder_name.setText(userDetails.getUserName());
+                    Picasso.get().load(R.drawable.user).into(profile_pic);
+                    cardType.setVisibility(View.INVISIBLE);
+                }
 
 
                     progressBar.setVisibility(View.INVISIBLE);
@@ -160,19 +183,6 @@ public class HomeFragment extends Fragment {
             }
         });
 
-//        reference.child(userId).get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
-//            @Override
-//            public void onComplete(@NonNull Task<DataSnapshot> task) {
-//
-//                if (task.isSuccessful()){
-//                    if (task.getResult().exists()){
-//                        DataSnapshot snapshot=task.getResult();
-//                        String name=String.valueOf(snapshot.child("UserName").getValue());
-//                        user_name.setText(name);
-//
-//                    }
-//                }
-//            }
-//        });
+
     }
 }

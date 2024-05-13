@@ -12,6 +12,7 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 import androidx.fragment.app.Fragment;
 
+import com.example.bankee.Fragment.AddCardBottomSheetDialogFragment;
 import com.example.bankee.Fragment.HistoryFragment;
 import com.example.bankee.Fragment.HomeFragment;
 import com.example.bankee.Fragment.MyCardFragment;
@@ -22,7 +23,7 @@ import com.example.bankee.onboarding.ViewPagerFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements AddCardBottomSheetDialogFragment.OnCardAddedListener {
 
     BottomNavigationView bottom_nav;
     FrameLayout frame_layout;
@@ -84,4 +85,8 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    public void onCardAdded() {
+
+    }
 }

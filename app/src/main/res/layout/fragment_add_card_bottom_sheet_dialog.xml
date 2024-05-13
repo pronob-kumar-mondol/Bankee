@@ -20,15 +20,17 @@
             <!-- EditText for Card Type -->
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="54dp"
+
                 android:hint="Card Type">
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/card_type_edit_text"
+                <Spinner
+                    android:paddingStart="3dp"
+                    android:id="@+id/card_type_spinner"
                     android:layout_width="match_parent"
+                    android:layout_height="match_parent"
                     android:background="@drawable/addcrd"
-                    android:layout_height="wrap_content"
-                    android:inputType="text" />
+                    android:entries="@array/card_types"/>
             </com.google.android.material.textfield.TextInputLayout>
 
             <!-- EditText for Card Number -->

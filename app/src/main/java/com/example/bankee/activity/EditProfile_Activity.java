@@ -112,7 +112,7 @@ public class EditProfile_Activity extends AppCompatActivity {
                                 @Override
                                 public void onSuccess(Uri uri) {
 
-                                    databaseReference.child("imgLink").setValue(uri.toString()).addOnSuccessListener(new OnSuccessListener<Void>() {
+                                    databaseReference.child("imageLink").setValue(uri.toString()).addOnSuccessListener(new OnSuccessListener<Void>() {
                                         @Override
                                         public void onSuccess(Void unused) {
                                             Toast.makeText(EditProfile_Activity.this, "Successflly set link", Toast.LENGTH_SHORT).show();
@@ -126,10 +126,10 @@ public class EditProfile_Activity extends AppCompatActivity {
 
 
                     Map<String, Object> updates = new HashMap<>();
-                    updates.put("name",newName);
-                    updates.put("email",newEmail);
-                    updates.put("phoneNumber",newNumber);
-                    updates.put("address",newAddress);
+                    updates.put("userName",newName);
+                    updates.put("userEmail",newEmail);
+                    updates.put("userNumber",newNumber);
+                    updates.put("userAddress",newAddress);
 
 
                     databaseReference.updateChildren(updates).addOnCompleteListener(new OnCompleteListener<Void>() {

@@ -15,4 +15,8 @@
     <string name="cash_out">Cash Out</string>
     <string name="enter_agent_email">Enter Agent Email</string>
     <string name="transaction_type">Transaction Type</string>
+    <string-array name="card_types">
+        <item>Visa</item>
+        <item>Mastercard</item>
+    </string-array>
 </resources>

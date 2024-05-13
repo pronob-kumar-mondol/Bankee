@@ -93,7 +93,6 @@ public class SignupActivity extends AppCompatActivity {
         String pass= inputpass.getText().toString();
         String phoneNumber="Add Your Phone Number";
         String address="Add Your Address";
-        int balance=0;
         String imageLink="https://firebasestorage.googleapis.com/v0/b/bankee-ba7df.appspot.com/o/user.png?alt=media&token=27fee6ca-02d1-46f3-8da1-6500add903b9";
 
 
@@ -114,7 +113,7 @@ public class SignupActivity extends AppCompatActivity {
                             @Override
                             public void onDataChange(@NonNull DataSnapshot snapshot) {
 //                                String userEmail, String userUID, String userName, String userAddress, String userNumber, String userBalance
-                                userDetails=new UserDetails(email,fAuth.getUid(),name,address,phoneNumber,balance,imageLink);
+                                userDetails=new UserDetails(email,fAuth.getUid(),name,address,phoneNumber,imageLink);
                                 snapshot.getRef().setValue(userDetails);
                                 progressBar.setVisibility(View.GONE);
                                 Toast.makeText(SignupActivity.this, "Registration Sucsessful", Toast.LENGTH_SHORT).show();

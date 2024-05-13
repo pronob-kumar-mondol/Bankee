@@ -7,20 +7,30 @@ public class UserDetails {
     private String userName;
     private String userAddress;
     private String userNumber;
-    private int userBalance;
     private String imageLink;
+    private CardDetails cardDetails; // Added CardDetails field
+
 
     public UserDetails() {
 
     }
 
-    public UserDetails(String userEmail, String userUID, String userName, String userAddress, String userNumber, int userBalance, String imageLink) {
+    public UserDetails(String userEmail, String userUID, String userName, String userAddress, String userNumber, String imageLink, CardDetails cardDetails) {
         this.userEmail = userEmail;
         this.userUID = userUID;
         this.userName = userName;
         this.userAddress = userAddress;
         this.userNumber = userNumber;
-        this.userBalance = userBalance;
+        this.imageLink = imageLink;
+        this.cardDetails = cardDetails;
+    }
+
+    public UserDetails(String userEmail, String userUID, String userName, String userAddress, String userNumber, String imageLink) {
+        this.userEmail = userEmail;
+        this.userUID = userUID;
+        this.userName = userName;
+        this.userAddress = userAddress;
+        this.userNumber = userNumber;
         this.imageLink = imageLink;
     }
 
@@ -64,19 +74,19 @@ public class UserDetails {
         this.userNumber = userNumber;
     }
 
-    public int getUserBalance() {
-        return userBalance;
-    }
-
-    public void setUserBalance(int userBalance) {
-        this.userBalance = userBalance;
-    }
-
     public String getImageLink() {
         return imageLink;
     }
 
     public void setImageLink(String imageLink) {
         this.imageLink = imageLink;
+    }
+
+    public CardDetails getCardDetails() {
+        return cardDetails;
+    }
+
+    public void setCardDetails(CardDetails cardDetails) {
+        this.cardDetails = cardDetails;
     }
 }

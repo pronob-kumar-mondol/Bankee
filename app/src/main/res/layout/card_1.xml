@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
+    android:background="@color/white"
     android:layout_height="250dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -10,13 +11,16 @@
         android:layout_height="match_parent">
 
         <ImageView
+            android:id="@+id/imageView5"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:src="@drawable/finalcard"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0" />
 
         <TextView
             android:id="@+id/textView26"
@@ -26,7 +30,7 @@
             android:fontFamily="@font/baloo_bhai_2"
             android:text="Current Balance"
             android:textColor="@color/white"
-            android:textSize="20dp"
+            android:textSize="18dp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -39,7 +43,7 @@
             android:fontFamily="@font/baloo_bhai"
             android:text="0"
             android:textColor="@color/white"
-            android:textSize="20dp"
+            android:textSize="22dp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="@+id/textView26"
             app:layout_constraintStart_toStartOf="@+id/textView26"
@@ -47,8 +51,9 @@
 
 
         <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:id="@+id/cardType"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
             android:layout_marginTop="160dp"
             android:src="@drawable/mastercard_logo"
             app:layout_constraintEnd_toEndOf="parent"
@@ -60,15 +65,19 @@
             android:id="@+id/textView27"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="36dp"
             android:fontFamily="@font/baloo_bhai_2"
             android:text="Card no:"
             android:textColor="@color/white"
             android:textSize="16dp"
             android:textStyle="bold"
-            tools:layout_editor_absoluteX="50dp"
-            tools:layout_editor_absoluteY="170dp" />
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/balance"
+            app:layout_constraintVertical_bias="0.577" />
 
         <TextView
+            android:id="@+id/card_no"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/baloo_bhai"
@@ -76,8 +85,42 @@
             android:textColor="@color/white"
             android:textSize="16dp"
             android:textStyle="bold"
-            tools:layout_editor_absoluteX="106dp"
-            tools:layout_editor_absoluteY="172dp" />
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/cardType"
+            app:layout_constraintHorizontal_bias="0.081"
+            app:layout_constraintStart_toEndOf="@+id/textView27"
+            app:layout_constraintTop_toBottomOf="@+id/balance"
+            app:layout_constraintVertical_bias="0.577" />
+
+        <TextView
+            android:id="@+id/holder_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/baloo_bhai"
+            android:text="Card Holder Name"
+            android:textColor="@color/white"
+            android:textSize="20dp"
+            app:layout_constraintBottom_toTopOf="@+id/card_no"
+            app:layout_constraintEnd_toEndOf="@+id/imageView5"
+            app:layout_constraintHorizontal_bias="0.497"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/balance"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <TextView
+            android:id="@+id/expire_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/baloo_bhai"
+            android:text="3/12"
+            android:textColor="@color/white"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toTopOf="@+id/cardType"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.517"
+            app:layout_constraintStart_toEndOf="@+id/textView26"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.122" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
