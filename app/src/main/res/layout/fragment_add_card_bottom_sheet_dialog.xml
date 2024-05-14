@@ -4,7 +4,6 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:background="@color/LavenderBlu"
     android:padding="16dp"
     tools:context=".Fragment.AddCardBottomSheetDialogFragment">
 
@@ -13,7 +12,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:background="@color/LavenderBlu"
+            android:background="@color/white"
             android:padding="16dp">
 
 
@@ -21,10 +20,10 @@
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="54dp"
-
                 android:hint="Card Type">
 
                 <Spinner
+                    android:backgroundTint="#ECECEC"
                     android:paddingStart="3dp"
                     android:id="@+id/card_type_spinner"
                     android:layout_width="match_parent"
@@ -40,6 +39,7 @@
                 android:hint="Card Number">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:backgroundTint="#ECECEC"
                     android:id="@+id/card_number_edit_text"
                     android:layout_width="match_parent"
                     android:background="@drawable/addcrd"
@@ -54,6 +54,7 @@
                 android:hint="Expiry Date (MM/YYYY)">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:backgroundTint="#ECECEC"
                     android:id="@+id/expiry_date_edit_text"
                     android:layout_width="match_parent"
                     android:background="@drawable/addcrd"
@@ -68,6 +69,7 @@
                 android:hint="CVV Code">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:backgroundTint="#ECECEC"
                     android:id="@+id/cvv_code_edit_text"
                     android:background="@drawable/addcrd"
                     android:layout_width="match_parent"
@@ -79,6 +81,7 @@
 
             <!-- Button to confirm adding card -->
             <androidx.appcompat.widget.AppCompatButton
+                android:backgroundTint="@color/LavenderBlu"
                 android:id="@+id/btn"
                 android:layout_marginTop="20dp"
                 android:layout_gravity="center"
