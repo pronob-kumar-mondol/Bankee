@@ -1,11 +1,15 @@
 package com.example.bankee.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.FrameLayout;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
@@ -21,12 +25,16 @@ import com.example.bankee.R;
 
 import com.example.bankee.onboarding.ViewPagerFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationBarView;
+import com.google.zxing.integration.android.IntentIntegrator;
+import com.google.zxing.integration.android.IntentResult;
 
 public class MainActivity extends AppCompatActivity implements AddCardBottomSheetDialogFragment.OnCardAddedListener {
 
     BottomNavigationView bottom_nav;
     FrameLayout frame_layout;
+    FloatingActionButton fAb;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +44,7 @@ public class MainActivity extends AppCompatActivity implements AddCardBottomShee
 
         bottom_nav=findViewById(R.id.bottom_nav);
         frame_layout=findViewById(R.id.frame_layout);
+        fAb = findViewById(R.id.favBtn);
         getSupportFragmentManager().beginTransaction().replace(R.id.frame_layout, new HomeFragment()).commit();
 
         bottom_nav.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
@@ -80,10 +89,47 @@ public class MainActivity extends AppCompatActivity implements AddCardBottomShee
 
 
 
+        fAb.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startQRScan();
+            }
+        });
+
+
+
 
 
 
     }
+
+    private void startQRScan() {
+
+        IntentIntegrator integrator = new IntentIntegrator(this);
+        integrator.setPrompt("Scan a QR code");
+        integrator.setOrientationLocked(true);
+        integrator.initiateScan();
+
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        IntentResult result = IntentIntegrator.parseActivityResult(requestCode, resultCode, data);
+        if (result != null) {
+            if (result.getContents() == null) {
+                Toast.makeText(this, "Cancelled", Toast.LENGTH_LONG).show();
+            } else {
+                // Handle the QR code result
+                String scannedData = result.getContents();
+                startActivity(new Intent(this, SendMoney_WithEmail.class).putExtra("data",scannedData));
+
+            }
+        }
+    }
+
+
+
 
     @Override
     public void onCardAdded() {

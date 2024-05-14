@@ -80,6 +80,11 @@ public class SendMoney_WithEmail extends AppCompatActivity {
                 showTrasferDialog();
             }
         });
+
+        String scannedData = getIntent().getStringExtra("data");
+        if (scannedData != null) {
+            email.setText(scannedData);
+        }
     }
 
     private void showTrasferDialog() {
@@ -114,7 +119,6 @@ public class SendMoney_WithEmail extends AppCompatActivity {
         confirmBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String userID=fAuth.getCurrentUser().getUid();
                 int sendAmmount=Integer.parseInt(ammount.getText().toString());
                 String reciverEmail=email.getText().toString();
 
