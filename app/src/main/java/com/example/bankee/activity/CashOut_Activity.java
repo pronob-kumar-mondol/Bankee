@@ -35,6 +35,7 @@ public class CashOut_Activity extends AppCompatActivity {
     EditText ammount,email;
     AppCompatButton btn;
     FirebaseAuth fAuth;
+    String emailPattern="^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,9 +73,11 @@ public class CashOut_Activity extends AppCompatActivity {
 
     private void showCashOutDialog() {
         Dialog dialog = new Dialog(CashOut_Activity.this);
-        dialog.setContentView(R.layout.cashout_dialog);
+        dialog.setContentView(R.layout.recharge_dialog);
 
 
+        ImageView image=dialog.findViewById(R.id.image);
+        TextView transferType=dialog.findViewById(R.id.to0);
         TextView from=dialog.findViewById(R.id.from);
         TextView to=dialog.findViewById(R.id.to);
         TextView ammounts=dialog.findViewById(R.id.ammount);
@@ -86,12 +89,23 @@ public class CashOut_Activity extends AppCompatActivity {
         String reciverAmmount=ammount.getText().toString();
         String userEmail= fAuth.getCurrentUser().getEmail().toString();
 
-        from.setText(userEmail);
-        to.setText(reciveremail);
-        ammounts.setText(reciverAmmount);
-        money.setText(reciverAmmount);
+        if (reciveremail.isEmpty() || reciverAmmount.isEmpty() || !reciveremail.matches(emailPattern) || Integer.parseInt(reciverAmmount) <= 0 || Integer.parseInt(reciverAmmount) > 10000 || fAuth.getCurrentUser().getEmail().toString().matches(reciveremail)) {
+            email.setError("Please enter valid email");
+            ammount.setError("Please enter valid ammount");
+            return;
+        }else{
 
-        dialog.show();
+            from.setText(userEmail);
+            to.setText(reciveremail);
+            ammounts.setText(reciverAmmount);
+            money.setText(reciverAmmount);
+            image.setImageResource(R.drawable.request);
+            transferType.setText(R.string.cash_out);
+
+            dialog.show();
+        }
+
+
 
         cancelBtn.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -16,326 +16,335 @@
         android:layout_centerInParent="true"
         android:visibility="invisible"/>
 
-  <RelativeLayout
-      android:layout_width="match_parent"
-      android:layout_height="match_parent"
-      android:id="@+id/layout">
-
-      <LinearLayout
-          android:layout_width="match_parent"
-          android:layout_height="wrap_content"
-          android:id="@+id/user_info"
-          android:verticalScrollbarPosition="defaultPosition">
-
-          <de.hdodenhof.circleimageview.CircleImageView
-              android:id="@+id/profile_pic"
-              android:layout_width="70dp"
-              android:layout_height="63dp"
-              android:layout_marginLeft="20dp"
-              android:layout_marginTop="30dp"
-              android:layout_marginBottom="10dp"
-              android:src="@drawable/profile_pic" />
-          <RelativeLayout
-              android:layout_width="fill_parent"
-              android:layout_height="match_parent"
-              android:layout_marginTop="35dp"
-              android:layout_marginLeft="10dp">
-
-              <TextView
-                  android:id="@+id/welcomeBack_txt"
-                  android:layout_width="wrap_content"
-                  android:layout_height="wrap_content"
-                  android:text="Welcome back"
-                  android:textSize="13sp"
-                  android:textStyle="bold"
-                  android:textColor="@color/Neutral"
-                  />
-              <TextView
-                  android:id="@+id/user_name"
-                  android:layout_marginTop="6dp"
-                  android:layout_below="@+id/welcomeBack_txt"
-                  android:layout_width="wrap_content"
-                  android:layout_height="wrap_content"
-                  android:textSize="22sp"
-                  android:text="Sophia Calzoni"
-                  android:textStyle="bold"
-                  />
-
-              <ImageView
-                  android:layout_width="wrap_content"
-                  android:layout_height="wrap_content"
-                  android:src="@drawable/notification"
-                  android:layout_alignParentEnd="true"
-                  android:layout_marginRight="20dp"
-                  android:clickable="true"/>
-
-          </RelativeLayout>
-
-
-      </LinearLayout>
-
-
-
-      <ScrollView
-          android:layout_width="match_parent"
-          android:layout_height="wrap_content"
-          android:layout_below="@+id/user_info"
-          android:layout_marginBottom="100dp"
-          >
-
-
-
-          <RelativeLayout
-              android:layout_width="match_parent"
-              android:layout_height="match_parent">
-
-              <RelativeLayout
-                  android:layout_width="match_parent"
-                  android:layout_height="match_parent"
-                  android:layout_marginTop="30dp"
-                  android:id="@+id/card_segment">
-
-                  <androidx.constraintlayout.widget.ConstraintLayout
-                      android:layout_width="match_parent"
-                      android:layout_height="match_parent"
-                      app:layout_constraintBottom_toBottomOf="parent"
-                      app:layout_constraintEnd_toEndOf="parent"
-                      app:layout_constraintStart_toStartOf="parent"
-                      app:layout_constraintTop_toTopOf="parent">
-
-                      <include layout="@layout/card_1"/>
-
-
-
-
-                  </androidx.constraintlayout.widget.ConstraintLayout>
-
-              </RelativeLayout>
-
-
-
-              <LinearLayout
-                  android:layout_width="match_parent"
-                  android:layout_height="match_parent"
-                  android:orientation="vertical"
-                  android:layout_marginVertical="10dp"
-                  android:layout_marginHorizontal="10dp"
-                  android:layout_below="@+id/card_segment">
-
-                  <LinearLayout
-                      android:layout_weight="1"
-                      android:orientation="horizontal"
-                      android:layout_width="match_parent"
-                      android:layout_height="match_parent"
-                      >
-
-                      <RelativeLayout
-                          android:id="@+id/sendMoney"
-                          android:clickable="true"
-                          android:layout_width="match_parent"
-                          android:layout_height="150dp"
-                          android:layout_marginHorizontal="5dp"
-                          android:layout_marginVertical="10dp"
-                          android:layout_weight="1"
-                          android:background="@drawable/card1">
-
-                          <ImageView
-                              android:id="@+id/send_money_logo"
-                              android:layout_width="72dp"
-                              android:layout_height="72dp"
-                              android:layout_alignParentStart="true"
-                              android:layout_alignParentTop="true"
-                              android:layout_alignParentEnd="true"
-                              android:layout_marginStart="60dp"
-                              android:layout_marginTop="6dp"
-                              android:layout_marginEnd="60dp"
-                              android:src="@drawable/send_money" />
-
-                          <TextView
-                              android:id="@+id/send_moneyTxt1"
-                              android:layout_width="wrap_content"
-                              android:layout_height="wrap_content"
-                              android:layout_below="@+id/send_money_logo"
-                              android:layout_centerInParent="true"
-                              android:text="Send Money"
-                              android:textColor="@color/black"
-                              android:textSize="20sp"
-                              android:textStyle="bold" />
-
-                          <TextView
-                              android:layout_width="wrap_content"
-                              android:layout_height="wrap_content"
-                              android:layout_below="@+id/send_moneyTxt1"
-                              android:layout_centerInParent="true"
-                              android:text="Take acc to acc"
-                              android:textColor="@color/Neutral"
-                              android:textSize="13sp" />
-
-
-                      </RelativeLayout>
-                      <RelativeLayout
-                          android:id="@+id/recharge"
-                          android:clickable="true"
-                          android:layout_width="match_parent"
-                          android:layout_weight="1"
-                          android:layout_height="150dp"
-                          android:layout_marginVertical="10dp"
-                          android:layout_marginHorizontal="5dp"
-                          android:background="@drawable/card1">
-
-                          <ImageView
-                              android:id="@+id/pay_bill_logo"
-                              android:layout_width="72dp"
-                              android:layout_height="72dp"
-                              android:layout_alignParentStart="true"
-                              android:layout_alignParentTop="true"
-                              android:layout_alignParentEnd="true"
-                              android:layout_marginStart="60dp"
-                              android:layout_marginTop="6dp"
-                              android:layout_marginEnd="60dp"
-                              android:contentDescription="TODO"
-                              android:src="@drawable/pay_the_bill" />
-
-                          <TextView
-                              android:id="@+id/pay_billTxt1"
-                              android:layout_width="wrap_content"
-                              android:layout_height="wrap_content"
-                              android:layout_below="@+id/pay_bill_logo"
-                              android:layout_centerInParent="true"
-                              android:text="Recharge"
-                              android:textColor="@color/black"
-                              android:textSize="20sp"
-                              android:textStyle="bold" />
-
-                          <TextView
-                              android:layout_width="wrap_content"
-                              android:layout_height="wrap_content"
-                              android:layout_below="@+id/pay_billTxt1"
-                              android:layout_centerInParent="true"
-                              android:text="Tap to recharge"
-                              android:textColor="@color/Neutral"
-                              android:textSize="13sp" />
-
-
-
-                      </RelativeLayout>
-
-
-
-
-                  </LinearLayout>
-                  <LinearLayout
-                      android:layout_weight="1"
-                      android:orientation="horizontal"
-                      android:layout_width="match_parent"
-                      android:layout_height="match_parent"
-                      >
-
-                      <RelativeLayout
-                          android:id="@+id/cashOut"
-                          android:clickable="true"
-                          android:layout_width="match_parent"
-                          android:layout_height="150dp"
-                          android:layout_marginHorizontal="5dp"
-                          android:layout_marginVertical="10dp"
-                          android:layout_weight="1"
-                          android:background="@drawable/card1">
-
-                          <ImageView
-                              android:id="@+id/request_logo"
-                              android:layout_width="72dp"
-                              android:layout_height="72dp"
-                              android:layout_alignParentStart="true"
-                              android:layout_alignParentTop="true"
-                              android:layout_alignParentEnd="true"
-                              android:layout_marginStart="60dp"
-                              android:layout_marginTop="6dp"
-                              android:layout_marginEnd="60dp"
-                              android:src="@drawable/request" />
-
-                          <TextView
-                              android:id="@+id/request_Txt1"
-                              android:layout_width="wrap_content"
-                              android:layout_height="wrap_content"
-                              android:layout_below="@+id/request_logo"
-                              android:layout_centerInParent="true"
-                              android:text="Cash Out"
-                              android:textColor="@color/black"
-                              android:textSize="20sp"
-                              android:textStyle="bold" />
-
-                          <TextView
-                              android:layout_width="wrap_content"
-                              android:layout_height="wrap_content"
-                              android:layout_below="@+id/request_Txt1"
-                              android:layout_centerInParent="true"
-                              android:text="Tap to cash out"
-                              android:textColor="@color/Neutral"
-                              android:textSize="13sp" />
-
-
-                      </RelativeLayout>
-                      <RelativeLayout
-                          android:id="@+id/contacts"
-                          android:layout_width="match_parent"
-                          android:layout_weight="1"
-                          android:clickable="true"
-                          android:layout_height="150dp"
-                          android:layout_marginVertical="10dp"
-                          android:layout_marginHorizontal="5dp"
-                          android:background="@drawable/card1">
-
-                          <ImageView
-                              android:id="@+id/contact_logo"
-                              android:layout_width="72dp"
-                              android:layout_height="72dp"
-                              android:layout_alignParentStart="true"
-                              android:layout_alignParentTop="true"
-                              android:layout_alignParentEnd="true"
-                              android:layout_marginStart="60dp"
-                              android:layout_marginTop="6dp"
-                              android:layout_marginEnd="60dp"
-                              android:src="@drawable/contact" />
-
-                          <TextView
-                              android:id="@+id/contact_Txt1"
-                              android:layout_width="wrap_content"
-                              android:layout_height="wrap_content"
-                              android:layout_below="@+id/contact_logo"
-                              android:layout_centerInParent="true"
-                              android:text="Contacts"
-                              android:textColor="@color/black"
-                              android:textSize="20sp"
-                              android:textStyle="bold" />
-
-                          <TextView
-                              android:layout_width="wrap_content"
-                              android:layout_height="wrap_content"
-                              android:layout_below="@+id/contact_Txt1"
-                              android:layout_centerInParent="true"
-                              android:text="Tap to Recharge"
-                              android:textColor="@color/Neutral"
-                              android:textSize="13sp" />
-
-
-
-                      </RelativeLayout>
-
-
-
-
-                  </LinearLayout>
-
-
-
-              </LinearLayout>
-
-          </RelativeLayout>
-
-
-
-      </ScrollView>
-
-
-  </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/layout">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/user_info"
+            android:verticalScrollbarPosition="defaultPosition">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/profile_pic"
+                android:layout_width="70dp"
+                android:layout_height="63dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="30dp"
+                android:layout_marginBottom="10dp"
+                android:src="@drawable/profile_pic" />
+            <RelativeLayout
+                android:layout_width="fill_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="35dp"
+                android:layout_marginStart="10dp">
+
+                <TextView
+                    android:id="@+id/welcomeBack_txt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/welcome_back"
+                    android:textSize="13sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/Neutral"
+                    />
+                <TextView
+                    android:id="@+id/user_name"
+                    android:layout_marginTop="6dp"
+                    android:layout_below="@+id/welcomeBack_txt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="22sp"
+                    android:text="@string/sophia_calzoni"
+                    android:textStyle="bold"
+                    />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:focusable="true"
+                    android:src="@drawable/notification"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginEnd="20dp"
+                    android:clickable="true"/>
+
+            </RelativeLayout>
+
+
+        </LinearLayout>
+
+
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/user_info"
+            android:layout_marginBottom="100dp"
+            >
+
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <RelativeLayout
+                    android:elevation="20dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="30dp"
+                    android:layout_marginHorizontal="20dp"
+                    android:layout_marginVertical="40dp"
+                    android:id="@+id/card_segment">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <include layout="@layout/card_1"/>
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                </RelativeLayout>
+
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:layout_marginVertical="10dp"
+                    android:layout_marginHorizontal="10dp"
+                    android:layout_below="@+id/card_segment">
+
+                    <LinearLayout
+                        android:layout_weight="1"
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        >
+
+                        <RelativeLayout
+                            android:id="@+id/sendMoney"
+                            android:clickable="true"
+                            android:layout_width="match_parent"
+                            android:layout_height="150dp"
+                            android:layout_marginHorizontal="5dp"
+                            android:layout_marginVertical="10dp"
+                            android:layout_weight="1"
+                            android:background="@drawable/card1"
+                            android:focusable="true"
+                            tools:ignore="NestedWeights">
+
+                            <ImageView
+                                android:id="@+id/send_money_logo"
+                                android:layout_width="72dp"
+                                android:layout_height="72dp"
+                                android:layout_alignParentStart="true"
+                                android:layout_alignParentTop="true"
+                                android:layout_alignParentEnd="true"
+                                android:layout_marginStart="60dp"
+                                android:layout_marginTop="6dp"
+                                android:layout_marginEnd="60dp"
+                                android:src="@drawable/send_money" />
+
+                            <TextView
+                                android:id="@+id/send_moneyTxt1"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@+id/send_money_logo"
+                                android:layout_centerInParent="true"
+                                android:text="@string/send_money"
+                                android:textColor="@color/black"
+                                android:textSize="20sp"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@+id/send_moneyTxt1"
+                                android:layout_centerInParent="true"
+                                android:text="@string/take_acc_to_acc"
+                                android:textColor="@color/Neutral"
+                                android:textSize="13sp" />
+
+
+                        </RelativeLayout>
+                        <RelativeLayout
+                            android:id="@+id/recharge"
+                            android:clickable="true"
+                            android:layout_width="match_parent"
+                            android:layout_weight="1"
+                            android:layout_height="150dp"
+                            android:layout_marginVertical="10dp"
+                            android:layout_marginHorizontal="5dp"
+                            android:background="@drawable/card1"
+                            android:focusable="true">
+
+                            <ImageView
+                                android:id="@+id/pay_bill_logo"
+                                android:layout_width="72dp"
+                                android:layout_height="72dp"
+                                android:layout_alignParentStart="true"
+                                android:layout_alignParentTop="true"
+                                android:layout_alignParentEnd="true"
+                                android:layout_marginStart="60dp"
+                                android:layout_marginTop="6dp"
+                                android:layout_marginEnd="60dp"
+                                android:src="@drawable/pay_the_bill"
+                                tools:ignore="ContentDescription" />
+
+                            <TextView
+                                android:id="@+id/pay_billTxt1"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@+id/pay_bill_logo"
+                                android:layout_centerInParent="true"
+                                android:text="@string/recharge"
+                                android:textColor="@color/black"
+                                android:textSize="20sp"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@+id/pay_billTxt1"
+                                android:layout_centerInParent="true"
+                                android:text="@string/tap_to_recharge"
+                                android:textColor="@color/Neutral"
+                                android:textSize="13sp" />
+
+
+
+                        </RelativeLayout>
+
+
+
+
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_weight="1"
+                        android:baselineAligned="false"
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        >
+
+                        <RelativeLayout
+                            android:id="@+id/cashOut"
+                            android:clickable="true"
+                            android:layout_width="match_parent"
+                            android:layout_height="150dp"
+                            android:layout_marginHorizontal="5dp"
+                            android:layout_marginVertical="10dp"
+                            android:layout_weight="1"
+                            android:background="@drawable/card1"
+                            android:focusable="true"
+                            tools:ignore="NestedWeights">
+
+                            <ImageView
+                                android:id="@+id/request_logo"
+                                android:layout_width="72dp"
+                                android:layout_height="72dp"
+                                android:layout_alignParentStart="true"
+                                android:layout_alignParentTop="true"
+                                android:layout_alignParentEnd="true"
+                                android:layout_marginStart="60dp"
+                                android:layout_marginTop="6dp"
+                                android:layout_marginEnd="60dp"
+                                android:src="@drawable/request" />
+
+                            <TextView
+                                android:id="@+id/request_Txt1"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@+id/request_logo"
+                                android:layout_centerInParent="true"
+                                android:text="@string/cash_out"
+                                android:textColor="@color/black"
+                                android:textSize="20sp"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@+id/request_Txt1"
+                                android:layout_centerInParent="true"
+                                android:contentDescription="TODO"
+                                android:text="@string/tap_to_cash_out"
+                                android:textColor="@color/Neutral"
+                                android:textSize="13sp" />
+
+
+                        </RelativeLayout>
+                        <RelativeLayout
+                            android:id="@+id/contacts"
+                            android:layout_width="match_parent"
+                            android:layout_weight="1"
+                            android:clickable="true"
+                            android:layout_height="150dp"
+                            android:layout_marginVertical="10dp"
+                            android:layout_marginHorizontal="5dp"
+                            android:background="@drawable/card1"
+                            android:focusable="true">
+
+                            <ImageView
+                                android:id="@+id/contact_logo"
+                                android:layout_width="72dp"
+                                android:layout_height="72dp"
+                                android:layout_alignParentStart="true"
+                                android:layout_alignParentTop="true"
+                                android:layout_alignParentEnd="true"
+                                android:layout_marginStart="60dp"
+                                android:layout_marginTop="6dp"
+                                android:layout_marginEnd="60dp"
+                                android:src="@drawable/contact" />
+
+                            <TextView
+                                android:id="@+id/contact_Txt1"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@+id/contact_logo"
+                                android:layout_centerInParent="true"
+                                android:text="@string/contacts"
+                                android:textColor="@color/black"
+                                android:textSize="20sp"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@+id/contact_Txt1"
+                                android:layout_centerInParent="true"
+                                android:text="@string/tap_to_recharge"
+                                android:textColor="@color/Neutral"
+                                android:textSize="13sp" />
+
+
+
+                        </RelativeLayout>
+
+
+
+
+                    </LinearLayout>
+
+
+
+                </LinearLayout>
+
+            </RelativeLayout>
+
+
+
+        </ScrollView>
+
+
+    </RelativeLayout>
 </RelativeLayout>

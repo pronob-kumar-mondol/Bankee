@@ -16,7 +16,7 @@ import com.example.bankee.R;
 import com.example.bankee.onboarding.ViewPagerFragment;
 
 public class Splash_Activity extends AppCompatActivity {
-    private static final int SPLASH_SCREEN_TIMEOUT = 3000;
+    private static final int SPLASH_SCREEN_TIMEOUT = 1000;
 
 
     @Override

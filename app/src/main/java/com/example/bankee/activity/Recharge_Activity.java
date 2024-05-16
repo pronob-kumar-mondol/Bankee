@@ -38,6 +38,7 @@ public class Recharge_Activity extends AppCompatActivity {
     FirebaseAuth fAuth;
     DatabaseReference userReference;
     String phoneNumber;
+    String numberValidation ="^(019|018|017|016|014|015|013)\\d{8}$";
 
 
     @Override
@@ -94,6 +95,7 @@ public class Recharge_Activity extends AppCompatActivity {
         TextView to=dialog.findViewById(R.id.to);
         TextView ammountS=dialog.findViewById(R.id.ammount);
         TextView money=dialog.findViewById(R.id.money);
+        ImageView image=dialog.findViewById(R.id.image);
         AppCompatButton cancelBtn=dialog.findViewById(R.id.cancelBtn);
         AppCompatButton confirmBtn=dialog.findViewById(R.id.confirmBtn);
 
@@ -112,9 +114,15 @@ public class Recharge_Activity extends AppCompatActivity {
                     UserDetails userDetails = snapshot.getValue(UserDetails.class);
                     phoneNumber = userDetails.getUserNumber();
                     from.setText(phoneNumber);
-                    to.setText(reciverNumber);
+                    if (!reciverNumber.matches(numberValidation)) {
+                        Toast.makeText(Recharge_Activity.this, "Enter Correct Phone NUmber", Toast.LENGTH_SHORT).show();
+                        return;
+                    }else {
+                        to.setText(reciverNumber);
+                    }
                     ammountS.setText(String.valueOf(rechargeAmmount));
                     money.setText(String.valueOf(rechargeAmmount));
+                    image.setImageResource(R.drawable.recharge);
                     dialog.show();
 
 

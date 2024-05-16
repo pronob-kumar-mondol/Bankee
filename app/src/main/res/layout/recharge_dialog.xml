@@ -1,207 +1,217 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:background="@drawable/addcrd"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:elevation="10dp"
+    android:layout_height="match_parent">
 
-    <ImageView
-        android:id="@+id/image"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
-        android:layout_centerHorizontal="true"
-        android:src="@drawable/pay_the_bill"
-        android:layout_marginTop="30dp"/>
-
-    <TextView
-        android:id="@+id/txt1"
-        android:layout_below="@+id/image"
-        android:layout_marginTop="7dp"
-        android:layout_centerHorizontal="true"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/baloo_bhai"
-        android:text="Total Transfer"
-        android:textColor="@color/Neutral"
-        android:textSize="16sp" />
-
-    <TextView
-        android:id="@+id/money"
-        android:layout_below="@+id/txt1"
-        android:layout_centerHorizontal="true"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="500"
-        android:textSize="30sp"
-        android:fontFamily="@font/baloo_bhai"/>
-    <TextView
-        android:id="@+id/txt2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Transfer Details:"
-        android:layout_marginLeft="12dp"
-        android:fontFamily="@font/baloo_bhai"
-        android:textSize="17sp"
-        android:paddingStart="15dp"
-        android:layout_below="@+id/money"/>
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/consLayout"
+    <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/txt2">
+        android:layout_height="500dp"
+        app:cardCornerRadius="10dp"
+        app:cardElevation="10dp"
+        android:elevation="10dp">
 
-        <TextView
-            android:id="@+id/textView2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
-            android:fontFamily="@font/baloo_bhai"
-            android:text="Transfer Type"
-            android:textColor="@color/Neutral"
-            android:textSize="18sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.1"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/to0"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
-            android:fontFamily="@font/baloo_bhai"
-            android:text="@string/recharge"
-            android:textColor="@color/black"
-            android:textSize="18sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.904"
-            app:layout_constraintStart_toEndOf="@+id/textView2"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/textView20"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="52dp"
-            android:fontFamily="@font/baloo_bhai"
-            android:text="From"
-            android:textColor="@color/Neutral"
-            android:textSize="18sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.081"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/textView21"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:fontFamily="@font/baloo_bhai"
-            android:text="To"
-            android:textColor="@color/Neutral"
-            android:textSize="18sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.076"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView20" />
-
-        <TextView
-            android:id="@+id/textView22"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:fontFamily="@font/baloo_bhai"
-            android:text="Amount"
-            android:textColor="@color/Neutral"
-            android:textSize="18sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.087"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView21" />
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
 
-        <TextView
-            android:id="@+id/from"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="52dp"
-            android:fontFamily="@font/baloo_bhai"
-            android:text="pronob@gmail.com"
-            android:textColor="@color/black"
-            android:textSize="18sp"
-            android:layout_marginEnd="10dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.961"
-            app:layout_constraintStart_toEndOf="@+id/textView20"
-            app:layout_constraintTop_toTopOf="parent" />
+            <ImageView
+                android:id="@+id/image"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="24dp"
+                android:src="@drawable/transfer"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
-            android:id="@+id/to"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:fontFamily="@font/baloo_bhai"
-            android:text="sagor@gmail.com"
-            android:textColor="@color/black"
-            android:textSize="18sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.919"
-            app:layout_constraintStart_toEndOf="@+id/textView21"
-            app:layout_constraintTop_toBottomOf="@+id/from" />
-
-        <TextView
-            android:id="@+id/ammount"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:fontFamily="@font/baloo_bhai"
-            android:text="500"
-            android:textColor="@color/black"
-            android:textSize="18sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.943"
-            app:layout_constraintStart_toEndOf="@+id/textView22"
-            app:layout_constraintTop_toBottomOf="@+id/to" />
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:orientation="horizontal"
-        android:gravity="center"
-        android:layout_below="@+id/consLayout">
+            <TextView
+                android:id="@+id/txt1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/image"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="5dp"
+                android:fontFamily="@font/oswald"
+                android:text="@string/total_transfer"
+                android:textColor="@color/Neutral"
+                android:textSize="16sp"
+                app:layout_constraintEnd_toEndOf="@+id/image"
+                app:layout_constraintStart_toStartOf="@+id/image"
+                app:layout_constraintTop_toBottomOf="@+id/image" />
 
 
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/confirmBtn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:background="@drawable/button"
-            android:fontFamily="@font/baloo_bhai"
-            android:layout_margin="20dp"
-            android:text="Confirm"
-            android:textAllCaps="false"
-            android:textColor="@color/white"
-            android:textSize="20sp"
-            />
+            <TextView
+                android:id="@+id/money"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/txt1"
+                android:layout_centerHorizontal="true"
+                android:fontFamily="@font/oswald"
+                android:text="@string/_500"
+                android:textSize="35sp"
+                app:layout_constraintEnd_toEndOf="@+id/txt1"
+                app:layout_constraintStart_toStartOf="@+id/txt1"
+                app:layout_constraintTop_toBottomOf="@+id/txt1" />
 
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/cancelBtn"
-            android:layout_margin="20dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@drawable/addcrd"
-            android:fontFamily="@font/baloo_bhai"
-            android:textAllCaps="false"
-            android:text="Cancel"
-            android:textColor="@color/Bossnova"
-            android:textSize="20sp"/>
+            <TextView
+                android:id="@+id/txt2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:fontFamily="@font/oswald"
+                android:text="@string/transfer_details"
+                android:textSize="20sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.084"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/money" />
 
-    </LinearLayout>
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/oswald_light"
+                android:text="@string/transfer_types"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                app:layout_constraintEnd_toEndOf="@+id/txt2"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/txt2"
+                app:layout_constraintTop_toBottomOf="@+id/txt2" />
+
+            <TextView
+                android:id="@+id/to0"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:layout_marginEnd="16dp"
+                android:fontFamily="@font/oswald"
+                android:text="@string/recharge"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/txt2" />
+
+            <TextView
+                android:id="@+id/textView20"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:fontFamily="@font/oswald_light"
+                android:text="@string/froms"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                app:layout_constraintEnd_toEndOf="@+id/textView2"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/textView2"
+                app:layout_constraintTop_toBottomOf="@+id/textView2" />
+
+            <TextView
+                android:id="@+id/from"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:fontFamily="@font/oswald"
+                android:text="@string/pronob_gmail_com"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                app:layout_constraintEnd_toEndOf="@+id/to0"
+                app:layout_constraintTop_toBottomOf="@+id/to0" />
+
+            <TextView
+                android:id="@+id/textView21"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:fontFamily="@font/oswald_light"
+                android:text="@string/s"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                app:layout_constraintEnd_toEndOf="@+id/textView20"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/textView20"
+                app:layout_constraintTop_toBottomOf="@+id/textView20" />
+
+            <TextView
+                android:id="@+id/to"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:fontFamily="@font/oswald"
+                android:text="@string/sagor_gmail_com"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                app:layout_constraintEnd_toEndOf="@+id/from"
+                app:layout_constraintTop_toBottomOf="@+id/from" />
+
+            <TextView
+                android:id="@+id/text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:fontFamily="@font/oswald_light"
+                android:text="@string/ammounts"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                app:layout_constraintEnd_toEndOf="@+id/textView21"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/textView21"
+                app:layout_constraintTop_toBottomOf="@+id/textView21" />
+
+            <TextView
+                android:id="@+id/ammount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:fontFamily="@font/oswald"
+                android:text="@string/_500"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                app:layout_constraintEnd_toEndOf="@+id/to"
+                app:layout_constraintTop_toBottomOf="@+id/to" />
+
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/confirmBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="40dp"
+                android:layout_marginBottom="44dp"
+                android:background="@drawable/button"
+                android:elevation="10dp"
+                android:fontFamily="@font/teko_medium"
+                android:text="@string/confirm"
+                android:textColor="@color/white"
+                android:textSize="20sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/cancelBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="40dp"
+                android:layout_marginBottom="44dp"
+                android:background="@drawable/addcrd"
+                android:elevation="10dp"
+                android:fontFamily="@font/teko_medium"
+                android:text="@string/cancel"
+                android:textAllCaps="false"
+                android:textColor="@color/Bossnova"
+                android:textSize="20sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+    </com.google.android.material.card.MaterialCardView>
 
 </RelativeLayout>

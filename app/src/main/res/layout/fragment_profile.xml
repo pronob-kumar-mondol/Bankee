@@ -351,19 +351,20 @@
                         <TextView
                             android:id="@+id/help_support"
                             android:layout_toEndOf="@+id/help_support_icon"
-                            android:text="Help and Support"
+                            android:text="@string/leagal_policies"
                             android:textSize="15sp"
                             android:layout_marginTop="3dp"
                             android:layout_marginStart="10dp"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"/>
 
-                        <ImageView
-                            android:layout_marginVertical="15dp"
+                        <View
+                            android:layout_marginTop="10dp"
                             android:layout_below="@+id/help_support"
-                            android:src="@drawable/line"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"/>
+                            android:layout_height="1dp"
+                            android:layout_marginHorizontal="40dp"
+                            android:background="@color/Neutral" />
 
 
 
@@ -377,6 +378,7 @@
                 </RelativeLayout>
 
                 <RelativeLayout
+                    android:layout_marginTop="15dp"
                     android:layout_centerInParent="true"
                     android:layout_below="@+id/help"
                     android:layout_width="wrap_content"

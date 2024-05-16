@@ -38,6 +38,7 @@ public class SendMoney_WithEmail extends AppCompatActivity {
 
     EditText ammount,email;
     ImageView ivBack,ivMenu;
+    String emailPattern="^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$";
     TextView tvTitle;
     AppCompatButton btn;
     DatabaseReference reference;
@@ -60,7 +61,7 @@ public class SendMoney_WithEmail extends AppCompatActivity {
 
 
         //Appbar Setup
-        tvTitle.setText("Send Money With Email");
+        tvTitle.setText(R.string.send_money_with_email);
         ivMenu.setVisibility(View.INVISIBLE);
         ivBack.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -77,7 +78,19 @@ public class SendMoney_WithEmail extends AppCompatActivity {
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                showTrasferDialog();
+                String reciveremail=email.getText().toString();
+                String ammounts=ammount.getText().toString();
+
+                if (reciveremail.isEmpty() || ammounts.isEmpty()) {
+                    Toast.makeText(SendMoney_WithEmail.this, "Please Enter All Details", Toast.LENGTH_SHORT).show();
+                    return;
+                } else if (!reciveremail.matches(emailPattern) || reciveremail.matches(fAuth.getCurrentUser().getEmail().toString())) {
+                    Toast.makeText(SendMoney_WithEmail.this, "Enter Correct Email", Toast.LENGTH_SHORT).show();
+                    return;
+                }else {
+                    showTrasferDialog();
+                }
+
             }
         });
 
@@ -99,6 +112,7 @@ public class SendMoney_WithEmail extends AppCompatActivity {
         TextView to=dialog.findViewById(R.id.to);
         TextView ammount=dialog.findViewById(R.id.ammount);
         TextView money=dialog.findViewById(R.id.money);
+        ImageView image=dialog.findViewById(R.id.image);
         AppCompatButton cancelBtn=dialog.findViewById(R.id.cancelBtn);
         AppCompatButton confirmBtn=dialog.findViewById(R.id.confirmBtn);
 
@@ -106,6 +120,7 @@ public class SendMoney_WithEmail extends AppCompatActivity {
         to.setText(reciveremail);
         ammount.setText(ammounts);
         money.setText(ammounts);
+        image.setImageResource(R.drawable.send_money);
 
         dialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
         dialog.show();
@@ -189,7 +204,6 @@ public class SendMoney_WithEmail extends AppCompatActivity {
                 currentBalance=currentBalance-sendAmmount;
                 snapshot.child("balance").getRef().setValue(currentBalance);
 
-                Toast.makeText(SendMoney_WithEmail.this, "User balance Updated", Toast.LENGTH_SHORT).show();
             }
 
             @Override
@@ -204,7 +218,7 @@ public class SendMoney_WithEmail extends AppCompatActivity {
                         int currentBalance= Integer.parseInt(snapshot.child("balance").getValue().toString());
                         currentBalance=currentBalance+sendAmmount;
                         snapshot.child("balance").getRef().setValue(currentBalance);
-                        Toast.makeText(SendMoney_WithEmail.this, "Reciver balance Updated", Toast.LENGTH_SHORT).show();
+
                     }
 
                     @Override

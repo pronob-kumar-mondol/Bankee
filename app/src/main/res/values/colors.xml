@@ -14,4 +14,6 @@
     <color name="Neutral3">#E2E0E4</color>
     <color name="LavenderBlu">#CCCCFF</color>
     <color name="lightRed">#FF474D</color>
+    <color name="pasteGreen">#2e8b57</color>
+    <color name="limeGreen">#32CD32</color>
 </resources>

@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:elevation="10dp"
+    android:layout_height="wrap_content">
+
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:layout_height="400dp"
+        app:cardCornerRadius="10dp"
+        android:backgroundTint="@color/white"
+        app:cardElevation="10dp"
+        android:elevation="10dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/achivementImg"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:layout_marginTop="16dp"
+                android:src="@drawable/eror404"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.497"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
+            <TextView
+                android:id="@+id/textView37"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/oswald"
+                android:text="Failed"
+                android:textSize="25sp"
+                app:layout_constraintEnd_toEndOf="@+id/achivementImg"
+                app:layout_constraintStart_toStartOf="@+id/achivementImg"
+                app:layout_constraintTop_toBottomOf="@+id/achivementImg" />
+
+            <TextView
+                android:id="@+id/textView38"
+                android:layout_width="317dp"
+                android:layout_height="35dp"
+                android:layout_marginTop="8dp"
+                android:fontFamily="@font/montserrat_alternates"
+                android:text="Your transfer is failed because of bad networking."
+                android:textAlignment="center"
+                app:layout_constraintEnd_toEndOf="@+id/textView37"
+                app:layout_constraintHorizontal_bias="0.498"
+                app:layout_constraintStart_toStartOf="@+id/textView37"
+                app:layout_constraintTop_toBottomOf="@+id/textView37" />
+
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/gobackBtn"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:background="@drawable/button"
+                android:elevation="10dp"
+                android:fontFamily="@font/teko_medium"
+                android:text="Repeat Transfer"
+                android:textColor="@color/white"
+                android:textSize="20sp"
+                app:layout_constraintEnd_toEndOf="@+id/textView38"
+                app:layout_constraintHorizontal_bias="0.497"
+                app:layout_constraintStart_toStartOf="@+id/textView38"
+                app:layout_constraintTop_toBottomOf="@+id/textView38" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:fontFamily="@font/oswald"
+                android:text="Cancel"
+                android:textColor="@color/Red"
+                android:textSize="18sp"
+                app:layout_constraintEnd_toEndOf="@+id/gobackBtn"
+                app:layout_constraintStart_toStartOf="@+id/gobackBtn"
+                app:layout_constraintTop_toBottomOf="@+id/gobackBtn" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+    </com.google.android.material.card.MaterialCardView>
+
+</RelativeLayout>

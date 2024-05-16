@@ -159,15 +159,6 @@ public class MyCardFragment extends Fragment implements AddCardBottomSheetDialog
 
 
 
-
-
-
-
-
-
-
-
-
         return v;
     }
 

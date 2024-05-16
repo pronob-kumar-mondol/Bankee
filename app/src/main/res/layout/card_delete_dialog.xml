@@ -4,20 +4,23 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
     android:background="@drawable/addcrd"
-    app:cardCornerRadius="30dp"
+    app:cardCornerRadius="10dp"
+    android:elevation="10dp"
+    app:cardElevation="10dp"
     android:layout_margin="5dp"
-    android:layout_height="wrap_content">
+    android:layout_height="230dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
         <TextView
+            android:layout_marginTop="20dp"
             android:id="@+id/textView25"
             android:layout_width="267dp"
             android:layout_height="71dp"
-            android:fontFamily="@font/baloo_bhai"
-            android:text="Are you sure you want to Delete this Card?"
+            android:fontFamily="@font/teko_medium"
+            android:text="@string/are_you_sure_about_deleting_this_card"
             android:textAlignment="center"
             android:textSize="25sp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -31,7 +34,7 @@
             android:layout_marginHorizontal="80dp"
             android:layout_marginTop="28dp"
             android:background="@drawable/button"
-            android:fontFamily="@font/baloo_bhai"
+            android:fontFamily="@font/teko_medium"
             android:text="Cancel"
             android:textAllCaps="false"
             android:textColor="@color/white"
@@ -45,11 +48,10 @@
             android:id="@+id/deleteBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/baloo_bhai_2"
+            android:fontFamily="@font/oswald_light"
             android:text="Delete"
             android:textColor="@color/Red"
-            android:textStyle="italic"
-            android:textSize="20dp"
+            android:textSize="18sp"
             android:layout_marginTop="10dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

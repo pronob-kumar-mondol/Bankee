@@ -6,8 +6,8 @@
     android:layout_marginHorizontal="8dp"
     android:layout_marginTop="8dp"
     android:background="@color/white"
-    android:elevation="10dp"
-    app:cardCornerRadius="10dp"
+    android:elevation="20dp"
+    app:cardCornerRadius="5dp"
     android:layout_height="wrap_content">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -19,7 +19,9 @@
             android:id="@+id/circleImageView2"
             android:layout_width="60dp"
             android:layout_height="60dp"
-            android:src="@drawable/transfermoney"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:src="@drawable/recharge"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -27,51 +29,68 @@
             android:id="@+id/trasactionType"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/baloo_bhai"
-            android:text="@string/transaction_type"
-            android:textSize="18sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.129"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:fontFamily="@font/oswald_light"
+            android:text="Recharge"
+            android:textSize="20sp"
             app:layout_constraintStart_toEndOf="@+id/circleImageView2"
             app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/reciver_cred"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:fontFamily="@font/oswald_light"
+            android:text="01988824968"
+            app:layout_constraintStart_toEndOf="@+id/circleImageView2"
+            app:layout_constraintTop_toBottomOf="@+id/trasactionType" />
+
+        <TextView
+            android:id="@+id/textView35"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/oswald_light"
+            android:text="Trans ID :"
+            app:layout_constraintEnd_toEndOf="@+id/reciver_cred"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/reciver_cred"
+            app:layout_constraintTop_toBottomOf="@+id/reciver_cred" />
 
         <TextView
             android:id="@+id/transactionID"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:fontFamily="@font/baloo_bhai_2"
-            android:paddingStart="3dp"
-            android:text="hbdefhbsdabjkabs"
-            android:textColor="@color/Neutral"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.109"
-            app:layout_constraintStart_toEndOf="@+id/circleImageView2"
-            app:layout_constraintTop_toBottomOf="@+id/trasactionType" />
+            android:layout_marginStart="4dp"
+            android:fontFamily="@font/oswald_light"
+            android:text="gegeugycuiuwhqiudn"
+            app:layout_constraintStart_toEndOf="@+id/textView35"
+            app:layout_constraintTop_toTopOf="@+id/textView35" />
+
+
+        <TextView
+            android:id="@+id/textView39"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/oswald_light"
+            android:text="$"
+            android:textColor="@color/limeGreen"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/amount"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/amount"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            android:fontFamily="@font/baloo_bhai"
-            android:text="500"
-            android:textSize="30sp"
+            android:fontFamily="@font/oswald_light"
+            android:text="1000"
+            android:textColor="@color/limeGreen"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.772"
-            app:layout_constraintStart_toEndOf="@+id/trasactionType"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            android:fontFamily="@font/baloo_bhai"
-            android:text="$"
-            android:textSize="30sp"
-            app:layout_constraintEnd_toStartOf="@+id/amount"
-            app:layout_constraintHorizontal_bias="0.865"
-            app:layout_constraintStart_toEndOf="@+id/trasactionType"
             app:layout_constraintTop_toTopOf="parent" />
 
 

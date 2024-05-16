@@ -23,6 +23,7 @@ import com.example.bankee.activity.LoginActivity;
 import com.example.bankee.activity.MyProfile_Activity;
 import com.example.bankee.activity.NwePass_Activity;
 import com.example.bankee.activity.SendMoneyActivity;
+import com.example.bankee.activity.legalPolicies_Activity;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -39,7 +40,7 @@ public class ProfileFragment extends Fragment {
     TextView userName,contactNumber,forgot_pass,change_pass;
     ImageView ivBack,ivMenu;
     TextView tvTitle;
-    RelativeLayout changePass,mainLayout,HistoryTransaction;
+    RelativeLayout changePass,mainLayout,HistoryTransaction,legalPolicies;
     ProgressBar progressBar;
     UserDetails userDetails;
 
@@ -62,6 +63,7 @@ public class ProfileFragment extends Fragment {
         tvTitle=v.findViewById(R.id.tvTitle);
         imageView=v.findViewById(R.id.profile_pic);
         userName=v.findViewById(R.id.user_name);
+        legalPolicies=v.findViewById(R.id.five);
         contactNumber=v.findViewById(R.id.contactNumber);
         change_pass=v.findViewById(R.id.change_pass);
         HistoryTransaction=v.findViewById(R.id.HistoryTransaction);
@@ -89,11 +91,10 @@ public class ProfileFragment extends Fragment {
             }
         });
 
-        HistoryTransaction.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                ;
-            }
+
+
+        legalPolicies.setOnClickListener(view -> {
+            startActivity(new Intent(getActivity(), legalPolicies_Activity.class));
         });
 
 

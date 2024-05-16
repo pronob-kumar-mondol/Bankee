@@ -3,5 +3,10 @@
     <array name="preloaded_fonts" translatable="false">
         <item>@font/baloo_bhai</item>
         <item>@font/baloo_bhai_2</item>
+        <item>@font/montserrat_alternates</item>
+        <item>@font/montserrat_alternates_light</item>
+        <item>@font/oswald</item>
+        <item>@font/oswald_light</item>
+        <item>@font/teko_medium</item>
     </array>
 </resources>

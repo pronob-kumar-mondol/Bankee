@@ -18,6 +18,9 @@
         android:theme="@style/Theme.Bankee"
         tools:targetApi="31">
         <activity
+            android:name=".activity.legalPolicies_Activity"
+            android:exported="false" />
+        <activity
             android:name=".activity.Recharge_Activity"
             android:exported="false" />
         <activity
