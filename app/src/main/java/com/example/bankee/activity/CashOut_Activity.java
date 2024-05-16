@@ -117,6 +117,7 @@ public class CashOut_Activity extends AppCompatActivity {
         confirmBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 performCashOutTransaction(userEmail,reciveremail,reciverAmmount);
                 dialog.dismiss();
             }
@@ -134,18 +135,52 @@ public class CashOut_Activity extends AppCompatActivity {
                 String transactionId=snapshot.getKey();
                 TransactionDetails transactionDetails=new TransactionDetails(userEmail,reciveremail,Integer.parseInt(reciverAmmount),System.currentTimeMillis(),snapshot.getKey(), TranSactionType.CASH_OUT);
                 snapshot.getRef().setValue(transactionDetails);
-                Toast.makeText(CashOut_Activity.this, "Transaction Successful", Toast.LENGTH_SHORT).show();
+                showCofirmDialog();
                 updateUserBalance(reciverAmmount);
+
 
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-                Toast.makeText(CashOut_Activity.this, "something went wrong", Toast.LENGTH_SHORT).show();
+                showCancelDialog();
 
             }
         });
 
+    }
+
+    private void showCancelDialog() {
+        Dialog dialog=new Dialog(CashOut_Activity.this);
+        dialog.setContentView(R.layout.failed_transfer);
+        dialog.show();
+
+        AppCompatButton gobackBtn=dialog.findViewById(R.id.gobackBtn);
+        TextView onCancelBtn=dialog.findViewById(R.id.onCancel);
+
+        gobackBtn.setOnClickListener(v -> {
+            dialog.dismiss();
+        });
+
+        onCancelBtn.setOnClickListener(v -> {
+            dialog.dismiss();
+            startActivity(new Intent(CashOut_Activity.this, MainActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP|Intent.FLAG_ACTIVITY_NEW_TASK));
+        });
+    }
+
+    private void showCofirmDialog() {
+
+
+        Dialog dialog=new Dialog(CashOut_Activity.this);
+        dialog.setContentView(R.layout.sucsessful_transfer);
+        dialog.show();
+
+        AppCompatButton btn= dialog.findViewById(R.id.gobackBtn);
+
+        btn.setOnClickListener(v -> {
+            dialog.dismiss();
+            startActivity(new Intent(CashOut_Activity.this, MainActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP|Intent.FLAG_ACTIVITY_NEW_TASK));
+        });
     }
 
     private void updateUserBalance(String reciverAmmount) {
@@ -158,7 +193,7 @@ public class CashOut_Activity extends AppCompatActivity {
                 int currentBalance= Integer.parseInt(snapshot.getValue().toString());
                 currentBalance=currentBalance-Integer.parseInt(reciverAmmount);
                 snapshot.getRef().setValue(currentBalance);
-                startActivity(new Intent(CashOut_Activity.this, MainActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP|Intent.FLAG_ACTIVITY_NEW_TASK));
+
             }
 
             @Override

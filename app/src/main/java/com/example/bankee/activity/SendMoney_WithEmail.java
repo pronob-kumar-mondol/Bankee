@@ -157,15 +157,52 @@ public class SendMoney_WithEmail extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 TransactionDetails transactionDetails=new TransactionDetails(userEmail,reciveremail,sendAmmount,System.currentTimeMillis(),snapshot.getKey(), TranSactionType.SEND_MONEY);
                 snapshot.getRef().setValue(transactionDetails);
+
+                showConfirmDialog();
+
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-
+                showCancelDialog();
             }
         });
-        startActivity(new Intent(SendMoney_WithEmail.this, MainActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP|Intent.FLAG_ACTIVITY_NEW_TASK));
 
+    }
+
+    private void showCancelDialog() {
+
+        Dialog dialog=new Dialog(SendMoney_WithEmail.this);
+        dialog.setContentView(R.layout.failed_transfer);
+        dialog.show();
+
+        AppCompatButton gobackBtn=dialog.findViewById(R.id.gobackBtn);
+        TextView onCancelBtn=dialog.findViewById(R.id.onCancel);
+
+        gobackBtn.setOnClickListener(v -> {
+            dialog.dismiss();
+        });
+
+        onCancelBtn.setOnClickListener(v -> {
+            dialog.dismiss();
+            startActivity(new Intent(SendMoney_WithEmail.this, MainActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP|Intent.FLAG_ACTIVITY_NEW_TASK));
+        });
+
+
+    }
+
+    private void showConfirmDialog() {
+
+        Dialog dialog=new Dialog(SendMoney_WithEmail.this);
+        dialog.setContentView(R.layout.sucsessful_transfer);
+        dialog.show();
+
+        AppCompatButton btn= dialog.findViewById(R.id.gobackBtn);
+
+        btn.setOnClickListener(v -> {
+            dialog.dismiss();
+            startActivity(new Intent(SendMoney_WithEmail.this, MainActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP|Intent.FLAG_ACTIVITY_NEW_TASK));
+        });
     }
 
     private void performTransactionWithReceiverEmail(String reciverEmail, int sendAmmount) {

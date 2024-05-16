@@ -2,6 +2,7 @@ package com.example.bankee.activity;
 
 import static android.content.ContentValues.TAG;
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -89,23 +90,19 @@ public class NwePass_Activity extends AppCompatActivity {
                                 public void onComplete(@NonNull Task<Void> task) {
                                     Log.d(TAG, "User re-authenticated.");
                                     if (task.isSuccessful()){
-                                        Toast.makeText(NwePass_Activity.this, "Re-Authentication Sucessfull", Toast.LENGTH_SHORT).show();
 
                                         user.updatePassword(new_pass.getText().toString())
                                                 .addOnCompleteListener(new OnCompleteListener<Void>() {
                                                     @Override
                                                     public void onComplete(@NonNull Task<Void> task) {
                                                         if (task.isSuccessful()) {
-                                                            Toast.makeText(NwePass_Activity.this, "Password Changed Sucessfully", Toast.LENGTH_SHORT).show();
+                                                            showCofirmDialog();
                                                             Log.d(TAG, "User password updated.");
-                                                            fAuth.signOut();
-                                                            startActivity(new Intent(NwePass_Activity.this,LoginActivity.class));
-                                                            finish();
                                                         }
                                                     }
                                                 });
                                     }else{
-                                        Toast.makeText(NwePass_Activity.this, "Re-Authentication Failed", Toast.LENGTH_SHORT).show();
+                                        showCancelDialog();
                                     }
                                 }
                             });
@@ -122,6 +119,46 @@ public class NwePass_Activity extends AppCompatActivity {
         }else {
             Toast.makeText(this, "Please Enter All The Fields", Toast.LENGTH_SHORT).show();
         }
+
+    }
+
+    private void showCancelDialog() {
+        Dialog dialog=new Dialog(NwePass_Activity.this);
+        dialog.setContentView(R.layout.failed_transfer);
+        dialog.show();
+
+        TextView text=dialog.findViewById(R.id.textView38);
+        text.setText(R.string.oops_something_went_wrong);
+
+        TextView onCancel=dialog.findViewById(R.id.onCancel);
+        onCancel.setVisibility(View.GONE);
+
+        AppCompatButton btn=dialog.findViewById(R.id.gobackBtn);
+        btn.setText(R.string.continuee);
+        btn.setOnClickListener(v -> {
+            dialog.dismiss();
+            finish();
+        });
+    }
+
+    private void showCofirmDialog() {
+
+        Dialog dialog=new Dialog(NwePass_Activity.this);
+        dialog.setContentView(R.layout.sucsessful_transfer);
+        dialog.show();
+
+        TextView text=dialog.findViewById(R.id.textView29);
+        AppCompatButton btn=dialog.findViewById(R.id.gobackBtn);
+
+        text.setText(R.string.password_changed_successfully);
+
+        btn.setOnClickListener(v -> {
+            dialog.dismiss();
+            fAuth.signOut();
+            startActivity(new Intent(NwePass_Activity.this,LoginActivity.class));
+            finish();
+
+        });
 
     }
 }

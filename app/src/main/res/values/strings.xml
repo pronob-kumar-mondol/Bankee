@@ -52,6 +52,9 @@
     <string name="send_money_with_email">Send Money With Email</string>
     <string name="_100_000">$100,000</string>
     <string name="enter_reciver_email">Enter Reciver Email</string>
+    <string name="password_changed_successfully">Password Changed Successfully</string>
+    <string name="oops_something_went_wrong">OOps!! Something Went Wrong..</string>
+    <string name="continuee">Continue</string>
     <string-array name="card_types">
         <item>Visa</item>
         <item>Mastercard</item>

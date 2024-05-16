@@ -151,7 +151,6 @@ public class Recharge_Activity extends AppCompatActivity {
 
                             updateUserBalance(cardDetails.getBalance(), rechargeAmmount);
                             preformRecharge(reciverNumber,phoneNumber,rechargeAmmount);
-                            Toast.makeText(Recharge_Activity.this, "RECHARGING Successful", Toast.LENGTH_SHORT).show();
                             dialog.dismiss();
                         }
 
@@ -188,13 +187,48 @@ public class Recharge_Activity extends AppCompatActivity {
 
                 TransactionDetails transactionDetails=new TransactionDetails(phoneNumber,reciverNumber,rechargeAmmount,System.currentTimeMillis(),snapshot.getKey(), TranSactionType.RECHARGE);
                 snapshot.getRef().setValue(transactionDetails);
+
+                showConfirmDialog();
+
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-
+                showCancelDialog();
             }
         });
-        startActivity(new Intent(Recharge_Activity.this, MainActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP|Intent.FLAG_ACTIVITY_NEW_TASK));
+    }
+
+    private void showCancelDialog() {
+
+        Dialog dialog=new Dialog(Recharge_Activity.this);
+        dialog.setContentView(R.layout.failed_transfer);
+        dialog.show();
+
+        AppCompatButton gobackBtn=dialog.findViewById(R.id.gobackBtn);
+        TextView onCancelBtn=dialog.findViewById(R.id.onCancel);
+
+        gobackBtn.setOnClickListener(v -> {
+            dialog.dismiss();
+        });
+
+        onCancelBtn.setOnClickListener(v -> {
+            dialog.dismiss();
+            startActivity(new Intent(Recharge_Activity.this, MainActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP|Intent.FLAG_ACTIVITY_NEW_TASK));
+        });
+    }
+
+    private void showConfirmDialog() {
+
+        Dialog dialog=new Dialog(Recharge_Activity.this);
+        dialog.setContentView(R.layout.sucsessful_transfer);
+        dialog.show();
+
+        AppCompatButton btn= dialog.findViewById(R.id.gobackBtn);
+
+        btn.setOnClickListener(v -> {
+            dialog.dismiss();
+            startActivity(new Intent(Recharge_Activity.this, MainActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP|Intent.FLAG_ACTIVITY_NEW_TASK));
+        });
     }
 }
