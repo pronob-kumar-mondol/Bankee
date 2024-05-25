@@ -29,6 +29,8 @@ import java.util.ArrayList;
 
 public class HistoryFragment extends Fragment implements TransactionHistoryAdapter.OnTransactionClickListener {
     RecyclerView recyclerView;
+    TextView tvTitle;
+    ImageView ivBack, ivMenu;
     TransactionDetails transactionModel;
     private TransactionHistoryAdapter historyAdapter;
     DatabaseReference reference;
@@ -38,12 +40,20 @@ public class HistoryFragment extends Fragment implements TransactionHistoryAdapt
                              Bundle savedInstanceState) {
         View v= inflater.inflate(R.layout.fragment_history, container, false);
         recyclerView=v.findViewById(R.id.recyclerView);
+        tvTitle=v.findViewById(R.id.tvTitle);
+        tvTitle.setText("History");
+        ivBack=v.findViewById(R.id.ivBack);
+        ivBack.setVisibility(View.GONE);
+        ivMenu=v.findViewById(R.id.ivMenu);
+        ivMenu.setVisibility(View.GONE);
         ArrayList<TransactionDetails> datalist=new ArrayList<>();
         historyAdapter = new TransactionHistoryAdapter(getContext(),datalist,HistoryFragment.this);
         historyAdapter.setOnTransactionClickListener(this);
         recyclerView.setAdapter(historyAdapter);
 
         reference= FirebaseDatabase.getInstance().getReference("Transactions");
+
+
 
         reference.addValueEventListener(new ValueEventListener() {
             @Override

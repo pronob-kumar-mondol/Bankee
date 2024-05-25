@@ -26,6 +26,7 @@ import com.example.bankee.R;
 import com.example.bankee.activity.CashOut_Activity;
 import com.example.bankee.activity.ContactsActivity;
 import com.example.bankee.activity.MyProfile_Activity;
+import com.example.bankee.activity.Notification_Activity;
 import com.example.bankee.activity.Recharge_Activity;
 import com.example.bankee.activity.SendMoneyActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -48,7 +49,7 @@ public class HomeFragment extends Fragment {
     RelativeLayout sendMoney,cashOut,mainLayout,recharge;
     RelativeLayout contacts;
     TextView user_name,holder_balance,holder_name,card_no,expire_date,tvCardno;
-    ImageView profile_pic,cardType;
+    ImageView profile_pic,cardType,notification;
 
     UserDetails userDetails;
     DatabaseReference reference;
@@ -67,6 +68,7 @@ public class HomeFragment extends Fragment {
         sendMoney=v.findViewById(R.id.sendMoney);
         profile_pic=v.findViewById(R.id.profile_pic);
         contacts=v.findViewById(R.id.contacts);
+        notification=v.findViewById(R.id.notification);
         user_name=v.findViewById(R.id.user_name);
         holder_balance=v.findViewById(R.id.balance);
         holder_name=v.findViewById(R.id.holder_name);
@@ -84,8 +86,10 @@ public class HomeFragment extends Fragment {
 
 
 
+        notification.setVisibility(View.GONE);
 
-       sendMoney.setOnClickListener(new View.OnClickListener() {
+
+        sendMoney.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent=new Intent(getActivity(), SendMoneyActivity.class);

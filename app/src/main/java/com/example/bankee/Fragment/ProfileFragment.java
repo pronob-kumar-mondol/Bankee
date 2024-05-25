@@ -21,6 +21,7 @@ import com.example.bankee.R;
 import com.example.bankee.activity.ForgetPass_Activity;
 import com.example.bankee.activity.LoginActivity;
 import com.example.bankee.activity.MyProfile_Activity;
+import com.example.bankee.activity.Notification_Activity;
 import com.example.bankee.activity.NwePass_Activity;
 import com.example.bankee.activity.SendMoneyActivity;
 import com.example.bankee.activity.legalPolicies_Activity;
@@ -40,7 +41,7 @@ public class ProfileFragment extends Fragment {
     TextView userName,contactNumber,forgot_pass,change_pass;
     ImageView ivBack,ivMenu;
     TextView tvTitle;
-    RelativeLayout changePass,mainLayout,HistoryTransaction,legalPolicies;
+    RelativeLayout changePass,mainLayout,HistoryTransaction,legalPolicies,notification;
     ProgressBar progressBar;
     UserDetails userDetails;
 
@@ -63,6 +64,7 @@ public class ProfileFragment extends Fragment {
         tvTitle=v.findViewById(R.id.tvTitle);
         imageView=v.findViewById(R.id.profile_pic);
         userName=v.findViewById(R.id.user_name);
+        notification=v.findViewById(R.id.four);
         legalPolicies=v.findViewById(R.id.five);
         contactNumber=v.findViewById(R.id.contactNumber);
         change_pass=v.findViewById(R.id.change_pass);
@@ -90,6 +92,8 @@ public class ProfileFragment extends Fragment {
                 startActivity(new Intent(getActivity(), NwePass_Activity.class));
             }
         });
+
+        notification.setVisibility(View.GONE);
 
 
 
