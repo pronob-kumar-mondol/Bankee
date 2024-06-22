@@ -86,7 +86,7 @@ Bankee is a mobile banking application that allows users to integrate and manage
 
 ## Contributing
 
-We appreciate your interest in contributing to our project. Here's how you can get started:
+I appreciate your interest in contributing to my project. Here's how you can get started:
 
 1. **Fork** the repository.
 2. Create a new branch (`git checkout -b feature-branch`).
